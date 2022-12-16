@@ -1,0 +1,29 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <GenerateDocumentationFile>True</GenerateDocumentationFile>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="6.0.12" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.ApiExplorer" Version="2.2.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Versioning.ApiExplorer" Version="5.0.0" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
+    <PackageReference Include="Swashbuckle.AspNetCore.Filters" Version="6.1.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Configurations\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\SinisterApi.Application\SinisterApi.Application.csproj" />
+    <ProjectReference Include="..\SinisterApi.Domain\SinisterApi.Domain.csproj" />
+    <ProjectReference Include="..\SinisterApi.Infra.IoC\SinisterApi.Infra.IoC.csproj" />
+    <ProjectReference Include="..\SinisterApi.Infra.Logger\SinisterApi.Infra.Logger.csproj" />
+  </ItemGroup>
+
+</Project>
