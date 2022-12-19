@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SinisterApi.Domain.Models.Product
+namespace SinisterApi.Repository.Interfaces.Repositories
 {
-    public class GetProductModel
+    public interface IPeriodTyperRepository
     {
     }
 }

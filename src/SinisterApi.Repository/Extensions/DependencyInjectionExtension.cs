@@ -24,6 +24,9 @@ namespace SinisterApi.Repository.Extensions
 
         private static IServiceCollection AddRepositories(this IServiceCollection services) =>
             services
+            .AddScoped<IStatusSinisterRepository, StatusSinisterRepository>()
+            .AddScoped<IPeriodTyperRepository, PeriodTyperRepository>()
+            .AddScoped<ICommunicantTypeRepository, CommunicantTypeRepository>()
             .AddScoped<IProductRepository, ProductRepository>();
     }
 }

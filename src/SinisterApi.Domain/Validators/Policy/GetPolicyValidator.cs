@@ -3,7 +3,7 @@ using SinisterApi.Domain.Models.Policy;
 
 namespace SinisterApi.Domain.Validators.Policy
 {
-    public class GetPolicyValidator : AbstractValidator<GetPolicyModel>
+    public class GetPolicyValidator : AbstractValidator<PolicyModel>
     {
         private readonly string _inconsistentDataCode = "40";
 

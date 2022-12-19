@@ -1,6 +1,6 @@
 ﻿namespace SinisterApi.Domain.Models.Policy
 {
-    public class GetPolicyModel
+    public class PolicyModel
     {
         public int PolicyId { get; set; }
     }

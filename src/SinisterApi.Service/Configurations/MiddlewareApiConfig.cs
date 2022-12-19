@@ -1,7 +1,8 @@
 ﻿namespace SinisterApi.Service.Configurations
 {
-    internal class I4proApiConfig
+    internal class MiddlewareApiConfig
     {
         public string BaseUrl { get; set; }
+        public int User { get; set; }
     }
 }

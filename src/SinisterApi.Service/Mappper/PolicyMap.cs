@@ -1,12 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using SinisterApi.Domain.Models.Policy;
+using SinisterApi.Service.Models;
 
 namespace SinisterApi.Service.Mappper
 {
-    internal class PolicyMap
+    internal static class PolicyMap
     {
+        public PolicyModel Map (List<PoliciesExResponseModel> response)
+        {
+
+            return null;
+        }
     }
 }

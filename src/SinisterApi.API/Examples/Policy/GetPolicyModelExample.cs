@@ -3,9 +3,9 @@ using Swashbuckle.AspNetCore.Filters;
 
 namespace SinisterApi.API.Examples.Policy
 {
-    public class GetPolicyModelExample : IExamplesProvider<GetPolicyModel>
+    public class GetPolicyModelExample : IExamplesProvider<PolicyModel>
     {
-        public GetPolicyModel GetExamples() => new()
+        public PolicyModel GetExamples() => new()
         {           
             PolicyId = 150
         };

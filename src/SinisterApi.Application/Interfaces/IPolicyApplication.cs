@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using SinisterApi.Domain.Models.Policy;
 
 namespace SinisterApi.Application.Interfaces
 {
-    internal interface IPolicyApplication
+    public interface IPolicyApplication
     {
+        Task<PolicyModel> GetPolicyAsync(int policyId);
     }
 }
