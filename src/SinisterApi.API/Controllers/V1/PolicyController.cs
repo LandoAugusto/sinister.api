@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using SinisterApi.API.Controllers.V1.Base;
+using SinisterApi.API.Models.Policy;
 using SinisterApi.Application.Interfaces;
 using SinisterApi.Domain.Models;
-using SinisterApi.Domain.Models.Policy;
 
 namespace SinisterApi.API.Controllers.V1
 {
@@ -15,15 +15,15 @@ namespace SinisterApi.API.Controllers.V1
             => _policyApplication = policyApplication;
 
         [HttpPost]
-        [Route("ListPolicies/{policyId}")]
+        [Route("ListPolicies")]
         [ProducesResponseType(typeof(ResponseModel), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ErrorResponseModel), StatusCodes.Status400BadRequest)]
         [ProducesResponseType(typeof(ErrorResponseModel), StatusCodes.Status404NotFound)]
-        public async Task<IActionResult> ListPoliciesAscync(int policyId)
+        public async Task<IActionResult> ListPoliciesAscync(ListPoliciesRequestModel request)
         {
             var response = "";
 
-            await _policyApplication.GetPolicyAsync(policyId);
+            await _policyApplication.GetPolicyAsync(request.PolicyId.Value);
 
             if (response == null)
                 return ReturnNotFound();
