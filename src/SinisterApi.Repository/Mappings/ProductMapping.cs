@@ -9,7 +9,7 @@ namespace SinisterApi.Repository.Mappings
         public void Configure(EntityTypeBuilder<Product> builder)
         {
             builder
-           .HasKey(x => x.Id);
+           .HasKey(x => x.ProductId);
 
             builder
            .Property(x => x.Description);

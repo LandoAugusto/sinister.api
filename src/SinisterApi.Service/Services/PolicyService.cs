@@ -5,7 +5,6 @@ using SinisterApi.Domain.Models.Policy;
 using SinisterApi.Service.Configurations;
 using SinisterApi.Service.Interfaces;
 using SinisterApi.Service.Models;
-using SinisterApi.Service.Schemas;
 
 namespace SinisterApi.Service.Services
 {
@@ -29,7 +28,7 @@ namespace SinisterApi.Service.Services
                 var serviceName = "ListPoliciesEx";
                 string url = $"{_apiConfig.BaseUrl}{POLICY_SERVICE_NAME}{serviceName}";
                 var response = await SetupRequest(url, TimeoutInMilliseconds)
-                    .PostJsonAsync(new ListPoliciesExRequestModel()
+                    .PostJsonAsync(new
                     {
                         BrokerUsersIds = new List<int>
                         {
@@ -44,7 +43,7 @@ namespace SinisterApi.Service.Services
 
                 return new PolicyModel()
                 {
-                   
+
                 };
             }
             catch (Exception ex)

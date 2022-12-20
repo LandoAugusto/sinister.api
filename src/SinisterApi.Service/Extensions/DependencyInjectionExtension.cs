@@ -13,6 +13,7 @@ namespace SinisterApi.Service.Extensions
            services
             .ConfigureFlurlClient()
             .AddSingleton(configuration.GetSection("MiddlewareApiConfig").Get<MiddlewareApiConfig>())
+            .AddScoped<IInsuredService, InsuredService>()
             .AddScoped<IPolicyService, PolicyService>()
             .AddScoped<IAuthenticationService, AuthenticationService>();
 

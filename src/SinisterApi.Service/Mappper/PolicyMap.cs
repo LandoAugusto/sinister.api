@@ -5,7 +5,7 @@ namespace SinisterApi.Service.Mappper
 {
     internal static class PolicyMap
     {
-        public PolicyModel Map (List<PoliciesExResponseModel> response)
+        public static PolicyModel Map (List<PoliciesExResponseModel> response)
         {
 
             return null;
