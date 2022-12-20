@@ -1,12 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using SinisterApi.Domain.Models.Common;
 
 namespace SinisterApi.Application.Interfaces
 {
-    internal interface ICommonApplication
+    public interface ICommonApplication
     {
+        Task<PeriodTypeModel> ListPeriodTypeAsync();
+        Task<CommunicantTypeModel> ListCommunicantTypeAsync();
+        Task<StatusSinisterModel> ListStatusSinisterAsync();
+       
     }
 }

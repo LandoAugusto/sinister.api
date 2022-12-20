@@ -1,12 +1,25 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Flurl.Http.Configuration;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using SinisterApi.Service.Configurations;
+using SinisterApi.Service.Interfaces;
+using SinisterApi.Service.Services;
 
 namespace SinisterApi.Service.Extensions
 {
-    internal class DependencyInjectionExtension
+    public static class DependencyInjectionExtension
     {
+        public static IServiceCollection AddServiceIoC(this IServiceCollection services, IConfiguration configuration) =>
+           services
+            .ConfigureFlurlClient()
+            .AddSingleton(configuration.GetSection("MiddlewareApiConfig").Get<MiddlewareApiConfig>())
+            .AddScoped<IInsuredService, InsuredService>()
+            .AddScoped<IPolicyService, PolicyService>()
+            .AddScoped<IAuthenticationService, AuthenticationService>();
+
+        private static IServiceCollection ConfigureFlurlClient(
+             this IServiceCollection services) =>
+         services
+             .AddSingleton<IFlurlClientFactory, PerBaseUrlFlurlClientFactory>();
     }
 }

@@ -2,10 +2,7 @@
 
 namespace SinisterApi.Repository.Repositories
 {
-    internal class ProductRepository : IProductRepository
+    internal class StatusSinisterRepository : IStatusSinisterRepository
     {
-
-
-        
     }
 }
