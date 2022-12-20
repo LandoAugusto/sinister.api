@@ -12,7 +12,7 @@ namespace SinisterApi.API.Controllers.V1
         private readonly IPolicyApplication _policyApplication;
 
         public PolicyController(IPolicyApplication policyApplication)
-            => _policyApplication = policyApplication;     
+            => _policyApplication = policyApplication;
 
         [HttpPost]
         [Route("ListPolicies/{policyId}")]
@@ -28,7 +28,7 @@ namespace SinisterApi.API.Controllers.V1
             if (response == null)
                 return ReturnNotFound();
 
-            return ReturnSuccess("", response);
+            return ReturnSuccess(response);
         }
     }
 }

@@ -1,26 +1,51 @@
-﻿using Account.TransactionApi.Api.Configurations;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
+﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
-using SinisterApi.API.Configurations;
 using SinisterApi.Domain.Models;
+using SinisterApi.Identity.Configuration;
+using SinisterApi.Identity.Context;
+using SinisterApi.Identity.Models;
+using System.Diagnostics.CodeAnalysis;
 using System.IdentityModel.Tokens.Jwt;
 using System.Text;
 
-namespace SinisterApi.API.Extensions
+namespace SinisterApi.Identity.Extensions
 {
-    internal static class JwtExtension
+    [ExcludeFromCodeCoverage]
+    public static class DependencyInjectionExtension
     {
-        public static IServiceCollection AddJwt(this IServiceCollection services, IConfiguration configuration)
+        private const string ConnectionName = "DefaultConnection";
+        public static IServiceCollection AddIdentityIoC(this IServiceCollection services, IConfiguration configuration)
+        {
+            services
+                .AddDbContext<IdentityDbContext>(options => options.UseSqlServer(configuration.GetConnectionString(ConnectionName)))
+                .AddIdentity<ApplicationUser, IdentityRole>()
+                .AddEntityFrameworkStores<IdentityDbContext>()
+                .AddDefaultTokenProviders();
+
+            services
+                .AddConfiguration(configuration);        
+
+            return services;
+        }
+
+        private static IServiceCollection AddConfiguration(this IServiceCollection services, IConfiguration configuration)
         {
             var signingConfigurations = new SigningConfiguration();
+
             services.AddSingleton(signingConfigurations);
 
-            var tokenConfiguration = new TokenModel();
-            new ConfigureFromConfigurationOptions<TokenModel>
-                (configuration.GetSection("TokenConfigurations")).Configure(tokenConfiguration);
+            var tokenConfigurations = new TokenConfiguration();
 
-            services.AddSingleton(tokenConfiguration);
+            new ConfigureFromConfigurationOptions<TokenConfiguration>
+                (configuration.GetSection("TokenConfiguration")).Configure(tokenConfigurations);
+
+            services.AddSingleton(tokenConfigurations);
 
             services.AddAuthentication(authOptions =>
             {
@@ -34,8 +59,8 @@ namespace SinisterApi.API.Extensions
 
                 var paramsValidation = jwtOptions.TokenValidationParameters;
                 paramsValidation.IssuerSigningKey = signingConfigurations.Key;
-                paramsValidation.ValidAudience = tokenConfiguration.Audience;
-                paramsValidation.ValidIssuer = tokenConfiguration.Issuer;
+                paramsValidation.ValidAudience = tokenConfigurations.ValidoEm;
+                paramsValidation.ValidIssuer = tokenConfigurations.Emissor;
                 paramsValidation.ValidateIssuerSigningKey = true;
                 paramsValidation.ValidateLifetime = true;
                 paramsValidation.ClockSkew = TimeSpan.Zero;
@@ -71,5 +96,6 @@ namespace SinisterApi.API.Extensions
 
             return services;
         }
+
     }
 }

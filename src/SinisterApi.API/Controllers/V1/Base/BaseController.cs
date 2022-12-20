@@ -9,20 +9,19 @@ namespace SinisterApi.API.Controllers.V1.Base
     [ApiController]
     public abstract class BaseController : ControllerBase
     {
-        protected ActionResult ReturnSuccess(string message = "", object data = null)
+        protected ActionResult ReturnSuccess(object data = null)
         {
             return Ok(new ResponseModel()
             {
-                Message = message,
                 ResponseDate = DateTime.Now,
                 ResponseData = data.ToString()
             });
         }
-        protected ActionResult ReturnSuccessSerializeObject(string message = "", object data = null)
+        protected ActionResult ReturnSuccessSerializeObject(object data = null)
         {
             return Ok(new ResponseModel()
             {
-                Message = message,
+
                 ResponseDate = DateTime.Now,
                 ResponseData = JsonConvert.SerializeObject(data)
             });
