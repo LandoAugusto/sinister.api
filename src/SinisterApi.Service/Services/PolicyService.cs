@@ -1,66 +1,52 @@
-﻿using Flurl.Http;
-using Microsoft.Extensions.Configuration;
-using Newtonsoft.Json;
+﻿using Microsoft.Extensions.Configuration;
+using SinisterApi.Domain.Infrastructure.Exceptions;
 using SinisterApi.Domain.Models.Policy;
 using SinisterApi.Service.Configurations;
+using SinisterApi.Service.Http.Interfaces;
 using SinisterApi.Service.Interfaces;
-using SinisterApi.Service.Models;
+using SinisterApi.Service.Mappper;
+using SinisterApi.Service.Schemas;
 
 namespace SinisterApi.Service.Services
 {
     internal class PolicyService : IPolicyService
     {
         private const string POLICY_SERVICE_NAME = "policy/";
-        private const string JsonApiContentType = "application/json";
-        private int TimeoutInMilliseconds;
-
+        private readonly int TimeoutInMilliseconds;
         private readonly MiddlewareApiConfig _apiConfig;
 
-        public PolicyService(MiddlewareApiConfig apiConfig, IConfiguration configuration) =>
-           (_apiConfig, TimeoutInMilliseconds) = (apiConfig, int.Parse(configuration["ExecuteTimeoutInMilliseconds"]));
+        private readonly IRequestExecutador _requestExecutador;        
 
-        public async Task<PolicyModel> GetPolicyAsync(int policyId)
+        public PolicyService(IRequestExecutador requestExecutador, MiddlewareApiConfig apiConfig, IConfiguration configuration) =>
+           (_requestExecutador, _apiConfig, TimeoutInMilliseconds) = (requestExecutador, apiConfig, int.Parse(configuration["ExecuteTimeoutInMilliseconds"]));
+
+        public async Task<IList<PolicyModel>> ListPolicyAsync(int? policyId, int? insuredPersonId, int? stipulatorPersonId, int? certificate)
         {
             try
             {
-                var resutl = new ListPoliciesExResponseModel();
-
                 var serviceName = "ListPoliciesEx";
-                string url = $"{_apiConfig.BaseUrl}{POLICY_SERVICE_NAME}{serviceName}";
-                var response = await SetupRequest(url, TimeoutInMilliseconds)
-                    .PostJsonAsync(new
-                    {
-                        BrokerUsersIds = new List<int>
+                var response = await _requestExecutador
+                     .PostManyJsonApiAsync<object, ListPoliciesExResponseModel, ErrorResponseModel>
+                     ($"{_apiConfig.BaseUrl}{POLICY_SERVICE_NAME}{serviceName}", new
+                     {
+                         BrokerUsersIds = new List<int>
                         {
-                            _apiConfig.User
+                        _apiConfig.User
                         },
-                        PolicyId = policyId,
-                        SearchAllPolicies = false
-                    });
+                         PolicyId = policyId,
+                         InsuredResponse = insuredPersonId,
+                         SearchAllPolicies = false
+                     }, TimeoutInMilliseconds);
 
-                if (response.ResponseMessage.IsSuccessStatusCode)
-                    resutl = JsonConvert.DeserializeObject<ListPoliciesExResponseModel>(response.ResponseMessage.Content.ReadAsStringAsync().Result);
+                if (response.ErrorResponseObject != null)
+                    throw new BusinessException(response.ErrorResponseObject.Detail);
 
-                return new PolicyModel()
-                {
-
-                };
+                return PolicyMap.Map(response.ResponseObject.Data);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                throw new Exception($"Erro no serviço de transferência !! Número da Conta:", ex.InnerException);
+                throw ;
             }
-        }
-        private IFlurlRequest SetupRequest(string url, int timeoutInMilliseconds = 10000, string authorization = "") => url
-          // .WithOAuthBearerToken(authorization)
-          .WithHeaders(new
-          {
-              Content_Type = JsonApiContentType,
-          })
-          .ConfigureRequest(cfg =>
-          {
-              cfg.Timeout = timeoutInMilliseconds is 0 ? null : TimeSpan.FromMilliseconds(timeoutInMilliseconds);
-              cfg.UrlEncodedSerializer = null;
-          });
+        }       
     }
 }

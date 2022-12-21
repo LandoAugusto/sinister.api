@@ -1,75 +1,63 @@
-﻿using Flurl.Http;
-using Microsoft.Extensions.Configuration;
-using Newtonsoft.Json;
-using SinisterApi.Domain.Entities;
+﻿using Microsoft.Extensions.Configuration;
+using SinisterApi.Domain.Infrastructure.Exceptions;
+using SinisterApi.Domain.Models.Insured;
 using SinisterApi.Service.Configurations;
+using SinisterApi.Service.Http.Interfaces;
 using SinisterApi.Service.Interfaces;
+using SinisterApi.Service.Mappper;
 using SinisterApi.Service.Schemas;
 
 namespace SinisterApi.Service.Services
 {
     internal class InsuredService : IInsuredService
     {
-        private const string POLICY_SERVICE_NAME = "insured/";
-        private const string JsonApiContentType = "application/json";
+        private const string INSURED_SERVICE_NAME = "insured/";
         private int TimeoutInMilliseconds;
-
         private readonly MiddlewareApiConfig _apiConfig;
 
-        public InsuredService(MiddlewareApiConfig apiConfig, IConfiguration configuration) =>
-           (_apiConfig, TimeoutInMilliseconds) = (apiConfig, int.Parse(configuration["ExecuteTimeoutInMilliseconds"]));
+        private readonly IRequestExecutador _requestExecutador;
+
+        public InsuredService(IRequestExecutador requestExecutador, MiddlewareApiConfig apiConfig, IConfiguration configuration) =>
+           (_requestExecutador, _apiConfig, TimeoutInMilliseconds) = (requestExecutador, apiConfig, int.Parse(configuration["ExecuteTimeoutInMilliseconds"]));
 
         public async Task<List<InsuredModel>> ListInsuredAsync(string name, string documentNumber)
         {
             try
             {
-                var resutl = new ListInsuredResponseResponseModel();
                 var serviceName = "ListInsureds";
-                string url = $"{_apiConfig.BaseUrl}{POLICY_SERVICE_NAME}{serviceName}";
-                var response = await SetupRequest(url, TimeoutInMilliseconds)
-                    .PostJsonAsync(new { Name = name, DocumentNumber = documentNumber });
+                var response = await _requestExecutador
+                    .PostManyJsonApiAsync<object, ListInsuredResponseResponseModel, ErrorResponseModel>
+                    ($"{_apiConfig.BaseUrl}{INSURED_SERVICE_NAME}{serviceName}", new { Name = name, DocumentNumber = documentNumber }, TimeoutInMilliseconds);
 
-                if (response.ResponseMessage.IsSuccessStatusCode)
-                    resutl = JsonConvert.DeserializeObject<ListInsuredResponseResponseModel>(response.ResponseMessage.Content.ReadAsStringAsync().Result);
+                if (response.ErrorResponseObject != null)
+                    throw new BusinessException(response.ErrorResponseObject.Detail);                
 
-                return null;
+                return InsurdeMap.Map(response.ResponseObject.Data);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                throw new Exception($"Erro no serviço de transferência !! Número da Conta:", ex.InnerException);
+                throw;
             }
         }
 
         public async Task<InsuredModel> GetInsuredAsync(int insuredPersonId)
         {
             try
-            {
-                var resutl = new GetInsuredResponseResponseModel();
+            {              
                 var serviceName = "GetInsured";
-                string url = $"{_apiConfig.BaseUrl}{POLICY_SERVICE_NAME}{serviceName}";
-                var response = await SetupRequest(url, TimeoutInMilliseconds)
-                    .PostJsonAsync(new { InsuredPersonId = insuredPersonId });
+                var response = await _requestExecutador
+                    .PostManyJsonApiAsync<object, GetInsuredResponseResponseModel, ErrorResponseModel>
+                    ($"{_apiConfig.BaseUrl}{INSURED_SERVICE_NAME}{serviceName}", new { InsuredPersonId = insuredPersonId }, TimeoutInMilliseconds);
 
-                if (response.ResponseMessage.IsSuccessStatusCode)
-                    resutl = JsonConvert.DeserializeObject<GetInsuredResponseResponseModel>(response.ResponseMessage.Content.ReadAsStringAsync().Result);
+                if (response.ErrorResponseObject != null)
+                    throw new BusinessException(response.ErrorResponseObject.Detail);
 
-                return null;
+                return InsurdeMap.Map(response.ResponseObject.Data);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                throw new Exception($"Erro no serviço de transferência !! Número da Conta:", ex.InnerException);
+                throw;
             }
-        }
-        private IFlurlRequest SetupRequest(string url, int timeoutInMilliseconds = 10000, string authorization = "") => url
-          // .WithOAuthBearerToken(authorization)
-          .WithHeaders(new
-          {
-              Content_Type = JsonApiContentType,
-          })
-          .ConfigureRequest(cfg =>
-          {
-              cfg.Timeout = timeoutInMilliseconds is 0 ? null : TimeSpan.FromMilliseconds(timeoutInMilliseconds);
-              cfg.UrlEncodedSerializer = null;
-          });
+        }      
     }
 }

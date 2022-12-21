@@ -1,6 +1,4 @@
-﻿using SinisterApi.Service.Models;
-
-namespace SinisterApi.Service.Schemas
+﻿namespace SinisterApi.Service.Schemas
 {
     public class ListInsuredResponseResponseModel
     {

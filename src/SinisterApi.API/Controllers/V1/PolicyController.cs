@@ -21,10 +21,7 @@ namespace SinisterApi.API.Controllers.V1
         [ProducesResponseType(typeof(ErrorResponseModel), StatusCodes.Status404NotFound)]
         public async Task<IActionResult> ListPoliciesAscync(ListPoliciesRequestModel request)
         {
-            var response = "";
-
-            await _policyApplication.GetPolicyAsync(request.PolicyId.Value);
-
+            var response = await _policyApplication.ListPolicyAsync(request.PolicyId, request.InsuredPersonId, request.StipulatorPersonId, request.Certificate);
             if (response == null)
                 return ReturnNotFound();
 

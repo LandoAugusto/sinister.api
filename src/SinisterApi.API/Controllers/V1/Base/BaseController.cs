@@ -14,10 +14,10 @@ namespace SinisterApi.API.Controllers.V1.Base
             return Ok(new ResponseModel()
             {
                 ResponseDate = DateTime.Now,
-                ResponseData = data.ToString()
+                ResponseData = data
             });
         }
-        protected ActionResult ReturnSuccessSerializeObject(object data = null)
+        protected ActionResult ReturnSuccessSerializeObject(object data)
         {
             return Ok(new ResponseModel()
             {
