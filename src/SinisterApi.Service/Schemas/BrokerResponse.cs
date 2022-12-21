@@ -1,6 +1,6 @@
 ﻿namespace SinisterApi.Service.Schemas
 {
-    public class BrokerResponse
+    internal class BrokerResponse
     {
         public int? PersonId { get; set; }
         public long? DocumentNumber { get; set; }

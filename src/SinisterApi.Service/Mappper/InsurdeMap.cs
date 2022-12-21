@@ -1,7 +1,5 @@
 ﻿using SinisterApi.Domain.Models;
 using SinisterApi.Service.Schemas;
-using System.Reflection.Metadata;
-using System.Xml.Linq;
 
 namespace SinisterApi.Service.Mappper
 {

@@ -1,14 +1,14 @@
 ﻿namespace SinisterApi.Service.Schemas
 {
-    public class ListPoliciesExResponseModel
+    internal class ListPolicyResponse
     {
         public bool Sucess { get; set; }
-        public List<PoliciesExResponseModel> Data { get; set; }
+        public List<PolicyResponse> Data { get; set; }
     }
 
-    public class PoliciesExResponseModel
+    internal class PolicyResponse
     {
-        public PoliciesExResponseModel()
+        public PolicyResponse()
         {
             Status = new();
             Business = new();
@@ -28,11 +28,13 @@
         public DateTime? EndOfTerm { get; set; }
         public StatusResponse Status { get; set; }
         public BusinessResponse Business { get; set; }
-        public Product Product { get; set; }
+        public ProductResponse Product { get; set; }
         public CoverageResponse Coverage { get; set; }
         public BrokerResponse Broker { get; set; }
         public TakerResponse Taker { get; set; }
         public InsuredResponse Insured { get; set; }
+        public UserResponse InclusionUser { get; set; }
+        public UserResponse LastChangeUser { get; set; }
         public decimal? InsuredAmount { get; set; }
         public decimal? MaximumWarrantyLimit { get; set; }
         public decimal? TariffPremium { get; set; }

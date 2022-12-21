@@ -20,6 +20,7 @@ namespace SinisterApi.Service.Extensions
             .AddScoped<IRequestTokenHandler, RequestTokenHandler>()
             .AddScoped<IInsuredService, InsuredService>()
             .AddScoped<IPolicyService, PolicyService>()
+            .AddScoped<IProposalSevice, ProposalSevice>()
             .AddScoped<IAuthenticationService, AuthenticationService>();
 
         private static IServiceCollection ConfigureFlurlClient(

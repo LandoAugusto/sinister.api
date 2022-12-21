@@ -1,6 +1,6 @@
-﻿namespace SinisterApi.Service.Schemas
+﻿namespace SinisterApi.Domain.Models
 {
-    internal class CoverageResponse
+    public class UserModel
     {
         public int? Id { get; set; }
         public string? Name { get; set; }

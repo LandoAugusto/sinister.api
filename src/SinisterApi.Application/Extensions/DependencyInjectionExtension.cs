@@ -12,6 +12,7 @@ namespace SinisterApi.Application.Extensions
             .AddScoped<IInsurdeApplication, InsurdeApplication>()
             .AddScoped<ISinisterApplication, SinisterApplication>()
             .AddScoped<IPolicyApplication, PolicyApplication>()
+            .AddScoped<IProposalApplication, ProposalApplication>()
             .AddScoped<IProductApplication, ProductApplication>();
     }
 }

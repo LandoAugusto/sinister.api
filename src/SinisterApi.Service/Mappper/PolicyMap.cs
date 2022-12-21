@@ -1,12 +1,11 @@
-﻿using Polly;
-using SinisterApi.Domain.Models;
+﻿using SinisterApi.Domain.Models;
 using SinisterApi.Service.Schemas;
 
 namespace SinisterApi.Service.Mappper
 {
     internal static class PolicyMap
     {
-        public static List<PolicyModel> Map(List<PoliciesExResponseModel> response)
+        public static List<PolicyModel> Map(List<PolicyResponse> response)
         {
             var result = new List<PolicyModel>();
 
@@ -28,6 +27,12 @@ namespace SinisterApi.Service.Mappper
                     NetPremium = policy.NetPremium,
                     IsInformedPremium = policy.IsInformedPremium,
                     HasMaximumWarrantyLimit = policy.HasMaximumWarrantyLimit,
+                    Business = new()
+                    {
+                        Id = policy.Business.Id,
+                        Name = policy.Business.Name,                        
+                        SusepCode = policy.Business.SusepCode,
+                    },
                     Status = new()
                     {
                         Id = policy.Status.Id,
@@ -45,8 +50,18 @@ namespace SinisterApi.Service.Mappper
                         DocumentNumber = policy.Broker.DocumentNumber,
                         PersonId = policy.Broker.PersonId,
                         SusepCode = policy.Broker.SusepCode,
+                    },
+                    InclusionUser = new()
+                    {
+                        Id = policy.InclusionUser.Id,
+                        Name = policy.InclusionUser.Name,
+                    },
+                    LastChangeUser = new()
+                    {
+                        Id = policy.LastChangeUser.Id,
+                        Name = policy.LastChangeUser.Name,
                     }
-                });
+                }); 
             }
             return result;
         }
