@@ -1,4 +1,4 @@
-﻿using SinisterApi.Domain.Models.Insured;
+﻿using SinisterApi.Domain.Models;
 using SinisterApi.Service.Schemas;
 using System.Reflection.Metadata;
 using System.Xml.Linq;

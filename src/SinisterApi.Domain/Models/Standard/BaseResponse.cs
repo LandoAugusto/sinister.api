@@ -1,4 +1,4 @@
-﻿namespace SinisterApi.Domain.Models
+﻿namespace SinisterApi.Domain.Models.Standard
 {
     public abstract record BaseResponse
     {

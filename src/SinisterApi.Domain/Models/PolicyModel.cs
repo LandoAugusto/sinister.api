@@ -1,8 +1,4 @@
-﻿using SinisterApi.Domain.Models.Broker;
-using SinisterApi.Domain.Models.Insured;
-using SinisterApi.Domain.Models.Product;
-
-namespace SinisterApi.Domain.Models.Policy
+﻿namespace SinisterApi.Domain.Models
 {
     public class PolicyModel
     {
@@ -14,7 +10,7 @@ namespace SinisterApi.Domain.Models.Policy
         public DateTime? PolicyDate { get; set; }
         public DateTime? StartOfTerm { get; set; }
         public DateTime? EndOfTerm { get; set; }
-        //public StatusResponse Status { get; set; }
+        public StatusModel Status { get; set; }
         //public BusinessResponse Business { get; set; }
         public ProductModel Product { get; set; }
         //public CoverageResponse Coverage { get; set; }
@@ -27,6 +23,7 @@ namespace SinisterApi.Domain.Models.Policy
         public decimal? NetPremium { get; set; }
         public bool IsInformedPremium { get; set; }
         public bool HasMaximumWarrantyLimit { get; set; }
+        public Dictionary<string, string> Items { get; set; }
 
     }
 }

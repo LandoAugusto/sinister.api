@@ -1,8 +1,8 @@
-﻿namespace SinisterApi.Domain.Models.Common
+﻿namespace SinisterApi.Domain.Models
 {
-    public class StatusSinisterModel
+    public class PeriodTypeModel
     {
-        public StatusSinisterModel(int id, string name)
+        public PeriodTypeModel(int id, string name)
         {
             Id = id;
             Name = name;

@@ -1,4 +1,4 @@
-﻿namespace SinisterApi.Domain.Models.Broker
+﻿namespace SinisterApi.Domain.Models
 {
     public class BrokerModel
     {

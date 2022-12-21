@@ -1,6 +1,6 @@
 ﻿using Microsoft.Extensions.Configuration;
 using SinisterApi.Domain.Infrastructure.Exceptions;
-using SinisterApi.Domain.Models.Insured;
+using SinisterApi.Domain.Models;
 using SinisterApi.Service.Configurations;
 using SinisterApi.Service.Http.Interfaces;
 using SinisterApi.Service.Interfaces;
@@ -30,7 +30,10 @@ namespace SinisterApi.Service.Services
                     ($"{_apiConfig.BaseUrl}{INSURED_SERVICE_NAME}{serviceName}", new { Name = name, DocumentNumber = documentNumber }, TimeoutInMilliseconds);
 
                 if (response.ErrorResponseObject != null)
-                    throw new BusinessException(response.ErrorResponseObject.Detail);                
+                {
+                    if (response.ErrorResponseObject.Detail.Contains("Nenhum dado localizado para")) return null;
+                    throw new BusinessException(response.ErrorResponseObject.Detail);
+                };                
 
                 return InsurdeMap.Map(response.ResponseObject.Data);
             }
@@ -50,7 +53,10 @@ namespace SinisterApi.Service.Services
                     ($"{_apiConfig.BaseUrl}{INSURED_SERVICE_NAME}{serviceName}", new { InsuredPersonId = insuredPersonId }, TimeoutInMilliseconds);
 
                 if (response.ErrorResponseObject != null)
+                {
+                    if (response.ErrorResponseObject.Detail.Contains("Nenhum dado localizado para")) return null;
                     throw new BusinessException(response.ErrorResponseObject.Detail);
+                }
 
                 return InsurdeMap.Map(response.ResponseObject.Data);
             }

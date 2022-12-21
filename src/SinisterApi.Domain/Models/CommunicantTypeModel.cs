@@ -1,4 +1,4 @@
-﻿namespace SinisterApi.Domain.Models.Common
+﻿namespace SinisterApi.Domain.Models
 {
     public class CommunicantTypeModel
     {

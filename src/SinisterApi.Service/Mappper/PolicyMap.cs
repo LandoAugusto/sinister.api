@@ -1,4 +1,5 @@
-﻿using SinisterApi.Domain.Models.Policy;
+﻿using Polly;
+using SinisterApi.Domain.Models;
 using SinisterApi.Service.Schemas;
 
 namespace SinisterApi.Service.Mappper
@@ -27,11 +28,23 @@ namespace SinisterApi.Service.Mappper
                     NetPremium = policy.NetPremium,
                     IsInformedPremium = policy.IsInformedPremium,
                     HasMaximumWarrantyLimit = policy.HasMaximumWarrantyLimit,
+                    Status = new()
+                    {
+                        Id = policy.Status.Id,
+                        Name = policy.Status.Name
+                    },
                     Insured = new()
                     {
                         PersonId = policy.Insured.PersonId,
                         Name = policy.Insured.Name,
                         DocumentNumber = policy.Insured.DocumentNumber
+                    },
+                    Broker = new()
+                    {
+                        Name = policy.Broker.Name,
+                        DocumentNumber = policy.Broker.DocumentNumber,
+                        PersonId = policy.Broker.PersonId,
+                        SusepCode = policy.Broker.SusepCode,
                     }
                 });
             }

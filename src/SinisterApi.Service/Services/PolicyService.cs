@@ -1,6 +1,6 @@
 ﻿using Microsoft.Extensions.Configuration;
 using SinisterApi.Domain.Infrastructure.Exceptions;
-using SinisterApi.Domain.Models.Policy;
+using SinisterApi.Domain.Models;
 using SinisterApi.Service.Configurations;
 using SinisterApi.Service.Http.Interfaces;
 using SinisterApi.Service.Interfaces;
@@ -15,7 +15,7 @@ namespace SinisterApi.Service.Services
         private readonly int TimeoutInMilliseconds;
         private readonly MiddlewareApiConfig _apiConfig;
 
-        private readonly IRequestExecutador _requestExecutador;        
+        private readonly IRequestExecutador _requestExecutador;
 
         public PolicyService(IRequestExecutador requestExecutador, MiddlewareApiConfig apiConfig, IConfiguration configuration) =>
            (_requestExecutador, _apiConfig, TimeoutInMilliseconds) = (requestExecutador, apiConfig, int.Parse(configuration["ExecuteTimeoutInMilliseconds"]));
@@ -39,14 +39,18 @@ namespace SinisterApi.Service.Services
                      }, TimeoutInMilliseconds);
 
                 if (response.ErrorResponseObject != null)
+                {
+                    if (response.ErrorResponseObject.Detail.Contains("Nenhum dado localizado para")) return null;
                     throw new BusinessException(response.ErrorResponseObject.Detail);
+                }
+
 
                 return PolicyMap.Map(response.ResponseObject.Data);
             }
             catch (Exception)
             {
-                throw ;
+                throw;
             }
-        }       
+        }
     }
 }

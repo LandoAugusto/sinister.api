@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 using SinisterApi.Domain.Constants;
 using SinisterApi.Domain.Infrastructure.Contexts.Intefaces;
-using SinisterApi.Domain.Models;
+using SinisterApi.Domain.Models.Standard;
 using SinisterApi.Infra.Logger.Interfaces;
 using System.Security.Claims;
 

@@ -1,4 +1,4 @@
-﻿namespace Account.TransactionApi.Api.Configurations
+﻿namespace SinisterApi.Domain.Models.Standard
 {
     public class TokenModel
     {

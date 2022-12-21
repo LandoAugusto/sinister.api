@@ -1,5 +1,5 @@
 ﻿using SinisterApi.Application.Interfaces;
-using SinisterApi.Domain.Models.Product;
+using SinisterApi.Domain.Models;
 using SinisterApi.Repository.Interfaces.Repositories;
 
 namespace SinisterApi.Application.Services

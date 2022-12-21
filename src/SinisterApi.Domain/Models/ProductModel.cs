@@ -1,4 +1,4 @@
-﻿namespace SinisterApi.Domain.Models.Product
+﻿namespace SinisterApi.Domain.Models
 {
     public class ProductModel
     {

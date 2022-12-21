@@ -1,4 +1,4 @@
-﻿namespace SinisterApi.Domain.Models.Insured
+﻿namespace SinisterApi.Domain.Models
 {
     public class InsuredModel
     {

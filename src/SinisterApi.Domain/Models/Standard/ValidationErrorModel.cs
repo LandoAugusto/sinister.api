@@ -1,6 +1,6 @@
 ﻿using FluentValidation.Results;
 
-namespace SinisterApi.Domain.Models
+namespace SinisterApi.Domain.Models.Standard
 {
     public class ValidationErrorModel
     {

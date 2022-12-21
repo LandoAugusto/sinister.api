@@ -1,4 +1,4 @@
-﻿using SinisterApi.Domain.Models.Insured;
+﻿using SinisterApi.Domain.Models;
 
 namespace SinisterApi.Application.Interfaces
 {

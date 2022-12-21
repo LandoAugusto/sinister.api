@@ -3,6 +3,7 @@ using FluentValidation.AspNetCore;
 using FluentValidation.Results;
 using Microsoft.AspNetCore.Mvc;
 using SinisterApi.Domain.Models;
+using SinisterApi.Domain.Models.Standard;
 using SinisterApi.Infra.Logger.Interfaces;
 
 namespace SinisterApi.API.Interceptors

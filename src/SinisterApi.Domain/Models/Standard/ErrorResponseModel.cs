@@ -1,7 +1,7 @@
 ﻿using FluentValidation.Results;
 using Microsoft.AspNetCore.Http;
 
-namespace SinisterApi.Domain.Models
+namespace SinisterApi.Domain.Models.Standard
 {
     public record ErrorResponseModel : BaseResponse
     {

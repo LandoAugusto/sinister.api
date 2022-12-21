@@ -1,5 +1,7 @@
 ﻿using SinisterApi.Application.Interfaces;
-using SinisterApi.Domain.Models.Common;
+using SinisterApi.Domain.Entities;
+using SinisterApi.Domain.Extensions;
+using SinisterApi.Domain.Models;
 using SinisterApi.Repository.Interfaces.Repositories;
 
 namespace SinisterApi.Application.Services
@@ -20,8 +22,7 @@ namespace SinisterApi.Application.Services
         public async Task<IEnumerable<PeriodTypeModel>> ListPeriodTypeAsync()
         {
             var list = await _periodTypeRepository.GetAllAsync();
-
-            if (!list.Any()) return null;
+            if (!list.IsAny<PeriodType>()) return null;
 
             var result = new List<PeriodTypeModel>();
             foreach (var item in list)
@@ -33,8 +34,8 @@ namespace SinisterApi.Application.Services
         public async Task<IEnumerable<CommunicantTypeModel>> ListCommunicantTypeAsync()
         {
             var list = await _communicantTypeRepository.GetAllAsync();
-            if (!list.Any()) return null;
-
+            if (!list.IsAny<CommunicantType>()) return null;          
+            
             var result = new List<CommunicantTypeModel>();
             foreach (var item in list)
                 result.Add(new CommunicantTypeModel(item.Id, item.Name));
@@ -45,7 +46,7 @@ namespace SinisterApi.Application.Services
         public async Task<IEnumerable<StatusSinisterModel>> ListStatusSinisterAsync()
         {
             var list = await _statusSinisterRepository.GetAllAsync();
-            if (!list.Any()) return null;
+            if (!list.IsAny<StatusSinister>()) return null;          
 
             var result = new List<StatusSinisterModel>();
             foreach (var item in list)
