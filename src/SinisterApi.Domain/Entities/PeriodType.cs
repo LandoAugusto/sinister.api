@@ -1,12 +1,14 @@
-﻿namespace SinisterApi.Domain.Entities
+﻿using SinisterApi.Domain.Entities.Interfaces;
+
+namespace SinisterApi.Domain.Entities
 {
-    public class PeriodType 
+    public class PeriodType : IIdentityEntity
     {
-        public int PeriodTypeId { get; set; }
+        public int Id { get; set; }
         public string Name { get; set; }
         public bool Active { get; set; }
-        public DateTime CreatedDt { get; set; }
-        public DateTime? UpatedDt { get; set; }
+        public DateTime CreatedDate { get; set; }
+        public DateTime? UpdatedDate { get; set; }
 
     }
 }

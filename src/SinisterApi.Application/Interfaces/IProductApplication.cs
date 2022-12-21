@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using SinisterApi.Domain.Models.Product;
 
 namespace SinisterApi.Application.Interfaces
 {
-    internal interface IProductApplication
+    public interface IProductApplication
     {
+        Task<IEnumerable<ProductModel>> ListProductAsync();
     }
 }

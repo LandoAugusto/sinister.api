@@ -5,16 +5,17 @@ using SinisterApi.Repository.Repositories.Standard;
 
 namespace SinisterApi.Repository.Repositories
 {
-    internal class StatusSinisterRepository : DomainRepository<StatusSinister>, IStatusSinisterRepository
+    internal class PeriodTypeRepository : DomainRepository<PeriodType>, IPeriodTypeRepository
     {
-        public StatusSinisterRepository(SinisterDbContext dbContext) : base(dbContext)
+        public PeriodTypeRepository(SinisterDbContext dbContext) : base(dbContext)
         {
         }
-        public override async Task<IEnumerable<StatusSinister>> GetAllAsync()
+        public override async Task<IEnumerable<PeriodType>> GetAllAsync()
         {
-            IQueryable<StatusSinister> query = await Task.FromResult(GenerateQuery(filter: null,
+            IQueryable<PeriodType> query = await Task.FromResult(GenerateQuery(filter: null,
                                                                                 orderBy: (item => item.OrderBy(y => y.Name))));
             return query.AsEnumerable();
         }
     }
 }
+

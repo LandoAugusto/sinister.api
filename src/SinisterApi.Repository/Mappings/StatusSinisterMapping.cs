@@ -4,21 +4,12 @@ using SinisterApi.Domain.Entities;
 
 namespace SinisterApi.Repository.Mappings
 {
-    internal class ProductMapping : IEntityTypeConfiguration<Product>
+    internal class StatusSinisterMapping : IEntityTypeConfiguration<StatusSinister>
     {
-        public void Configure(EntityTypeBuilder<Product> builder)
+        public void Configure(EntityTypeBuilder<StatusSinister> builder)
         {
             builder
            .HasKey(x => x.Id);
-
-            builder
-           .Property(x => x.Name);
-
-            builder
-           .Property(x => x.ExternalId);
-
-            builder
-           .Property(x => x.ImageUrl);
 
             builder
            .Property(x => x.Active);

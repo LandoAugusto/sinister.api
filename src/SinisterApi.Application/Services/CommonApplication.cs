@@ -1,23 +1,57 @@
 ﻿using SinisterApi.Application.Interfaces;
 using SinisterApi.Domain.Models.Common;
+using SinisterApi.Repository.Interfaces.Repositories;
 
 namespace SinisterApi.Application.Services
 {
     internal class CommonApplication : ICommonApplication
     {
-        public async Task<PeriodTypeModel> ListPeriodTypeAsync()
+        private readonly ICommunicantTypeRepository _communicantTypeRepository;
+        private readonly IPeriodTypeRepository _periodTypeRepository;
+        private readonly IStatusSinisterRepository _statusSinisterRepository;
+
+        public CommonApplication(ICommunicantTypeRepository communicantTypeRepository, IPeriodTypeRepository periodTypeRepository, IStatusSinisterRepository statusSinisterRepository)
         {
-            return null;
+            _communicantTypeRepository = communicantTypeRepository;
+            _periodTypeRepository = periodTypeRepository;
+            _statusSinisterRepository = statusSinisterRepository;
         }
 
-        public async Task<CommunicantTypeModel> ListCommunicantTypeAsync()
+        public async Task<IEnumerable<PeriodTypeModel>> ListPeriodTypeAsync()
         {
-            return null;
+            var list = await _periodTypeRepository.GetAllAsync();
+
+            if (!list.Any()) return null;
+
+            var result = new List<PeriodTypeModel>();
+            foreach (var item in list)
+                result.Add(new PeriodTypeModel(item.Id, item.Name));
+
+            return result;
         }
 
-        public async Task<StatusSinisterModel> ListStatusSinisterAsync()
+        public async Task<IEnumerable<CommunicantTypeModel>> ListCommunicantTypeAsync()
         {
-            return null;
+            var list = await _communicantTypeRepository.GetAllAsync();
+            if (!list.Any()) return null;
+
+            var result = new List<CommunicantTypeModel>();
+            foreach (var item in list)
+                result.Add(new CommunicantTypeModel(item.Id, item.Name));
+
+            return result;
+        }
+
+        public async Task<IEnumerable<StatusSinisterModel>> ListStatusSinisterAsync()
+        {
+            var list = await _statusSinisterRepository.GetAllAsync();
+            if (!list.Any()) return null;
+
+            var result = new List<StatusSinisterModel>();
+            foreach (var item in list)
+                result.Add(new StatusSinisterModel(item.Id, item.Name));
+
+            return result;
         }
     }
 }

@@ -1,6 +1,6 @@
 ﻿using Flurl.Http;
-using Microsoft.AspNetCore.Http;
 using Polly;
+using SinisterApi.Infra.Logger.Interfaces;
 using SinisterApi.Service.Http.Interfaces;
 using System.Net;
 
@@ -9,11 +9,12 @@ namespace SinisterApi.Service.Http
     internal class RequestExecutador : IRequestExecutador
     {
         private const string JsonApiContentType = "application/json";
+        private readonly ILogWriter _logWriter;
         private readonly IRequestErrorHandler _errorHandler;
         private readonly IRequestTokenHandler _tokenHandler;
 
-        public RequestExecutador(IRequestTokenHandler tokenHandler, IRequestErrorHandler errorHandler) =>
-           (_tokenHandler, _errorHandler) = (tokenHandler, errorHandler);
+        public RequestExecutador(IRequestTokenHandler tokenHandler, IRequestErrorHandler errorHandler, ILogWriter logWriter) =>
+           (_tokenHandler, _errorHandler, _logWriter) = (tokenHandler, errorHandler, logWriter);
 
         public async Task<(TResponse, TErrorResponse)> GetJsonApiAsync<TResponse, TErrorResponse>(
              string url,
@@ -37,6 +38,8 @@ namespace SinisterApi.Service.Http
             catch (Exception e)
             {                
                 var (handledException, statusCode, errorResponse) = await _errorHandler.HandleExceptionAsync<TErrorResponse>(e);
+
+                _logWriter.Error(handledException.Message, handledException.Data, handledException);
                 if (statusCode == (int)HttpStatusCode.NotFound || (statusCode == (int)HttpStatusCode.BadRequest))
                 {
                     return ( default(TResponse), errorResponse);
@@ -63,6 +66,7 @@ namespace SinisterApi.Service.Http
             catch (Exception e)
             {
                 var (handledException, statusCode, errorResponse) = await _errorHandler.HandleExceptionAsync<TErrorResponse>(e);
+                _logWriter.Error(handledException.Message, body, handledException);
                 if (statusCode == (int)HttpStatusCode.NotFound || (statusCode == (int)HttpStatusCode.BadRequest))
                 {
                     return (statusCode, default(TResponse), errorResponse);

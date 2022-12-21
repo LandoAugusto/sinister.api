@@ -17,11 +17,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SinisterApi.Infra.Logger", 
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{17A718B0-4A15-480C-9B1C-6DADF92FDA21}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{4EE4D8E8-DC9A-49FE-A12B-A5167544C78D}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SinisterApi.Service", "src\SinisterApi.Service\SinisterApi.Service.csproj", "{B41C3A46-1E0F-47F3-8431-8FCB0A9A3F4F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SinisterApi.Identity", "Sinister.AspNetCore.Identity\SinisterApi.Identity.csproj", "{DA52A17C-089D-4912-89EA-36C0CD4CCA47}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SinisterApi.Identity", "Sinister.AspNetCore.Identity\SinisterApi.Identity.csproj", "{DA52A17C-089D-4912-89EA-36C0CD4CCA47}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
