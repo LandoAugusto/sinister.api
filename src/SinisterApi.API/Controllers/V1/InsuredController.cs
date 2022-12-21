@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using SinisterApi.API.Controllers.V1.Base;
+using SinisterApi.API.Models.Insured;
 using SinisterApi.Application.Interfaces;
 using SinisterApi.Domain.Models;
 
@@ -12,18 +13,18 @@ namespace SinisterApi.API.Controllers.V1
         public InsuredController(IInsurdeApplication insurdeApplication) =>
             _insurdeApplication = insurdeApplication;
 
-        [HttpGet]
+        [HttpPost]
         [Route("ListInsured")]
         [ProducesResponseType(typeof(ResponseModel), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ErrorResponseModel), StatusCodes.Status400BadRequest)]
         [ProducesResponseType(typeof(ErrorResponseModel), StatusCodes.Status404NotFound)]
-        public async Task<IActionResult> ListInsuredAscync(string name, string documentNumber)
+        public async Task<IActionResult> ListInsuredAscync(ListInsuredRequestModel request)
         {
-            var response = await _insurdeApplication.ListInsuredAsync(name, documentNumber);
+            var response = await _insurdeApplication.ListInsuredAsync(request.Name, request.DocumentNumber);
             if (response == null)
                 return ReturnNotFound();
 
-            return ReturnSuccess("", response);
+            return ReturnSuccess(response);
         }
 
         [HttpGet]
@@ -38,7 +39,7 @@ namespace SinisterApi.API.Controllers.V1
             if (response == null)
                 return ReturnNotFound();
 
-            return ReturnSuccess("", response);
+            return ReturnSuccess(response);
         }
     }
 }

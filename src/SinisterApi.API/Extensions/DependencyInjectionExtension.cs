@@ -18,7 +18,7 @@ using System.Reflection;
 
 namespace SinisterApi.API.Extensions
 {
-    internal static class ServiceExtension
+    internal static class DependencyInjectionExtension
     {
         private const string BearerAuthenticationDescription = "JWT Authorization header using the Bearer scheme. Enter 'Bearer' [space] and then your token in the text input below. Example: 'Bearer 12345abcdef'";
         public static IServiceCollection AddApi(this IServiceCollection services, IConfiguration configuration) =>
@@ -26,8 +26,7 @@ namespace SinisterApi.API.Extensions
                 .AddScoped<IRequestContextHolder, RequestContextHolder>()
                 .ConfigControllersPipeline()
                 .ConfigAppVersioning()
-                .ConfigSwagger()
-                .AddJwt(configuration)
+                .ConfigSwagger()                
                 .Configure<GzipCompressionProviderOptions>(gzipCompressionProviderOptions =>
                     gzipCompressionProviderOptions.Level = CompressionLevel.Fastest)
                 .AddResponseCompression(compressionOptions =>

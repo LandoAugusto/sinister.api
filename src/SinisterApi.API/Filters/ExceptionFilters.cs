@@ -3,6 +3,8 @@ using Microsoft.AspNetCore.Mvc;
 using SinisterApi.Domain.Infrastructure.Contexts.Intefaces;
 using SinisterApi.Domain.Models;
 using SinisterApi.Infra.Logger.Interfaces;
+using SinisterApi.Service.Exceptions;
+using Newtonsoft.Json;
 
 namespace SinisterApi.API.Filters
 {
@@ -24,7 +26,7 @@ namespace SinisterApi.API.Filters
                 ex: ex,
                 source: ex.TargetSite?.Name);
 
-            context.ExceptionHandled = true;
+            context.ExceptionHandled = true;            
 
             context.HttpContext.Response.StatusCode = StatusCodes.Status400BadRequest;
             context.Result = new ObjectResult(ErrorResponseModel.BuildError(ex.Message));

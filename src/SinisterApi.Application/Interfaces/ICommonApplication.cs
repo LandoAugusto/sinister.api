@@ -4,9 +4,9 @@ namespace SinisterApi.Application.Interfaces
 {
     public interface ICommonApplication
     {
-        Task<PeriodTypeModel> ListPeriodTypeAsync();
-        Task<CommunicantTypeModel> ListCommunicantTypeAsync();
-        Task<StatusSinisterModel> ListStatusSinisterAsync();
+        Task<IEnumerable<PeriodTypeModel>> ListPeriodTypeAsync();
+        Task<IEnumerable<CommunicantTypeModel>>ListCommunicantTypeAsync();
+        Task<IEnumerable<StatusSinisterModel>> ListStatusSinisterAsync();
        
     }
 }

@@ -1,6 +1,4 @@
-﻿using SinisterApi.Service.Schemas;
-
-namespace SinisterApi.Service.Models
+﻿namespace SinisterApi.Service.Schemas
 {
     public class ListPoliciesExResponseModel
     {

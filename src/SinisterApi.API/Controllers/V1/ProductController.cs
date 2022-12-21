@@ -1,25 +1,28 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using SinisterApi.API.Controllers.V1.Base;
+using SinisterApi.Application.Interfaces;
 using SinisterApi.Domain.Models;
-using SinisterApi.Domain.Models.Policy;
-using SinisterApi.Domain.Models.Product;
 
 namespace SinisterApi.API.Controllers.V1
 {
     public class ProductController : BaseController
     {
-        [HttpPost]
+        private readonly IProductApplication _productApplication;
+        public ProductController(IProductApplication productApplication) =>
+            _productApplication = productApplication;
+
+        [HttpGet]
         [Route("ListProduct")]
         [ProducesResponseType(typeof(ResponseModel), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ErrorResponseModel), StatusCodes.Status400BadRequest)]
         [ProducesResponseType(typeof(ErrorResponseModel), StatusCodes.Status404NotFound)]
-        public async Task<IActionResult> GetProductAscync(ProductModel request)
+        public async Task<IActionResult> ListProductAsync()
         {
-            var response = 1;
+            var response = await _productApplication.ListProductAsync();
             if (response == null)
                 return ReturnNotFound();
 
-            return ReturnSuccess("", response);
+            return ReturnSuccess(response);
         }
     }
 }

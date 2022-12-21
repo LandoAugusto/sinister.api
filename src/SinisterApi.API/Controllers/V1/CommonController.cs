@@ -23,7 +23,7 @@ namespace SinisterApi.API.Controllers.V1
             if (response == null)
                 return ReturnNotFound();
 
-            return ReturnSuccess("", response);
+            return ReturnSuccess(response);
         }
 
         [HttpGet]
@@ -37,7 +37,7 @@ namespace SinisterApi.API.Controllers.V1
             if (response == null)
                 return ReturnNotFound();
 
-            return ReturnSuccess("", response);
+            return ReturnSuccess(response);
         }
 
         [HttpGet]
@@ -51,7 +51,7 @@ namespace SinisterApi.API.Controllers.V1
             if (response == null)
                 return ReturnNotFound();
 
-            return ReturnSuccess("", response);
+            return ReturnSuccess( response);
         }
     }
 }

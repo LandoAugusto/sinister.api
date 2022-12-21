@@ -2,6 +2,8 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using SinisterApi.Service.Configurations;
+using SinisterApi.Service.Http;
+using SinisterApi.Service.Http.Interfaces;
 using SinisterApi.Service.Interfaces;
 using SinisterApi.Service.Services;
 
@@ -13,6 +15,9 @@ namespace SinisterApi.Service.Extensions
            services
             .ConfigureFlurlClient()
             .AddSingleton(configuration.GetSection("MiddlewareApiConfig").Get<MiddlewareApiConfig>())
+            .AddScoped<IRequestErrorHandler, RequestErrorHandler>()
+            .AddScoped<IRequestExecutador, RequestExecutador>()
+            .AddScoped<IRequestTokenHandler, RequestTokenHandler>()
             .AddScoped<IInsuredService, InsuredService>()
             .AddScoped<IPolicyService, PolicyService>()
             .AddScoped<IAuthenticationService, AuthenticationService>();

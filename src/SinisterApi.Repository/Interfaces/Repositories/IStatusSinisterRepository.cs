@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using SinisterApi.Domain.Entities;
+using SinisterApi.Repository.Interfaces.Repositories.Standard;
 
 namespace SinisterApi.Repository.Interfaces.Repositories
 {
-    public interface IStatusSinisterRepository
+    public interface IStatusSinisterRepository : IDomainRepository<StatusSinister>
     {
     }
 }

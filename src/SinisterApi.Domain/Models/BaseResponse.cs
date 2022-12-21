@@ -4,7 +4,7 @@
     {
         public DateTime ResponseDate { get; set; }
 
-        public string ResponseData { get; set; }
+        public object ResponseData { get; set; }
 
         public string Message { get; set; }
     }

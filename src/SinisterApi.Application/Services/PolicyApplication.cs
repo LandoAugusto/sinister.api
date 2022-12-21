@@ -1,7 +1,6 @@
 ﻿using SinisterApi.Application.Interfaces;
 using SinisterApi.Domain.Models.Policy;
 using SinisterApi.Service.Interfaces;
-using SinisterApi.Service.Models;
 
 namespace SinisterApi.Application.Services
 {
@@ -12,9 +11,9 @@ namespace SinisterApi.Application.Services
         public PolicyApplication(IPolicyService policyService) =>
             _policyService = policyService;
 
-        public async Task<PolicyModel> GetPolicyAsync(int policyId)
+        public async Task<IList<PolicyModel>> ListPolicyAsync(int? policyId, int? insuredPersonId, int? stipulatorPersonId, int? certificate)
         {
-         return  await _policyService.GetPolicyAsync(policyId);
+            return await _policyService.ListPolicyAsync(policyId, insuredPersonId, stipulatorPersonId, certificate);
         }
     }
 }

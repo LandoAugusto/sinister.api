@@ -9,10 +9,10 @@ namespace SinisterApi.Repository.Mappings
         public void Configure(EntityTypeBuilder<Product> builder)
         {
             builder
-           .HasKey(x => x.ProductId);
+           .HasKey(x => x.Id);
 
             builder
-           .Property(x => x.Description);
+           .Property(x => x.Name);
 
             builder
            .Property(x => x.ExternalId);
@@ -24,10 +24,10 @@ namespace SinisterApi.Repository.Mappings
            .Property(x => x.Active);
 
             builder
-           .Property(x => x.CreatedDt);
+           .Property(x => x.CreatedDate);
 
             builder
-           .Property(x => x.UpdatedDt);
+           .Property(x => x.UpdatedDate);
         }
     }
 }

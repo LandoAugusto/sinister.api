@@ -12,6 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\Sinister.AspNetCore.Identity\SinisterApi.Identity.csproj" />
     <ProjectReference Include="..\SinisterApi.Application\SinisterApi.Application.csproj" />
     <ProjectReference Include="..\SinisterApi.Domain\SinisterApi.Domain.csproj" />
     <ProjectReference Include="..\SinisterApi.Infra.Logger\SinisterApi.Infra.Logger.csproj" />
