@@ -27,6 +27,7 @@ namespace SinisterApi.Repository.Extensions
             .AddScoped<IStatusSinisterRepository, StatusSinisterRepository>()
             .AddScoped<IPeriodTypeRepository, PeriodTypeRepository>()
             .AddScoped<ICommunicantTypeRepository, CommunicantTypeRepository>()
-            .AddScoped<IProductRepository, ProductRepository>();
+            .AddScoped<IProductRepository, ProductRepository>()
+            .AddScoped<ISituationSinisterRepository, SituationSinisterRepository>();
     }
 }

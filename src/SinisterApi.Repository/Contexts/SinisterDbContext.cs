@@ -17,6 +17,7 @@ namespace SinisterApi.Repository.Contexts
         public virtual DbSet<PeriodType> PeriodType { get; set; }
         public virtual DbSet<CommunicantType> CommunicantType { get; set; }
         public virtual DbSet<StatusSinister> StatusSinister { get; set; }
+        public virtual DbSet<SituationSinister> SituationSinister { get; set; }
         public virtual DbSet<Product> Product { get; set; }
     }
 }

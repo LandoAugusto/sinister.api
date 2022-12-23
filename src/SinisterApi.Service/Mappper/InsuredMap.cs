@@ -3,7 +3,7 @@ using SinisterApi.Service.Schemas;
 
 namespace SinisterApi.Service.Mappper
 {
-    internal class InsurdeMap
+    internal class InsuredMap
     {
         public static List<InsuredModel> Map(List<InsuredResponse> response)
         {

@@ -11,12 +11,18 @@ namespace SinisterApi.Application.Services
         private readonly ICommunicantTypeRepository _communicantTypeRepository;
         private readonly IPeriodTypeRepository _periodTypeRepository;
         private readonly IStatusSinisterRepository _statusSinisterRepository;
+        private readonly ISituationSinisterRepository _situationSinisterRepository;
 
-        public CommonApplication(ICommunicantTypeRepository communicantTypeRepository, IPeriodTypeRepository periodTypeRepository, IStatusSinisterRepository statusSinisterRepository)
+        public CommonApplication(
+            ICommunicantTypeRepository communicantTypeRepository, 
+            IPeriodTypeRepository periodTypeRepository,
+            IStatusSinisterRepository statusSinisterRepository,
+            ISituationSinisterRepository situationSinisterRepository)
         {
             _communicantTypeRepository = communicantTypeRepository;
             _periodTypeRepository = periodTypeRepository;
             _statusSinisterRepository = statusSinisterRepository;
+            _situationSinisterRepository = situationSinisterRepository;
         }
 
         public async Task<IEnumerable<PeriodTypeModel>> ListPeriodTypeAsync()
@@ -51,6 +57,18 @@ namespace SinisterApi.Application.Services
             var result = new List<StatusSinisterModel>();
             foreach (var item in list)
                 result.Add(new StatusSinisterModel(item.Id, item.Name));
+
+            return result;
+        }
+
+        public async Task<IEnumerable<SituationSinisterModel>> ListSituationSinisterAsync()
+        {
+            var list = await _situationSinisterRepository.GetAllAsync();
+            if (!list.IsAny<SituationSinister>()) return null;
+
+            var result = new List<SituationSinisterModel>();
+            foreach (var item in list)
+                result.Add(new SituationSinisterModel(item.Id, item.Name));
 
             return result;
         }

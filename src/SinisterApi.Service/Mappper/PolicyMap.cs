@@ -21,16 +21,10 @@ namespace SinisterApi.Service.Mappper
                     PolicyDate = policy.PolicyDate,
                     StartOfTerm = policy.StartOfTerm,
                     EndOfTerm = policy.EndOfTerm,
-                    InsuredAmount = policy.InsuredAmount,
-                    MaximumWarrantyLimit = policy.MaximumWarrantyLimit,
-                    TariffPremium = policy.TariffPremium,
-                    NetPremium = policy.NetPremium,
-                    IsInformedPremium = policy.IsInformedPremium,
-                    HasMaximumWarrantyLimit = policy.HasMaximumWarrantyLimit,
                     Business = new()
                     {
                         Id = policy.Business.Id,
-                        Name = policy.Business.Name,                        
+                        Name = policy.Business.Name,
                         SusepCode = policy.Business.SusepCode,
                     },
                     Status = new()
@@ -38,19 +32,8 @@ namespace SinisterApi.Service.Mappper
                         Id = policy.Status.Id,
                         Name = policy.Status.Name
                     },
-                    Insured = new()
-                    {
-                        PersonId = policy.Insured.PersonId,
-                        Name = policy.Insured.Name,
-                        DocumentNumber = policy.Insured.DocumentNumber
-                    },
-                    Broker = new()
-                    {
-                        Name = policy.Broker.Name,
-                        DocumentNumber = policy.Broker.DocumentNumber,
-                        PersonId = policy.Broker.PersonId,
-                        SusepCode = policy.Broker.SusepCode,
-                    },
+                    Insured = InsuredMap.Map(policy.Insured),
+                    Broker = BrokerMap.Map(policy.Broker),
                     InclusionUser = new()
                     {
                         Id = policy.InclusionUser.Id,
@@ -61,7 +44,7 @@ namespace SinisterApi.Service.Mappper
                         Id = policy.LastChangeUser.Id,
                         Name = policy.LastChangeUser.Name,
                     }
-                }); 
+                }); ; 
             }
             return result;
         }

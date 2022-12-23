@@ -46,7 +46,7 @@ namespace SinisterApi.API.Controllers.V1
                 throw new BusinessException("Usuário ou senha incorretos.");
 
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 throw;
             }

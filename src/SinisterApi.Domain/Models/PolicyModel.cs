@@ -17,13 +17,6 @@
         public InsuredModel Insured { get; set; }
         public UserModel InclusionUser { get; set; }
         public UserModel LastChangeUser { get; set; }
-        public decimal? InsuredAmount { get; set; }
-        public decimal? MaximumWarrantyLimit { get; set; }
-        public decimal? TariffPremium { get; set; }
-        public decimal? NetPremium { get; set; }
-        public bool IsInformedPremium { get; set; }
-        public bool HasMaximumWarrantyLimit { get; set; }
-        public Dictionary<string, string> Items { get; set; }
 
     }
 }

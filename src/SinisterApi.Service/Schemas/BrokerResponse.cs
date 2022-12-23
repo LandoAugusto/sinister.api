@@ -1,5 +1,10 @@
 ﻿namespace SinisterApi.Service.Schemas
 {
+    internal class GetBrokerResponseModel
+    {
+        public bool Sucess { get; set; }
+        public BrokerResponse Data { get; set; }
+    }
     internal class BrokerResponse
     {
         public int? PersonId { get; set; }

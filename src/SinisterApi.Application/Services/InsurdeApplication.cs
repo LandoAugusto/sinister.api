@@ -14,7 +14,6 @@ namespace SinisterApi.Application.Services
         {
             return await _insuredService.ListInsuredAsync(name, documentNumber);
         }
-
         public async Task<InsuredModel> GetInsuredAsync(int insuredPersonId)
         {
             return await _insuredService.GetInsuredAsync(insuredPersonId);

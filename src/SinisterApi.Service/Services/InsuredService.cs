@@ -35,7 +35,7 @@ namespace SinisterApi.Service.Services
                     throw new BusinessException(response.ErrorResponseObject.Detail);
                 };                
 
-                return InsurdeMap.Map(response.ResponseObject.Data);
+                return InsuredMap.Map(response.ResponseObject.Data);
             }
             catch (Exception)
             {
@@ -58,7 +58,7 @@ namespace SinisterApi.Service.Services
                     throw new BusinessException(response.ErrorResponseObject.Detail);
                 }
 
-                return InsurdeMap.Map(response.ResponseObject.Data);
+                return InsuredMap.Map(response.ResponseObject.Data);
             }
             catch (Exception)
             {
