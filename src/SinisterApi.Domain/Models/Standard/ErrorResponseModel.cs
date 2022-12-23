@@ -29,7 +29,7 @@ namespace SinisterApi.Domain.Models.Standard
 
         public static ErrorResponseModel BuildError(string message) => new()
         {
-            ResponseDate = DateTime.Now,
+            Success = false,
             Message = message,
         };
     }

@@ -2,10 +2,8 @@
 {
     public abstract record BaseResponse
     {
-        public DateTime ResponseDate { get; set; }
-
+        public bool Success { get; set; } = false;
         public object ResponseData { get; set; }
-
         public string Message { get; set; }
     }
 }
