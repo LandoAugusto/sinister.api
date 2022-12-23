@@ -21,6 +21,7 @@ namespace SinisterApi.Service.Mappper
                     PolicyDate = policy.PolicyDate,
                     StartOfTerm = policy.StartOfTerm,
                     EndOfTerm = policy.EndOfTerm,
+                    Product = new(policy.Product.Id.Value, policy.Product.Name, null),
                     Business = new()
                     {
                         Id = policy.Business.Id,

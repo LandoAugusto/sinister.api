@@ -7,7 +7,7 @@ namespace SinisterApi.API.Examples.Policy
     {
         public ListPoliciesRequestModel GetExamples() => new()
         {           
-            PolicyId = 29259,
+            PolicyId = 28878,
             InsuredPersonId = null,
             StipulatorPersonId = null,
             Certificate = null,

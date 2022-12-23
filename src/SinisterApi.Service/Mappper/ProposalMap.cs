@@ -23,10 +23,11 @@ namespace SinisterApi.Service.Mappper
                 //NetPremium = proposal.NetPremium,
                 IsInformedPremium = proposal.IsInformedPremium,
                 HasMaximumWarrantyLimit = proposal.HasMaximumWarrantyLimit,
+                Product = new(proposal.Product.Id.Value, proposal.Product.Name, null),
                 Business = new()
                 {
                     Id = proposal.Business.Id,
-                    Name = proposal.Business.Name,                    
+                    Name = proposal.Business.Name,
                     SusepCode = proposal.Business.SusepCode,
                 },
                 Status = new()
