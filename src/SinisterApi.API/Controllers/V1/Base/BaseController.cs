@@ -13,7 +13,7 @@ namespace SinisterApi.API.Controllers.V1.Base
         {
             return Ok(new ResponseModel()
             {
-                ResponseDate = DateTime.Now,
+                Success = true,
                 ResponseData = data
             });
         }
@@ -22,7 +22,7 @@ namespace SinisterApi.API.Controllers.V1.Base
             return Ok(new ResponseModel()
             {
 
-                ResponseDate = DateTime.Now,
+                Success = true,
                 ResponseData = JsonConvert.SerializeObject(data)
             });
         }
