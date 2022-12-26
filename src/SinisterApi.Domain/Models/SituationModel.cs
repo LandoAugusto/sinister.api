@@ -1,8 +1,8 @@
 ﻿namespace SinisterApi.Domain.Models
 {
-    public class SituationSinisterModel
+    public class SituationModel
     {
-        public SituationSinisterModel(int id, string name)
+        public SituationModel(int id, string name)
         {
             Id = id;
             Name = name;

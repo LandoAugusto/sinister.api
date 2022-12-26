@@ -3,7 +3,7 @@ using SinisterApi.Repository.Interfaces.Repositories.Standard;
 
 namespace SinisterApi.Repository.Interfaces.Repositories
 {
-    public interface IStatusSinisterRepository : IDomainRepository<StatusSinister>
+    public interface IStatusSinisterRepository : IDomainRepository<Status>
     {
     }
 }

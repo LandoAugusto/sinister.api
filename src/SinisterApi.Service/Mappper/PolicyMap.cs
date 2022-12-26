@@ -20,32 +20,20 @@ namespace SinisterApi.Service.Mappper
                     ProposalDate = policy.ProposalDate,
                     PolicyDate = policy.PolicyDate,
                     StartOfTerm = policy.StartOfTerm,
-                    EndOfTerm = policy.EndOfTerm,
-                    Product = new(policy.Product.Id.Value, policy.Product.Name, null),
+                    EndOfTerm = policy.EndOfTerm,                   
                     Business = new()
                     {
                         Id = policy.Business.Id,
                         Name = policy.Business.Name,
                         SusepCode = policy.Business.SusepCode,
-                    },
-                    Status = new()
-                    {
-                        Id = policy.Status.Id,
-                        Name = policy.Status.Name
-                    },
+                    },                  
                     Insured = InsuredMap.Map(policy.Insured),
                     Broker = BrokerMap.Map(policy.Broker),
-                    InclusionUser = new()
-                    {
-                        Id = policy.InclusionUser.Id,
-                        Name = policy.InclusionUser.Name,
-                    },
-                    LastChangeUser = new()
-                    {
-                        Id = policy.LastChangeUser.Id,
-                        Name = policy.LastChangeUser.Name,
-                    }
-                }); ; 
+                    Status = new(policy.Status.Id, policy.Status.Name),
+                    Product = new(policy.Product.Id.Value, policy.Product.Name, null),
+                    InclusionUser = new(policy.InclusionUser.Id, policy.InclusionUser.Name),
+                    LastChangeUser = new(policy.LastChangeUser.Id, policy.LastChangeUser.Name)
+                });
             }
             return result;
         }

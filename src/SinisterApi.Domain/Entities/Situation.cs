@@ -2,7 +2,7 @@
 
 namespace SinisterApi.Domain.Entities
 {
-    public class SituationSinister : IIdentityEntity
+    public class Situation : IIdentityEntity
     {
         public int Id { get; set; }
         public string Name { get; set; }
