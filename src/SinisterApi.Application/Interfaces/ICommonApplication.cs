@@ -6,7 +6,7 @@ namespace SinisterApi.Application.Interfaces
     {
         Task<IEnumerable<PeriodTypeModel>> ListPeriodTypeAsync();
         Task<IEnumerable<CommunicantTypeModel>>ListCommunicantTypeAsync();
-        Task<IEnumerable<StatusSinisterModel>> ListStatusSinisterAsync();
-        Task<IEnumerable<SituationSinisterModel>> ListSituationSinisterAsync();
+        Task<IEnumerable<StatusModel>> ListStatusAsync();
+        Task<IEnumerable<SituationModel>> ListSituationAsync();
     }
 }

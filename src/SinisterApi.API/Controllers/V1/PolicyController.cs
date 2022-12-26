@@ -8,7 +8,6 @@ namespace SinisterApi.API.Controllers.V1
 {
     public class PolicyController : BaseController
     {
-
         private readonly IPolicyApplication _policyApplication;
 
         public PolicyController(IPolicyApplication policyApplication)

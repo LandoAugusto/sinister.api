@@ -5,14 +5,14 @@ using SinisterApi.Repository.Repositories.Standard;
 
 namespace SinisterApi.Repository.Repositories
 {
-    internal class StatusSinisterRepository : DomainRepository<StatusSinister>, IStatusSinisterRepository
+    internal class StatusSinisterRepository : DomainRepository<Status>, IStatusSinisterRepository
     {
         public StatusSinisterRepository(SinisterDbContext dbContext) : base(dbContext)
         {
         }
-        public override async Task<IEnumerable<StatusSinister>> GetAllAsync()
+        public override async Task<IEnumerable<Status>> GetAllAsync()
         {
-            IQueryable<StatusSinister> query = await Task.FromResult(GenerateQuery(filter: null,
+            IQueryable<Status> query = await Task.FromResult(GenerateQuery(filter: null,
                                                                                 orderBy: (item => item.OrderBy(y => y.Name))));
             return query.AsEnumerable();
         }

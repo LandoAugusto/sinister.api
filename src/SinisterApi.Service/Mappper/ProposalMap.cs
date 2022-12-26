@@ -13,14 +13,9 @@ namespace SinisterApi.Service.Mappper
                 PolicyId = proposal.PolicyId,
                 EndorsementId = proposal.EndorsementId,
                 PolicyNumber = proposal.PolicyNumber,
-                ProposalDate = proposal.ProposalDate,
-                //PolicyDate = proposal.PolicyDate,
+                ProposalDate = proposal.ProposalDate,               
                 StartOfTerm = proposal.StartOfTerm,
-                EndOfTerm = proposal.EndOfTerm,
-                //InsuredAmount = proposal.InsuredAmount,
-                //MaximumWarrantyLimit = proposal.MaximumWarrantyLimit,
-                //TariffPremium = proposal.TariffPremium,
-                //NetPremium = proposal.NetPremium,
+                EndOfTerm = proposal.EndOfTerm,              
                 IsInformedPremium = proposal.IsInformedPremium,
                 HasMaximumWarrantyLimit = proposal.HasMaximumWarrantyLimit,
                 Product = new(proposal.Product.Id.Value, proposal.Product.Name, null),
@@ -29,12 +24,7 @@ namespace SinisterApi.Service.Mappper
                     Id = proposal.Business.Id,
                     Name = proposal.Business.Name,
                     SusepCode = proposal.Business.SusepCode,
-                },
-                Status = new()
-                {
-                    Id = proposal.Status.Id,
-                    Name = proposal.Status.Name
-                },
+                },                
                 Insured = new()
                 {
                     PersonId = proposal.Insured.PersonId,
@@ -48,16 +38,9 @@ namespace SinisterApi.Service.Mappper
                     PersonId = proposal.Broker.PersonId,
                     SusepCode = proposal.Broker.SusepCode,
                 },
-                InclusionUser = new()
-                {
-                    Id = proposal.InclusionUser.Id,
-                    Name = proposal.InclusionUser.Name,
-                },
-                LastChangeUser = new()
-                {
-                    Id = proposal.LastChangeUser.Id,
-                    Name = proposal.LastChangeUser.Name,
-                }
+                Status = new(proposal.Status.Id, proposal.Status.Name),
+                InclusionUser = new(proposal.InclusionUser.Id, proposal.InclusionUser.Name),
+                LastChangeUser = new(proposal.LastChangeUser.Id, proposal.LastChangeUser.Name)
             };
         }
     }

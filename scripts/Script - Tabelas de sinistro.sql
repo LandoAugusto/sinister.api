@@ -37,10 +37,10 @@ CONSTRAINT [PK_CommunicantType_Id] PRIMARY KEY CLUSTERED
 ) ON [PRIMARY]
 GO
 
-IF OBJECT_ID('dbo.StatusSinister', 'U') IS NOT NULL 
-  DROP TABLE dbo.StatusSinister; 
+IF OBJECT_ID('dbo.Status', 'U') IS NOT NULL 
+  DROP TABLE dbo.Status; 
 GO
-CREATE TABLE  StatusSinister
+CREATE TABLE  Status
 (
 	Id		INT IDENTITY(1,1) NOT NULL,
 	Name					VARCHAR(50)  NOT NULL,	
@@ -48,17 +48,17 @@ CREATE TABLE  StatusSinister
 	CreatedDate             DATETIME NOT NULL,
 	UpdatedDate             DATETIME NULL,
  
-CONSTRAINT [PK_StatusSinister_Id] PRIMARY KEY CLUSTERED 
+CONSTRAINT [PK_Status_Id] PRIMARY KEY CLUSTERED 
 (
 	[Id] ASC
 )WITH (STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
 
-IF OBJECT_ID('dbo.SituationSinister', 'U') IS NOT NULL 
-  DROP TABLE dbo.SituationSinister; 
+IF OBJECT_ID('dbo.Situation', 'U') IS NOT NULL 
+  DROP TABLE dbo.Situation; 
 GO
-CREATE TABLE  SituationSinister
+CREATE TABLE  Situation
 (
 	Id						INT IDENTITY(1,1) NOT NULL,
 	Name					VARCHAR(50)  NOT NULL,	
@@ -66,7 +66,7 @@ CREATE TABLE  SituationSinister
 	CreatedDate             DATETIME NOT NULL,
 	UpdatedDate             DATETIME NULL,
  
-CONSTRAINT [PK_SituationSinister_Id] PRIMARY KEY CLUSTERED 
+CONSTRAINT [PK_Situation_Id] PRIMARY KEY CLUSTERED 
 (
 	[Id] ASC
 )WITH (STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
@@ -100,16 +100,16 @@ Insert into PeriodType values('Data da Ocorrência',1,Getdate(),null)
 Insert into PeriodType values('Data do Registro',1,Getdate(),null)
 Insert into PeriodType values('Data da Entrada na CIA',1,Getdate(),null)
 
-Insert into SituationSinister values('Aberto',1,Getdate(),null)
-Insert into SituationSinister values('Em Análise',1,Getdate(),null)
-Insert into SituationSinister values('Regulação',1,Getdate(),null)
-Insert into SituationSinister values('Suspenso',1,Getdate(),null)
-Insert into SituationSinister values('Liquidado',1,Getdate(),null)
-Insert into SituationSinister values('Indeferido',1,Getdate(),null)
-Insert into SituationSinister values('Deferido',1,Getdate(),null)
+Insert into Situation values('Aberto',1,Getdate(),null)
+Insert into Situation values('Em Análise',1,Getdate(),null)
+Insert into Situation values('Regulação',1,Getdate(),null)
+Insert into Situation values('Suspenso',1,Getdate(),null)
+Insert into Situation values('Liquidado',1,Getdate(),null)
+Insert into Situation values('Indeferido',1,Getdate(),null)
+Insert into Situation values('Deferido',1,Getdate(),null)
 
-Insert into StatusSinister values('Completo',1,Getdate(),null)
-Insert into StatusSinister values('Incompleto',1,Getdate(),null)
+Insert into Status values('Completo',1,Getdate(),null)
+Insert into Status values('Incompleto',1,Getdate(),null)
 
 Insert into CommunicantType values('Corretor',1,Getdate(),null)
 Insert into CommunicantType values('Segurado',1,Getdate(),null)
@@ -131,7 +131,7 @@ insert product values ('GARANTIA SETOR PÚBLICO - UNIFICADO','12012'	 ,'/img/test
 --ProductParameter
 
 
---SinisterNotification
+--  Notification
 --	Id
 --	ProtocolNumber
 --	SinisterNumber
@@ -143,7 +143,7 @@ insert product values ('GARANTIA SETOR PÚBLICO - UNIFICADO','12012'	 ,'/img/test
 --	CreatedDate             DATETIME NOT NULL,
 --	UpdatedDate             DATETIME NULL,
 
---SinisterCommunicant
+--  Communicant
 --	Id
 --	CommunicantTypeId
 --	Name
@@ -152,9 +152,9 @@ insert product values ('GARANTIA SETOR PÚBLICO - UNIFICADO','12012'	 ,'/img/test
 
 
 
---SinisterOccurrence
+--  Occurrence
 --	Id
---	SinisterNotificationId
+--	NotificationId
 --	DateOccurrence
 
 
