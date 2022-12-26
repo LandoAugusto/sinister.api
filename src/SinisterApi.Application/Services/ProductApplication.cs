@@ -19,7 +19,7 @@ namespace SinisterApi.Application.Services
 
             var result = new List<ProductModel>();
             foreach (var item in list)
-                result.Add(new ProductModel(item.Id, item.Name, item.ImageUrl));
+                result.Add(new ProductModel(int.Parse(item.ExternalId), item.Name, item.ImageUrl));
 
             return result;
         }
