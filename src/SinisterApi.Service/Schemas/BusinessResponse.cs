@@ -1,6 +1,6 @@
 ﻿namespace SinisterApi.Service.Schemas
 {
-    public class BusinessResponse
+    internal class BusinessResponse
     {
         public int? Id { get; set; }
         public int? SusepCode { get; set; }

@@ -1,18 +1,18 @@
 ﻿namespace SinisterApi.Service.Schemas
 {
-    public class ListInsuredResponseResponseModel
+    internal class ListInsuredResponseResponseModel
     {
         public bool Sucess { get; set; }
         public List<InsuredResponse> Data { get; set; }
     }
 
-    public class GetInsuredResponseResponseModel
+    internal class GetInsuredResponseResponseModel
     {
         public bool Sucess { get; set; }
         public InsuredResponse Data { get; set; }
     }
 
-    public class InsuredResponse
+    internal class InsuredResponse
     {
         public int? PersonId { get; set; }
         public string? Name { get; set; }

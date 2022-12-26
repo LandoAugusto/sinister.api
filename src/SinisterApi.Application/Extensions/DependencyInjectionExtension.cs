@@ -8,11 +8,13 @@ namespace SinisterApi.Application.Extensions
     {
         public static IServiceCollection AddApplicationIoC(this IServiceCollection services) =>
            services
+            .AddScoped<IBrokerApplication, BrokerApplication>()
             .AddScoped<ICommonApplication, CommonApplication>()
             .AddScoped<IInsurdeApplication, InsurdeApplication>()
-            .AddScoped<ISinisterApplication, SinisterApplication>()
             .AddScoped<IPolicyApplication, PolicyApplication>()
-            .AddScoped<IProductApplication, ProductApplication>();
+            .AddScoped<IProposalApplication, ProposalApplication>()
+            .AddScoped<IProductApplication, ProductApplication>()
+            .AddScoped<ISinisterApplication, SinisterApplication>();
     }
 }
     

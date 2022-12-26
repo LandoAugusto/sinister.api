@@ -1,5 +1,6 @@
 ﻿using SinisterApi.Application.Interfaces;
-using SinisterApi.Domain.Models.Policy;
+using SinisterApi.Domain.Extensions;
+using SinisterApi.Domain.Models;
 using SinisterApi.Service.Interfaces;
 
 namespace SinisterApi.Application.Services
@@ -13,7 +14,13 @@ namespace SinisterApi.Application.Services
 
         public async Task<IList<PolicyModel>> ListPolicyAsync(int? policyId, int? insuredPersonId, int? stipulatorPersonId, int? certificate)
         {
-            return await _policyService.ListPolicyAsync(policyId, insuredPersonId, stipulatorPersonId, certificate);
+            var policys = await _policyService.ListPolicyAsync(policyId, insuredPersonId, stipulatorPersonId, certificate);
+
+            if (policys.IsAny<PolicyModel>())
+            {
+
+            }
+            return policys;
         }
     }
 }

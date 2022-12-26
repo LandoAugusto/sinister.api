@@ -1,11 +1,11 @@
-﻿using SinisterApi.Domain.Models.Policy;
+﻿using SinisterApi.Domain.Models;
 using SinisterApi.Service.Schemas;
 
 namespace SinisterApi.Service.Mappper
 {
     internal static class PolicyMap
     {
-        public static List<PolicyModel> Map(List<PoliciesExResponseModel> response)
+        public static List<PolicyModel> Map(List<PolicyResponse> response)
         {
             var result = new List<PolicyModel>();
 
@@ -21,19 +21,31 @@ namespace SinisterApi.Service.Mappper
                     PolicyDate = policy.PolicyDate,
                     StartOfTerm = policy.StartOfTerm,
                     EndOfTerm = policy.EndOfTerm,
-                    InsuredAmount = policy.InsuredAmount,
-                    MaximumWarrantyLimit = policy.MaximumWarrantyLimit,
-                    TariffPremium = policy.TariffPremium,
-                    NetPremium = policy.NetPremium,
-                    IsInformedPremium = policy.IsInformedPremium,
-                    HasMaximumWarrantyLimit = policy.HasMaximumWarrantyLimit,
-                    Insured = new()
+                    Product = new(policy.Product.Id.Value, policy.Product.Name, null),
+                    Business = new()
                     {
-                        PersonId = policy.Insured.PersonId,
-                        Name = policy.Insured.Name,
-                        DocumentNumber = policy.Insured.DocumentNumber
+                        Id = policy.Business.Id,
+                        Name = policy.Business.Name,
+                        SusepCode = policy.Business.SusepCode,
+                    },
+                    Status = new()
+                    {
+                        Id = policy.Status.Id,
+                        Name = policy.Status.Name
+                    },
+                    Insured = InsuredMap.Map(policy.Insured),
+                    Broker = BrokerMap.Map(policy.Broker),
+                    InclusionUser = new()
+                    {
+                        Id = policy.InclusionUser.Id,
+                        Name = policy.InclusionUser.Name,
+                    },
+                    LastChangeUser = new()
+                    {
+                        Id = policy.LastChangeUser.Id,
+                        Name = policy.LastChangeUser.Name,
                     }
-                });
+                }); ; 
             }
             return result;
         }

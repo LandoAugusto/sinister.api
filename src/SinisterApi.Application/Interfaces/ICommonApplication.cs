@@ -1,4 +1,4 @@
-﻿using SinisterApi.Domain.Models.Common;
+﻿using SinisterApi.Domain.Models;
 
 namespace SinisterApi.Application.Interfaces
 {
@@ -7,6 +7,6 @@ namespace SinisterApi.Application.Interfaces
         Task<IEnumerable<PeriodTypeModel>> ListPeriodTypeAsync();
         Task<IEnumerable<CommunicantTypeModel>>ListCommunicantTypeAsync();
         Task<IEnumerable<StatusSinisterModel>> ListStatusSinisterAsync();
-       
+        Task<IEnumerable<SituationSinisterModel>> ListSituationSinisterAsync();
     }
 }

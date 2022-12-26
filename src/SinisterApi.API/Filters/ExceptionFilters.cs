@@ -1,10 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.AspNetCore.Mvc;
 using SinisterApi.Domain.Infrastructure.Contexts.Intefaces;
-using SinisterApi.Domain.Models;
 using SinisterApi.Infra.Logger.Interfaces;
 using SinisterApi.Service.Exceptions;
 using Newtonsoft.Json;
+using SinisterApi.Domain.Models.Standard;
 
 namespace SinisterApi.API.Filters
 {

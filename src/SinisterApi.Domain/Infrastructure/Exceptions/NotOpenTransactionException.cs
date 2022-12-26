@@ -1,5 +1,5 @@
 ﻿using System.Runtime.Serialization;
-using static SinisterApi.Domain.Extensions.StringExtension;
+using static SinisterApi.Domain.Extensions.Utils;
 
 namespace SinisterApi.Domain.Infrastructure.Exceptions
 {

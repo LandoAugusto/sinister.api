@@ -1,6 +1,6 @@
 ﻿namespace SinisterApi.Service.Schemas
 {
-    public class Product
+    internal class ProductResponse
     {
         public int? Id { get; set; }
         public string? Name { get; set; }

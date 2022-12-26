@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using SinisterApi.API.Controllers.V1.Base;
 using SinisterApi.Application.Interfaces;
-using SinisterApi.Domain.Models;
+using SinisterApi.Domain.Models.Standard;
 
 namespace SinisterApi.API.Controllers.V1
 {
@@ -17,7 +17,7 @@ namespace SinisterApi.API.Controllers.V1
         [ProducesResponseType(typeof(ResponseModel), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ErrorResponseModel), StatusCodes.Status400BadRequest)]
         [ProducesResponseType(typeof(ErrorResponseModel), StatusCodes.Status404NotFound)]
-        public async Task<IActionResult> ListPeriodType()
+        public async Task<IActionResult> ListPeriodTypeAsync()
         {
             var response = await _commonApplication.ListPeriodTypeAsync();
             if (response == null)
@@ -31,7 +31,7 @@ namespace SinisterApi.API.Controllers.V1
         [ProducesResponseType(typeof(ResponseModel), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ErrorResponseModel), StatusCodes.Status400BadRequest)]
         [ProducesResponseType(typeof(ErrorResponseModel), StatusCodes.Status404NotFound)]
-        public async Task<IActionResult> ListCommunicantType()
+        public async Task<IActionResult> ListCommunicantTypeAsync()
         {
             var response = await _commonApplication.ListCommunicantTypeAsync ();
             if (response == null)
@@ -45,13 +45,27 @@ namespace SinisterApi.API.Controllers.V1
         [ProducesResponseType(typeof(ResponseModel), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ErrorResponseModel), StatusCodes.Status400BadRequest)]
         [ProducesResponseType(typeof(ErrorResponseModel), StatusCodes.Status404NotFound)]
-        public async Task<IActionResult> ListStateSinister()
+        public async Task<IActionResult> ListStatusSinisterAsync()
         {
             var response = await _commonApplication.ListStatusSinisterAsync();
             if (response == null)
                 return ReturnNotFound();
 
             return ReturnSuccess( response);
+        }
+
+        [HttpGet]
+        [Route("ListSituationSinister")]
+        [ProducesResponseType(typeof(ResponseModel), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(ErrorResponseModel), StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(typeof(ErrorResponseModel), StatusCodes.Status404NotFound)]
+        public async Task<IActionResult> ListSituationSinisterAsync()
+        {
+            var response = await _commonApplication.ListSituationSinisterAsync();
+            if (response == null)
+                return ReturnNotFound();
+
+            return ReturnSuccess(response);
         }
     }
 }
