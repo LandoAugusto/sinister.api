@@ -149,6 +149,9 @@ insert product values ('GARANTIA SETOR PÚBLICO - UNIFICADO','12012'	 ,'/img/test
 --	Name
 --	Email
 
+
+
+
 --SinisterOccurrence
 --	Id
 --	SinisterNotificationId
