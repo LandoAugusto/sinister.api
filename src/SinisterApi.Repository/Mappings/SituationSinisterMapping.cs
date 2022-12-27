@@ -4,9 +4,9 @@ using SinisterApi.Domain.Entities;
 
 namespace SinisterApi.Repository.Mappings
 {
-    internal class SituationSinisterMapping : IEntityTypeConfiguration<SituationSinister>
+    internal class SituationSinisterMapping : IEntityTypeConfiguration<Situation>
     {
-        public void Configure(EntityTypeBuilder<SituationSinister> builder)
+        public void Configure(EntityTypeBuilder<Situation> builder)
         {
             builder
            .HasKey(x => x.Id);

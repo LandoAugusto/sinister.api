@@ -229,6 +229,6 @@ select * from Product
 
 --  Occurrence
 --	Id
---	SinisterNotificationId
+--	NotificationId
 --	DateOccurrence
 

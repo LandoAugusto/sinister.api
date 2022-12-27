@@ -49,26 +49,26 @@ namespace SinisterApi.Application.Services
             return result;
         }
 
-        public async Task<IEnumerable<StatusSinisterModel>> ListStatusSinisterAsync()
+        public async Task<IEnumerable<StatusModel>> ListStatusAsync()
         {
             var list = await _statusSinisterRepository.GetAllAsync();
-            if (!list.IsAny<StatusSinister>()) return null;          
+            if (!list.IsAny<Status>()) return null;          
 
-            var result = new List<StatusSinisterModel>();
+            var result = new List<StatusModel>();
             foreach (var item in list)
-                result.Add(new StatusSinisterModel(item.Id, item.Name));
+                result.Add(new StatusModel(item.Id, item.Name));
 
             return result;
         }
 
-        public async Task<IEnumerable<SituationSinisterModel>> ListSituationSinisterAsync()
+        public async Task<IEnumerable<SituationModel>> ListSituationAsync()
         {
             var list = await _situationSinisterRepository.GetAllAsync();
-            if (!list.IsAny<SituationSinister>()) return null;
+            if (!list.IsAny<Situation>()) return null;
 
-            var result = new List<SituationSinisterModel>();
+            var result = new List<SituationModel>();
             foreach (var item in list)
-                result.Add(new SituationSinisterModel(item.Id, item.Name));
+                result.Add(new SituationModel(item.Id, item.Name));
 
             return result;
         }

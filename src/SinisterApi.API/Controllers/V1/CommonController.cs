@@ -41,13 +41,13 @@ namespace SinisterApi.API.Controllers.V1
         }
 
         [HttpGet]
-        [Route("ListStatusSinister")]
+        [Route("ListStatus")]
         [ProducesResponseType(typeof(ResponseModel), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ErrorResponseModel), StatusCodes.Status400BadRequest)]
         [ProducesResponseType(typeof(ErrorResponseModel), StatusCodes.Status404NotFound)]
-        public async Task<IActionResult> ListStatusSinisterAsync()
+        public async Task<IActionResult> ListStatusAsync()
         {
-            var response = await _commonApplication.ListStatusSinisterAsync();
+            var response = await _commonApplication.ListStatusAsync();
             if (response == null)
                 return ReturnNotFound();
 
@@ -55,13 +55,13 @@ namespace SinisterApi.API.Controllers.V1
         }
 
         [HttpGet]
-        [Route("ListSituationSinister")]
+        [Route("ListSituation")]
         [ProducesResponseType(typeof(ResponseModel), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ErrorResponseModel), StatusCodes.Status400BadRequest)]
         [ProducesResponseType(typeof(ErrorResponseModel), StatusCodes.Status404NotFound)]
-        public async Task<IActionResult> ListSituationSinisterAsync()
+        public async Task<IActionResult> ListSituationAsync()
         {
-            var response = await _commonApplication.ListSituationSinisterAsync();
+            var response = await _commonApplication.ListSituationAsync();
             if (response == null)
                 return ReturnNotFound();
 
