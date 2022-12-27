@@ -52,11 +52,13 @@ namespace SinisterApi.Service.Http
             string url,
             TBody body,
             int timeoutInMilliseconds,
+            bool isToken = false,
             CancellationToken cancellationToken = default)
         {
             try
             {
-                // await _tokenHandler.GenerateTokenAsync();
+                if(isToken)
+                 await _tokenHandler.GenerateTokenAsync();
                 var response = await SetupRequest(url, timeoutInMilliseconds)
                     .PostJsonAsync(body, cancellationToken);
                 var responseObject = await response.GetJsonAsync<TResponse>();

@@ -1,4 +1,6 @@
-﻿namespace SinisterApi.Domain.Extensions
+﻿using System.Text.RegularExpressions;
+
+namespace SinisterApi.Domain.Extensions
 {
     public static class Utils
     {
@@ -9,6 +11,12 @@
         public static bool IsAny<T>(this IEnumerable<T> data)
         {
             return data != null && data.Any();
+        }
+
+        public static string OnlyNumerical(this string value)
+        {
+            var apenasDigitos = new Regex(@"[^\d]");
+            return apenasDigitos.Replace(value, "");
         }
 
     }

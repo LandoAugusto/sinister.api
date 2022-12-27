@@ -87,12 +87,59 @@ CREATE TABLE  Product
 	CreatedDate             DATETIME NOT NULL,
 	UpdatedDate             DATETIME NULL,
  
+CONSTRAINT [PK_Product_Id] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+
+IF OBJECT_ID('dbo.Notification', 'U') IS NOT NULL 
+  DROP TABLE dbo.Notification; 
+GO
+CREATE TABLE  Notification
+(
+	Id						INT IDENTITY(1,1) NOT NULL,
+	ProtocolNumber			INT NOT NULL,
+	SinisterNumber			VARCHAR (15),
+	DateRegister            DATETIME NULL,
+	DateNotification        DATETIME NULL,
+	DateSinister            DATETIME NULL,	
+	CreatedDate             DATETIME NOT NULL,
+	UpdatedDate             DATETIME NULL,
+ 
 CONSTRAINT [PK_Productr_Id] PRIMARY KEY CLUSTERED 
 (
 	[Id] ASC
 )WITH (STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
+IF OBJECT_ID('dbo.Policy', 'U') IS NOT NULL 
+  DROP TABLE dbo.Policy; 
+GO
+CREATE TABLE  Policy
+(
+	Id						INT IDENTITY(1,1) NOT NULL,
+	ProductId			    INT NOT NULL,	
+	PolicyId                DATETIME NULL,
+	PolicyNumber            DATETIME NULL,
+	Endorsement			    VARCHAR (15),
+	Item					INT,
+	StartedDate				DATETIME NOT NULL,
+	EndDate					DATETIME NOT NULL,
+	CreatedDate             DATETIME NOT NULL,
+	UpdatedDate             DATETIME NULL,
+ 
+CONSTRAINT [PK_Productr_Id] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+
 
 
 Insert into PeriodType values('Data do Comunicado',1,Getdate(),null)
@@ -117,17 +164,19 @@ Insert into CommunicantType values('Terceiro',1,Getdate(),null)
 Insert into CommunicantType values('Outros',1,Getdate(),null)
 
 
-insert product values ('GARANTIA SETOR PÚBLICO - UNIFICADO','11953'	 ,'/img/teste.jpg',1,getdate(), null)
-insert product values ('GARANTIA SETOR PÚBLICO - PORTAL SME','11980' ,'/img/teste.jpg',1,getdate(), null)
-insert product values ('GARANTIA DE OBRIGAÇÕES PRIVADAS','11926	'	 ,'/img/teste.jpg',1,getdate(), null)
-insert product values ('GARANTIA SETOR PÚBLICO - UNIFICADO','12012'	 ,'/img/teste.jpg',1,getdate(), null)
+insert Product values ('GARANTIA SETOR PÚBLICO - UNIFICADO','11953'	 ,'/img/teste.jpg',1,getdate(), null)
+insert Product values ('GARANTIA SETOR PÚBLICO - PORTAL SME','11980' ,'/img/teste.jpg',1,getdate(), null)
+insert Product values ('GARANTIA DE OBRIGAÇÕES PRIVADAS','11926	'	 ,'/img/teste.jpg',1,getdate(), null)
+insert Product values ('GARANTIA SETOR PÚBLICO - UNIFICADO','12012'	 ,'/img/teste.jpg',1,getdate(), null)
 
 
---SinisterNotification
---SinisterPolicy
---SinisterCommunicant
---SinisterInsured
---SinisterOccurrence
+select * from Product
+
+-- Notification
+-- Policy
+-- Communicant
+-- Insured
+-- Occurrence
 --ProductParameter
 
 
@@ -138,23 +187,48 @@ insert product values ('GARANTIA SETOR PÚBLICO - UNIFICADO','12012'	 ,'/img/test
 --	DateNotification	
 --	DateRegister
 --	DateSinister
+--	StatusId
+--  Stage
+--  SituationId
 --	Contentious
---	StatusSinisterId
 --	CreatedDate             DATETIME NOT NULL,
 --	UpdatedDate             DATETIME NULL,
 
---  Communicant
+
+--AdditionalInformation
 --	Id
+--	NotificationId
+--  Contentious
+--	ProcessType   
+--	ProcessNumber
+--  IncidentReport
+--  IncidentReportNumber
+--	CreatedDate             DATETIME NOT NULL,
+--	UpdatedDate             DATETIME NULL,
+
+
+
+-- Communicant
+--	Id
+--  NotificationId
 --	CommunicantTypeId
+--  PersonId
+--	CreatedDate             DATETIME NOT NULL,
+--	UpdatedDate             DATETIME NUL
+
+-- Person
 --	Name
 --	Email
 
+-- PersonPhone
 
+-- PersonEmail
+
+-- PersonAddress
 
 
 --  Occurrence
 --	Id
 --	NotificationId
 --	DateOccurrence
-
 

@@ -10,9 +10,7 @@ namespace SinisterApi.Application.Services
         public BrokerApplication(IBrokerService brokerService) =>
             _brokerService = brokerService;
 
-        public async Task<BrokerModel> GetBrokerAsync(int brokerUserId)
-        {
-            return await _brokerService.GetBrokerAsync(brokerUserId);
-        }
+        public async Task<BrokerModel> GetBrokerAsync(int brokerUserId) =>
+             await _brokerService.GetBrokerAsync(brokerUserId);
     }
 }

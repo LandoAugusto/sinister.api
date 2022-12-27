@@ -11,6 +11,7 @@
            string url,
            TBody body,
            int timeoutInMilliseconds,
+           bool isToken = false,
            CancellationToken cancellationToken = default);
     }
 }

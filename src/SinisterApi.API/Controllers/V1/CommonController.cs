@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using SinisterApi.API.Controllers.V1.Base;
 using SinisterApi.Application.Interfaces;
+using SinisterApi.Domain.Extensions;
 using SinisterApi.Domain.Models.Standard;
 
 namespace SinisterApi.API.Controllers.V1
@@ -62,6 +63,20 @@ namespace SinisterApi.API.Controllers.V1
         public async Task<IActionResult> ListSituationAsync()
         {
             var response = await _commonApplication.ListSituationAsync();
+            if (response == null)
+                return ReturnNotFound();
+
+            return ReturnSuccess(response);
+        }
+
+        [HttpGet]
+        [Route("GetZipCode/{zipCode}")]
+        [ProducesResponseType(typeof(ResponseModel), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(ErrorResponseModel), StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(typeof(ErrorResponseModel), StatusCodes.Status404NotFound)]
+        public async Task<IActionResult> GetZipCodeAsync(string zipCode)
+        {
+            var response = await _commonApplication.GetZipCodeAsync(int.Parse(zipCode.OnlyNumerical()));
             if (response == null)
                 return ReturnNotFound();
 

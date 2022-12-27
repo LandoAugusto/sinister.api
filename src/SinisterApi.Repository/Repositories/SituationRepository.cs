@@ -5,9 +5,9 @@ using SinisterApi.Repository.Repositories.Standard;
 
 namespace SinisterApi.Repository.Repositories
 {
-    internal class SituationSinisterRepository : DomainRepository<Situation>, ISituationSinisterRepository
+    internal class SituationRepository : DomainRepository<Situation>, ISituationRepository
     {
-        public SituationSinisterRepository(SinisterDbContext dbContext) : base(dbContext)
+        public SituationRepository(SinisterDbContext dbContext) : base(dbContext)
         {
         }
         public override async Task<IEnumerable<Situation>> GetAllAsync()

@@ -9,7 +9,7 @@ using SinisterApi.Service.Schemas;
 
 namespace SinisterApi.Service.Services
 {
-    internal class ProposalSevice : IProposalSevice
+    internal class ProposalService : IProposalService
     {
         private const string PROPOSAL_SERVICE_NAME = "proposal/";
         private readonly int TimeoutInMilliseconds;
@@ -17,7 +17,7 @@ namespace SinisterApi.Service.Services
 
         private readonly IRequestExecutador _requestExecutador;
 
-        public ProposalSevice(IRequestExecutador requestExecutador, MiddlewareApiConfig apiConfig, IConfiguration configuration) =>
+        public ProposalService(IRequestExecutador requestExecutador, MiddlewareApiConfig apiConfig, IConfiguration configuration) =>
            (_requestExecutador, _apiConfig, TimeoutInMilliseconds) = (requestExecutador, apiConfig, int.Parse(configuration["ExecuteTimeoutInMilliseconds"]));
 
 

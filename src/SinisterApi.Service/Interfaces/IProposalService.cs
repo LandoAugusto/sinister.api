@@ -2,7 +2,7 @@
 
 namespace SinisterApi.Service.Interfaces
 {
-    public interface IProposalSevice
+    public interface IProposalService
     {
         Task<ProposalModel> GetBusinnesProposalAsync(int brokerUserId, string proposalNumber);
     }

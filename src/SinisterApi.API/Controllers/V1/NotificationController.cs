@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using SinisterApi.API.Controllers.V1.Base;
-using SinisterApi.API.Models.Insured;
-using SinisterApi.API.Models.Protocol;
+using SinisterApi.API.Models.Notification;
 using SinisterApi.Application.Interfaces;
 using SinisterApi.Domain.Models.Standard;
 
@@ -9,19 +8,19 @@ namespace SinisterApi.API.Controllers.V1
 {
     public class NotificationController : BaseController
     {
-        private readonly IInsurdeApplication _insurdeApplication;
+        private readonly INotificationApplication _notificationApplication;
 
-        public NotificationController(IInsurdeApplication insurdeApplication) =>
-            _insurdeApplication = insurdeApplication;
+        public NotificationController(INotificationApplication notificationApplication) =>
+            _notificationApplication = notificationApplication;
 
         [HttpPost]
-        [Route("GetNotification")]
+        [Route("ListNotification")]
         [ProducesResponseType(typeof(ResponseModel), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ErrorResponseModel), StatusCodes.Status400BadRequest)]
         [ProducesResponseType(typeof(ErrorResponseModel), StatusCodes.Status404NotFound)]
-        public async Task<IActionResult> ListInsuredAscync(ListInsuredRequestModel request)
+        public async Task<IActionResult> ListNotificationAscync(ListNotificationRequestModel request)
         {
-            var response = await _insurdeApplication.ListInsuredAsync(request.Name, request.DocumentNumber);
+            var response = await _notificationApplication.ListNotificationAsync();
             if (response == null)
                 return ReturnNotFound();
 
@@ -33,9 +32,40 @@ namespace SinisterApi.API.Controllers.V1
         [ProducesResponseType(typeof(ResponseModel), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ErrorResponseModel), StatusCodes.Status400BadRequest)]
         [ProducesResponseType(typeof(ErrorResponseModel), StatusCodes.Status404NotFound)]
-        public async Task<IActionResult> SaveAscync(ProtocolRequestModel request)
+        public async Task<IActionResult> SaveAscync(SaveNotificationRequestModel request)
         {
-            //var response = await _insurdeApplication.ListInsuredAsync(request.Name, request.DocumentNumber);
+            //var response = await _notificationApplication.ListInsuredAsync(request.Name, request.DocumentNumber);
+
+            var response = "";
+            if (response == null)
+                return ReturnNotFound();
+
+            return ReturnSuccess(response);
+        }
+
+
+        [HttpPost]
+        [Route("SaveComunicant")]
+        [ProducesResponseType(typeof(ResponseModel), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(ErrorResponseModel), StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(typeof(ErrorResponseModel), StatusCodes.Status404NotFound)]
+        public async Task<IActionResult> SaveComunicantAsync(SaveNotificationRequestModel request)
+        {
+            var response = await _notificationApplication.SaveNotificationAsync(request.PolicyId, request.CodeItem);
+            if (response == null)
+                return ReturnNotFound();
+
+            return ReturnSuccess(response);
+        }
+
+        [HttpPost]
+        [Route("SaveOccurence")]
+        [ProducesResponseType(typeof(ResponseModel), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(ErrorResponseModel), StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(typeof(ErrorResponseModel), StatusCodes.Status404NotFound)]
+        public async Task<IActionResult> SaveOccurenceAsync(SaveNotificationRequestModel request)
+        {
+            //var response = await _notificationApplication.ListInsuredAsync(request.Name, request.DocumentNumber);
 
             var response = "";
             if (response == null)
