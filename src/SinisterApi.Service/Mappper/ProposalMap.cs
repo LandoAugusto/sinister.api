@@ -13,9 +13,9 @@ namespace SinisterApi.Service.Mappper
                 PolicyId = proposal.PolicyId,
                 EndorsementId = proposal.EndorsementId,
                 PolicyNumber = proposal.PolicyNumber,
-                ProposalDate = proposal.ProposalDate,               
+                ProposalDate = proposal.ProposalDate,
                 StartOfTerm = proposal.StartOfTerm,
-                EndOfTerm = proposal.EndOfTerm,              
+                EndOfTerm = proposal.EndOfTerm,
                 IsInformedPremium = proposal.IsInformedPremium,
                 HasMaximumWarrantyLimit = proposal.HasMaximumWarrantyLimit,
                 Product = new(proposal.Product.Id.Value, proposal.Product.Name, null),
@@ -24,13 +24,11 @@ namespace SinisterApi.Service.Mappper
                     Id = proposal.Business.Id,
                     Name = proposal.Business.Name,
                     SusepCode = proposal.Business.SusepCode,
-                },                
-                Insured = new()
-                {
-                    PersonId = proposal.Insured.PersonId,
-                    Name = proposal.Insured.Name,
-                    DocumentNumber = proposal.Insured.DocumentNumber,
                 },
+                Insured = new(
+                 proposal.Insured.PersonId,
+                 proposal.Insured.Name,
+                 proposal.Insured.DocumentNumber),
                 Broker = new()
                 {
                     Name = proposal.Broker.Name,
