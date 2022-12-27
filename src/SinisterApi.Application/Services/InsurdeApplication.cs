@@ -10,13 +10,11 @@ namespace SinisterApi.Application.Services
         public InsurdeApplication(IInsuredService insuredService) =>
             _insuredService = insuredService;
 
-        public async Task<List<InsuredModel>> ListInsuredAsync(string name, string documentNumber)
-        {
-            return await _insuredService.ListInsuredAsync(name, documentNumber);
-        }
-        public async Task<InsuredModel> GetInsuredAsync(int insuredPersonId)
-        {
-            return await _insuredService.GetInsuredAsync(insuredPersonId);
-        }
+        public async Task<List<InsuredModel>> ListInsuredAsync(string name, string documentNumber) =>
+         await _insuredService.ListInsuredAsync(name, documentNumber);
+
+        public async Task<InsuredModel> GetInsuredAsync(int insuredPersonId) =>
+             await _insuredService.GetInsuredAsync(insuredPersonId);
+
     }
 }

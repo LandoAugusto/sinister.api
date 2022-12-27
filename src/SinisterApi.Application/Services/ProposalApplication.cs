@@ -6,8 +6,8 @@ namespace SinisterApi.Application.Services
 {
     internal class ProposalApplication : IProposalApplication
     {
-        private readonly IProposalSevice _proposalSevice;
-        public ProposalApplication(IProposalSevice proposalSevice) => _proposalSevice = proposalSevice;
+        private readonly IProposalService _proposalSevice;
+        public ProposalApplication(IProposalService proposalSevice) => _proposalSevice = proposalSevice;
 
         public async Task<ProposalModel> GetBusinnesProposalAsync(int brokerUserId, string proposalNumber)
         {

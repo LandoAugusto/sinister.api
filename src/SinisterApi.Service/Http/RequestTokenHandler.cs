@@ -1,5 +1,6 @@
 ﻿using Flurl.Http;
 using SinisterApi.Service.Http.Interfaces;
+using SinisterApi.Service.Interfaces;
 
 namespace SinisterApi.Service.Http
 {
@@ -7,25 +8,28 @@ namespace SinisterApi.Service.Http
     {
         public string AuthorizationToken { get; set; }
         //private readonly IRedisCacheRepository _redisCacheRepository;
-        //private readonly IAuthenticationService _authenticationService;
+        private readonly IAuthenticationService _authenticationService;
         //public RequestTokenHandler(IRedisCacheRepository redisCacheRepository, IAuthenticationService authenticationService) =>
         //   (_redisCacheRepository, _authenticationService) = (redisCacheRepository, authenticationService);
 
-        //public async Task GenerateTokenAsync()
-        //{
-        //    var accessToken = await _redisCacheRepository.StringGetAsync<string>(("accessToken"));
-        //    if (!string.IsNullOrEmpty(accessToken))
-        //    {
-        //        AuthorizationToken = accessToken;
-        //        return;
-        //    }
 
-        //    var generateToken = await _authenticationService.GenerateTokenAsync();
-        //    if (generateToken != null)
-        //        await _redisCacheRepository.StringSetAsync("accessToken", generateToken);
+        public RequestTokenHandler(IAuthenticationService authenticationService) =>
+            _authenticationService = authenticationService;
+        public async Task GenerateTokenAsync()
+        {
+            //var accessToken = await _redisCacheRepository.StringGetAsync<string>(("accessToken"));
+            //if (!string.IsNullOrEmpty(accessToken))
+            //{
+            //    AuthorizationToken = accessToken;
+            //    return;
+            //}
 
-        //    AuthorizationToken = generateToken;
-        //}
+           var generateToken = await _authenticationService.GetTokenAsync("xpigarantia", "Xpigarantia@2022");
+            //if (generateToken != null)
+            //    await _redisCacheRepository.StringSetAsync("accessToken", generateToken);
+
+            AuthorizationToken = generateToken;
+        }
 
         public bool IsWorthRetryingAsync(FlurlHttpException ex)
         {
@@ -46,11 +50,11 @@ namespace SinisterApi.Service.Http
 
         private async Task GetTokenAsync()
         {
-            //var generateToken = await _authenticationService.GenerateTokenAsync();
+            var generateToken = await _authenticationService.GetTokenAsync("xpigarantia", "Xpigarantia@2022");
             //if (generateToken != null)
             //    await _redisCacheRepository.StringSetAsync("accessToken", generateToken);
 
-            //AuthorizationToken = generateToken;            
+            AuthorizationToken = generateToken;            
         }
     }
 }

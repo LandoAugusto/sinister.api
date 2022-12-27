@@ -1,5 +1,8 @@
 ﻿namespace SinisterApi.Service.Schemas
 {
+
+ 
+
     internal class AddressResponse
     {
         public int? Id { get; set; }

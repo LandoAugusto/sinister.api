@@ -1,4 +1,5 @@
-﻿using SinisterApi.Domain.Models;
+﻿using SinisterApi.Domain.Extensions;
+using SinisterApi.Domain.Models;
 using SinisterApi.Service.Schemas;
 
 namespace SinisterApi.Service.Mappper
@@ -10,23 +11,50 @@ namespace SinisterApi.Service.Mappper
             var result = new List<InsuredModel>();
             foreach (var insured in response)
             {
-                result.Add(new InsuredModel()
+                var person = new InsuredModel(insured.PersonId, insured.Name, insured.DocumentNumber);
+                if (insured.Addressess.IsAny())
                 {
-                    PersonId = insured.PersonId,
-                    Name = insured.Name,
-                    DocumentNumber = insured.DocumentNumber,
-                });                
+                    foreach (var address in insured.Addressess)
+                    {
+                        person.Address.Add(new AddressModel()
+                        {
+                            ZipCode = address.ZipCode,
+                            StreetName = address.StreetName,
+                            StateInitials = address.City.State.Initials,
+                            StateName = address.City.State.Name,
+                            Number = address.Number,
+                            Complement = address.Complement,
+                            District = address.District,
+                            City = address.City.Name
+                        });
+                    }
+                }
+
+                result.Add(person);
             }
             return result;
         }
         public static InsuredModel Map(InsuredResponse response)
         {
-            var result = new InsuredModel()
+            var result = new InsuredModel(response.PersonId, response.Name, response.DocumentNumber);
+
+            if (response.Addressess.IsAny())
             {
-                PersonId = response.PersonId,
-                Name = response.Name,
-                DocumentNumber = response.DocumentNumber,
-            };
+                foreach (var address in response.Addressess)
+                {
+                    result.Address.Add(new AddressModel()
+                    {
+                        ZipCode = address.ZipCode,
+                        StreetName = address.StreetName,
+                        StateInitials = address.City.State.Initials,
+                        StateName = address.City.State.Name,
+                        Number = address.Number,
+                        Complement = address.Complement,
+                        District = address.District,
+                        City = address.City.Name
+                    });
+                }
+            }
 
             return result;
         }
