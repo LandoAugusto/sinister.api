@@ -4,7 +4,7 @@ using SinisterApi.Domain.Entities;
 
 namespace SinisterApi.Repository.Mappings
 {
-    internal class SituationSinisterMapping : IEntityTypeConfiguration<Situation>
+    internal class SituationMapping : IEntityTypeConfiguration<Situation>
     {
         public void Configure(EntityTypeBuilder<Situation> builder)
         {
@@ -13,6 +13,9 @@ namespace SinisterApi.Repository.Mappings
 
             builder
            .Property(x => x.Active);
+
+            builder
+           .Property(x => x.InclusionUserId);
 
             builder
            .Property(x => x.CreatedDate);

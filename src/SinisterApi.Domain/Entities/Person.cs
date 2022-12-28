@@ -8,6 +8,7 @@ namespace SinisterApi.Domain.Entities
         public string Name { get; set; }
         public int DocumentType { get; set; }
         public string Document { get; set; }
+        public int InclusionUserId { get; set; }
         public DateTime CreatedDate { get; set; }
         public DateTime? UpdatedDate { get; set; }
         public PersonEmail PersonEmail { get; set; }

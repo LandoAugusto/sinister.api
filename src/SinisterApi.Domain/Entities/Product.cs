@@ -9,6 +9,7 @@ namespace SinisterApi.Domain.Entities
         public string  ExternalId { get; set; }
         public string ImageUrl { get; set; }
         public bool Active { get; set; }
+        public int InclusionUserId { get; set; }
         public DateTime CreatedDate { get; set; }
         public DateTime? UpdatedDate { get; set; }
     }

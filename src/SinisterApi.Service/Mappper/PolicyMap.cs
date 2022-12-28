@@ -21,13 +21,13 @@ namespace SinisterApi.Service.Mappper
                     PolicyDate = policy.PolicyDate,
                     StartOfTerm = policy.StartOfTerm,
                     EndOfTerm = policy.EndOfTerm,
-                    Insured = InsuredMap.Map(policy.Insured),
                     Broker = BrokerMap.Map(policy.Broker),
                     Status = new(policy.Status.Id, policy.Status.Name),
                     Product = new(policy.Product.Id, policy.Product.Name, null),
                     Business = new(policy.Business.Id, policy.Business.SusepCode, policy.Business.Name),
                     InclusionUser = new(policy.InclusionUser.Id, policy.InclusionUser.Name),
-                    LastChangeUser = new(policy.LastChangeUser.Id, policy.LastChangeUser.Name)
+                    LastChangeUser = new(policy.LastChangeUser.Id, policy.LastChangeUser.Name),
+                    Insured = new(policy.Insured.PersonId, policy.Insured.Name, policy.Insured.DocumentNumber, AddressMap.Map(policy.Insured.Addressess)),
                 });
             }
             return result;

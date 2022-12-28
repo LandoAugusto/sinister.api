@@ -13,6 +13,7 @@ namespace SinisterApi.Domain.Entities
         public bool IsPoliceReport { get; set; }
         public string PoliceReportNumber { get; set; }
         public bool IsThird { get; set; }
+        public int InclusionUserId { get; set; }
         public DateTime CreatedDate { get; set; }
         public DateTime? UpdatedDate { get; set; }
     }

@@ -4,7 +4,7 @@ using SinisterApi.Domain.Entities;
 
 namespace SinisterApi.Repository.Mappings
 {
-    internal class StatusSinisterMapping : IEntityTypeConfiguration<Status>
+    internal class StatusMapping : IEntityTypeConfiguration<Status>
     {
         public void Configure(EntityTypeBuilder<Status> builder)
         {
