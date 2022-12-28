@@ -5,40 +5,26 @@ namespace SinisterApi.Service.Mappper
 {
     internal static class ProposalMap
     {
-        public static ProposalModel Map(ProposalResponse proposal)
+        public static ProposalModel Map(ProposalResponse response)
         {
             return new ProposalModel()
             {
-                ProposalNumber = proposal.ProposalNumber,
-                PolicyId = proposal.PolicyId,
-                EndorsementId = proposal.EndorsementId,
-                PolicyNumber = proposal.PolicyNumber,
-                ProposalDate = proposal.ProposalDate,
-                StartOfTerm = proposal.StartOfTerm,
-                EndOfTerm = proposal.EndOfTerm,
-                IsInformedPremium = proposal.IsInformedPremium,
-                HasMaximumWarrantyLimit = proposal.HasMaximumWarrantyLimit,
-                Product = new(proposal.Product.Id.Value, proposal.Product.Name, null),
-                Business = new()
-                {
-                    Id = proposal.Business.Id,
-                    Name = proposal.Business.Name,
-                    SusepCode = proposal.Business.SusepCode,
-                },
-                Insured = new(
-                 proposal.Insured.PersonId,
-                 proposal.Insured.Name,
-                 proposal.Insured.DocumentNumber),
-                Broker = new()
-                {
-                    Name = proposal.Broker.Name,
-                    DocumentNumber = proposal.Broker.DocumentNumber,
-                    PersonId = proposal.Broker.PersonId,
-                    SusepCode = proposal.Broker.SusepCode,
-                },
-                Status = new(proposal.Status.Id, proposal.Status.Name),
-                InclusionUser = new(proposal.InclusionUser.Id, proposal.InclusionUser.Name),
-                LastChangeUser = new(proposal.LastChangeUser.Id, proposal.LastChangeUser.Name)
+                ProposalNumber = response.ProposalNumber,
+                PolicyId = response.PolicyId,
+                EndorsementId = response.EndorsementId,
+                PolicyNumber = response.PolicyNumber,
+                ProposalDate = response.ProposalDate,
+                StartOfTerm = response.StartOfTerm,
+                EndOfTerm = response.EndOfTerm,
+                IsInformedPremium = response.IsInformedPremium,
+                HasMaximumWarrantyLimit = response.HasMaximumWarrantyLimit,
+                Product = new(response.Product.Id, response.Product.Name, null),
+                Business = new(response.Business.Id,  response.Business.SusepCode, response.Business.Name),
+                Insured = new(response.Insured.PersonId, response.Insured.Name, response.Insured.DocumentNumber),
+                Broker = new(response.Broker.PersonId, response.Broker.DocumentNumber, response.Broker.Name, response.Broker.SusepCode),
+                Status = new(response.Status.Id, response.Status.Name),
+                InclusionUser = new(response.InclusionUser.Id, response.InclusionUser.Name),
+                LastChangeUser = new(response.LastChangeUser.Id, response.LastChangeUser.Name)
             };
         }
     }

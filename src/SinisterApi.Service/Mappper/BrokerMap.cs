@@ -7,13 +7,7 @@ namespace SinisterApi.Service.Mappper
     {
         public static BrokerModel Map(BrokerResponse response)
         {
-            return new()
-            {
-                Name = response.Name,
-                DocumentNumber = response.DocumentNumber,
-                PersonId = response.PersonId,
-                SusepCode = response.SusepCode,
-            };
+            return new(response.PersonId, response.DocumentNumber, response.Name, response.SusepCode);
         }
     }
 }
