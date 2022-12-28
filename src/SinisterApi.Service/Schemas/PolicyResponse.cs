@@ -19,13 +19,13 @@
             Insured = new();
         }
         public int ProposalNumber { get; set; }
-        public int? PolicyId { get; set; }
-        public int? EndorsementId { get; set; }
-        public long? PolicyNumber { get; set; }
-        public DateTime? ProposalDate { get; set; }
-        public DateTime? PolicyDate { get; set; }
-        public DateTime? StartOfTerm { get; set; }
-        public DateTime? EndOfTerm { get; set; }
+        public int PolicyId { get; set; }
+        public int EndorsementId { get; set; }
+        public long PolicyNumber { get; set; }
+        public DateTime ProposalDate { get; set; }
+        public DateTime PolicyDate { get; set; }
+        public DateTime StartOfTerm { get; set; }
+        public DateTime EndOfTerm { get; set; }
         public StatusResponse Status { get; set; }
         public BusinessResponse Business { get; set; }
         public ProductResponse Product { get; set; }

@@ -1,4 +1,5 @@
-﻿using SinisterApi.Application.Interfaces;
+﻿
+using SinisterApi.Application.Interfaces;
 using SinisterApi.Domain.Entities;
 using SinisterApi.Domain.Extensions;
 using SinisterApi.Domain.Infrastructure.Exceptions;
@@ -31,11 +32,35 @@ namespace SinisterApi.Application.Services
         {
             try
             {
-                var proposal = await _policyService.ListPolicyAsync(policyId, null, null, null);
-                if (proposal == null)
-                    throw new BusinessException("Proposta não encontrada!");
+                var list = await _policyService.ListPolicyAsync(policyId, null, null, null);
+                if (!list.IsAny())
+                    throw new BusinessException("Apolice não encontrada!");
 
-                return 1;
+                var policy = list.FirstOrDefault();
+                var result = await _notificationRepository.AddAsync(new Notification()
+                {
+                    Stage = 1,
+                    StatusId = 1,
+                    SituationId = 1,              
+                    InclusionUserId = 1,
+
+                    Policy = new Policy()
+                    {
+                        ProductId = 1,
+                        PolicyId = policy.PolicyId,
+                        EndorsementId = policy.EndorsementId,
+                        ProposalNumber = policy.ProposalNumber,
+                        PolicyNumber = policy.PolicyNumber,
+                        ProposalDate = policy.ProposalDate,
+                        Item = 1,
+                        PolicyDate = policy.PolicyDate,
+                        StartOfTerm = policy.StartOfTerm,
+                        EndOfTerm = policy.EndOfTerm,
+                        InclusionUserId = 1,
+                    }
+                });
+
+                return result.Id;
             }
             catch (Exception)
             {

@@ -15,6 +15,9 @@ namespace SinisterApi.Repository.Mappings
            .Property(x => x.Active);
 
             builder
+           .Property(x => x.InclusionUserId);
+
+            builder
            .Property(x => x.CreatedDate);
 
             builder
