@@ -41,6 +41,34 @@ namespace SinisterApi.API.Controllers.V1
             return ReturnSuccess(response);
         }
 
+
+        [HttpGet]
+        [Route("ListPhoneType")]
+        [ProducesResponseType(typeof(ResponseModel), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(ErrorResponseModel), StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(typeof(ErrorResponseModel), StatusCodes.Status404NotFound)]
+        public async Task<IActionResult> ListPhoneTypeAsync()
+        {
+            var response = await _commonApplication.ListPhoneTypeAsync();
+            if (response == null)
+                return ReturnNotFound();
+
+            return ReturnSuccess(response);
+        }
+
+        [HttpGet]
+        [Route("ListEmailType")]
+        [ProducesResponseType(typeof(ResponseModel), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(ErrorResponseModel), StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(typeof(ErrorResponseModel), StatusCodes.Status404NotFound)]
+        public async Task<IActionResult> ListEmailTypeAsync()
+        {
+            var response = await _commonApplication.ListEmailTypeAsync();
+            if (response == null)
+                return ReturnNotFound();
+
+            return ReturnSuccess(response);
+        }
         [HttpGet]
         [Route("ListStatus")]
         [ProducesResponseType(typeof(ResponseModel), StatusCodes.Status200OK)]

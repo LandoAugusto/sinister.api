@@ -19,5 +19,6 @@ namespace SinisterApi.Domain.Entities
         public DateTime CreatedDate { get; set; } = DateTime.Now;
         public DateTime? UpdatedDate { get; set; }
         public virtual ICollection<Notification> Notifications { get; set; }
+        public virtual Product Product { get; set; } = null!;
     }
 }

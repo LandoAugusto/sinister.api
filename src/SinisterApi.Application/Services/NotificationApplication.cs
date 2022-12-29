@@ -1,6 +1,6 @@
-﻿
-using SinisterApi.Application.Interfaces;
+﻿using SinisterApi.Application.Interfaces;
 using SinisterApi.Domain.Entities;
+using SinisterApi.Domain.Eums;
 using SinisterApi.Domain.Extensions;
 using SinisterApi.Domain.Infrastructure.Exceptions;
 using SinisterApi.Domain.Models;
@@ -36,12 +36,12 @@ namespace SinisterApi.Application.Services
                 if (!list.IsAny())
                     throw new BusinessException("Apolice não encontrada!");
 
-                var policy = list.FirstOrDefault();
+                var policy = list.First();
                 var result = await _notificationRepository.AddAsync(new Notification()
                 {
                     Stage = 1,
-                    StatusId = 1,
-                    SituationId = 1,              
+                    StatusId = StatusEnum.Incompleto,
+                    SituationId = SituationEnum.Aberto,              
                     InclusionUserId = 1,
 
                     Policy = new Policy()

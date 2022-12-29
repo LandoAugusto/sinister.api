@@ -10,7 +10,7 @@
         public DateTime? ExpirationDate { get; set; }
         public DateTime? StartOfTerm { get; set; }
         public DateTime? EndOfTerm { get; set; }
-        public StatusModel Status { get; set; }
+        public DomainModel Status { get; set; }
         public BusinessModel Business { get; set; }
         public ProductModel Product { get; set; }
         public BrokerModel Broker { get; set; }
