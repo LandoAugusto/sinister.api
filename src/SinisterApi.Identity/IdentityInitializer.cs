@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using SinisterApi.Identity.Context;
 using SinisterApi.Identity.Models;
-using System;
 
 namespace SinisterApi.Identity
 {
