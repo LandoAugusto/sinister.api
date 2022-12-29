@@ -1,5 +1,5 @@
-﻿using Microsoft.AspNetCore.Components.Server.ProtectedBrowserStorage;
-using SinisterApi.Domain.Entities.Interfaces;
+﻿using SinisterApi.Domain.Entities.Interfaces;
+using SinisterApi.Domain.Eums;
 
 namespace SinisterApi.Domain.Entities
 {
@@ -7,8 +7,8 @@ namespace SinisterApi.Domain.Entities
     {
         public int Id { get; set; }
         public int PolicyId { get; set; }
-        public int SituationId { get; set; }
-        public int StatusId { get; set; }
+        public SituationEnum SituationId { get; set; }
+        public StatusEnum StatusId { get; set; }
         public int Stage { get; set; }
         public DateTime? DateNotification { get; set; } = DateTime.Now;
         public int InclusionUserId { get; set; }

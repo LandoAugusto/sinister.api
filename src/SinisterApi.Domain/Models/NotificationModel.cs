@@ -12,8 +12,8 @@
 
         public int Id { get; set; }
         public int PolicyId { get; set; }
-        public SituationModel Situation { get; set; }
-        public StatusModel Status { get; set; }
+        public DomainModel Situation { get; set; }
+        public DomainModel Status { get; set; }
         public int Stage { get; set; }
         public DateTime? DateNotification { get; set; }
     }

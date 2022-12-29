@@ -1,7 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using SinisterApi.Domain.Entities;
 using SinisterApi.Repository.Contexts;
 using SinisterApi.Repository.Interfaces.Repositories;
 using SinisterApi.Repository.Repositories;
@@ -25,6 +24,8 @@ namespace SinisterApi.Repository.Extensions
 
         private static IServiceCollection AddRepositories(this IServiceCollection services) =>
             services
+            .AddScoped<IPhoneTypeRepository, PhoneTypeRepository>()
+            .AddScoped<IEmailTypeRepository, EmailTypeRepository>()
             .AddScoped<IStatusRepository, StatusRepository>()
             .AddScoped<IPeriodTypeRepository, PeriodTypeRepository>()
             .AddScoped<ICommunicantTypeRepository, CommunicantTypeRepository>()
