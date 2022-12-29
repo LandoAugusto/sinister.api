@@ -12,5 +12,8 @@ namespace SinisterApi.Domain.Entities
         public int InclusionUserId { get; set; }
         public DateTime CreatedDate { get; set; }
         public DateTime? UpdatedDate { get; set; }
+
+        public virtual Communicant Communicant { get; set; } = null!;
+        public virtual PhoneType PhoneType { get; set; } = null!;
     }
 }

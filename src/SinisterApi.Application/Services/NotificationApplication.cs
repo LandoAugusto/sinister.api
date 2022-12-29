@@ -13,8 +13,12 @@ namespace SinisterApi.Application.Services
     {
         private readonly IPolicyService _policyService;
         private readonly INotificationRepository _notificationRepository;
-        public NotificationApplication(IPolicyService policyService, INotificationRepository notificationRepository) =>
-            (_policyService, _notificationRepository) = (policyService, notificationRepository);
+        private readonly ICommunicantRepository _communicantRepository;
+        public NotificationApplication(
+            IPolicyService policyService,
+            ICommunicantRepository communicantRepository,
+            INotificationRepository notificationRepository) =>
+            (_policyService, _communicantRepository, _notificationRepository) = (policyService, communicantRepository,notificationRepository);
 
         public async Task<IEnumerable<NotificationModel>> ListNotificationAsync()
         {
@@ -61,6 +65,21 @@ namespace SinisterApi.Application.Services
                 });
 
                 return result.Id;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        public async Task<int> SaveNotificationAsync(Communicant entity)
+        {
+            try
+            {
+
+
+                return 1;
+                
             }
             catch (Exception)
             {

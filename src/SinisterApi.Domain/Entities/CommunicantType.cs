@@ -11,5 +11,7 @@ namespace SinisterApi.Domain.Entities
         public DateTime CreatedDate { get; set; }
         public DateTime? UpdatedDate { get; set; }
 
+        public virtual ICollection<Communicant> Communicants { get; set; }
+
     }
 }
