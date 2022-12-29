@@ -63,9 +63,11 @@ namespace SinisterApi.API.Controllers.V1
         [ProducesResponseType(typeof(ResponseModel), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ErrorResponseModel), StatusCodes.Status400BadRequest)]
         [ProducesResponseType(typeof(ErrorResponseModel), StatusCodes.Status404NotFound)]
-        public async Task<IActionResult> SaveComunicantAsync(SaveNotificationRequestModel request)
+        public async Task<IActionResult> SaveComunicantAsync(SaveCommunicantRequestModel request)
         {
-            var response = await _notificationApplication.SaveNotificationAsync(request.PolicyId, request.CodeItem);
+            //var response = await _notificationApplication.SaveNotificationAsync(request.PolicyId, request.CodeItem);
+
+            var response = "";
             if (response == null)
                 return ReturnNotFound();
 

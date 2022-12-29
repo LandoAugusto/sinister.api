@@ -40,8 +40,8 @@ namespace SinisterApi.Application.Services
                 var result = await _notificationRepository.AddAsync(new Notification()
                 {
                     Stage = 1,
-                    StatusId = StatusEnum.Incompleto,
-                    SituationId = SituationEnum.Aberto,              
+                    StatusId = (int)StatusEnum.Incompleto,
+                    SituationId = (int)SituationEnum.Aberto,              
                     InclusionUserId = 1,
 
                     Policy = new Policy()
