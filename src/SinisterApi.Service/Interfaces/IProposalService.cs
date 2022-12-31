@@ -1,4 +1,4 @@
-﻿using SinisterApi.Domain.Models;
+﻿using Domain.Core.Models;
 
 namespace SinisterApi.Service.Interfaces
 {

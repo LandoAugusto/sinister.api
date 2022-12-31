@@ -1,6 +1,6 @@
 ﻿using Flurl.Http;
 using Polly;
-using SinisterApi.Infra.Logger.Interfaces;
+using Infrastruture.Logger.Interfaces;
 using SinisterApi.Service.Http.Interfaces;
 using System.Net;
 

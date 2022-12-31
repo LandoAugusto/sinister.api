@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc.Filters;
-using SinisterApi.Domain.Infrastructure.Contexts.Intefaces;
-using SinisterApi.Infra.Logger.Interfaces;
+using Domain.Core.Infrastructure.Contexts.Intefaces;
+using Infrastruture.Logger.Interfaces;
 
 namespace SinisterApi.API.Filters
 {

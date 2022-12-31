@@ -1,5 +1,5 @@
 ﻿using SinisterApi.API.Extensions;
-using SinisterApi.Infra.IoC.Extensions;
+using Infrastruture.CrossCutting.IoC.Extensions;
 
 namespace SinisterApi.API
 {

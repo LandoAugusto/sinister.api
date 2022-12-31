@@ -1,9 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using SinisterApi.API.Controllers.V1.Base;
-using SinisterApi.API.Models.Policy;
-using SinisterApi.API.Models.Proposal;
-using SinisterApi.Application.Interfaces;
-using SinisterApi.Domain.Models.Standard;
+using SinisterApi.DTO.Policy;
+using SinisterApi.DTO.Proposal;
+using Application.Interfaces;
+using Domain.Core.Models.Standard;
 
 namespace SinisterApi.API.Controllers.V1
 {

@@ -1,10 +1,10 @@
 ﻿using FluentValidation.Results;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
-using SinisterApi.Domain.Constants;
-using SinisterApi.Domain.Infrastructure.Contexts.Intefaces;
-using SinisterApi.Domain.Models.Standard;
-using SinisterApi.Infra.Logger.Interfaces;
+using Domain.Core.Constants;
+using Domain.Core.Infrastructure.Contexts.Intefaces;
+using Domain.Core.Models.Standard;
+using Infrastruture.Logger.Interfaces;
 using System.Security.Claims;
 
 namespace SinisterApi.API.Filters
