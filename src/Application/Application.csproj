@@ -9,7 +9,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Application.DTO\Application.DTO.csproj" />
     <ProjectReference Include="..\Repository\Repository.csproj" />
-    <ProjectReference Include="..\SinisterApi.Service\SinisterApi.Service.csproj" />
+    <ProjectReference Include="..\Integration.BMG\Integration.BMG.csproj" />
   </ItemGroup>
 
 </Project>

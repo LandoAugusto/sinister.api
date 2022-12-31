@@ -3,7 +3,7 @@ using Infrastructure.Data.Repository.Interfaces.Repositories;
 using Domain.Core.Entities;
 using Domain.Core.Extensions;
 using Domain.Core.Models;
-using SinisterApi.Service.Interfaces;
+using Integration.BMG.Interfaces;
 
 namespace Application.Services
 {

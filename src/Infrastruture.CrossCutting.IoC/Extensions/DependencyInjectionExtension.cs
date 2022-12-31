@@ -4,7 +4,7 @@ using Infrastruture.CrossCutting.Identity.Extensions;
 using Infrastruture.Logger.Extensions;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using SinisterApi.Service.Extensions;
+using Integration.BMG.Extensions;
 
 namespace Infrastruture.CrossCutting.IoC.Extensions
 {

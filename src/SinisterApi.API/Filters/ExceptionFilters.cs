@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Domain.Core.Infrastructure.Contexts.Intefaces;
 using Infrastruture.Logger.Interfaces;
-using SinisterApi.Service.Exceptions;
+using Integration.BMG.Exceptions;
 using Newtonsoft.Json;
 using Domain.Core.Models.Standard;
 
