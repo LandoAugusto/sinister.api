@@ -11,7 +11,9 @@ namespace Domain.Core.Entities
         public int InclusionUserId { get; set; }
         public DateTime CreatedDate { get; set; }
         public DateTime? UpdatedDate { get; set; }
-        public virtual CommunicantPhone CommunicantPhone { get; set; }
+        public virtual CommunicantType CommunicantType { get; set; } = null!;
+        public virtual ICollection<CommunicantEmail> CommunicantEmails { get; set; }
+        public virtual ICollection<CommunicantPhone> CommunicantPhones { get; set; }
 
     }
 }
