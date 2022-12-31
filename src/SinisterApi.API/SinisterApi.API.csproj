@@ -32,12 +32,10 @@
   </ItemGroup>
 
   <ItemGroup>
-	<ProjectReference Include="..\SinisterApi.Identity\SinisterApi.Identity.csproj" />
-    <ProjectReference Include="..\SinisterApi.Application\SinisterApi.Application.csproj" />
-    <ProjectReference Include="..\SinisterApi.Domain\SinisterApi.Domain.csproj" />
-    <ProjectReference Include="..\SinisterApi.Identity\SinisterApi.Identity.csproj" />
-    <ProjectReference Include="..\SinisterApi.Infra.IoC\SinisterApi.Infra.IoC.csproj" />
-    <ProjectReference Include="..\SinisterApi.Infra.Logger\SinisterApi.Infra.Logger.csproj" />
+	<ProjectReference Include="..\Application.DTO\Application.DTO.csproj" />
+	<ProjectReference Include="..\Application\Application.csproj" />
+	<ProjectReference Include="..\Domain.Core\Domain.Core.csproj" />
+	<ProjectReference Include="..\Infrastruture.CrossCutting.IoC\Infrastruture.CrossCutting.IoC.csproj" />
   </ItemGroup>
 
 </Project>

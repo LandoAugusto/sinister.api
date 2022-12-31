@@ -1,5 +1,5 @@
-﻿using SinisterApi.API.Models.Policy;
-using SinisterApi.API.Models.Proposal;
+﻿using SinisterApi.DTO.Policy;
+using SinisterApi.DTO.Proposal;
 using Swashbuckle.AspNetCore.Filters;
 
 namespace SinisterApi.API.Examples.Proposal

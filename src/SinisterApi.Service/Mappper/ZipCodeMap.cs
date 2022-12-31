@@ -1,4 +1,4 @@
-﻿using SinisterApi.Domain.Models;
+﻿using Domain.Core.Models;
 using SinisterApi.Service.Schemas;
 
 namespace SinisterApi.Service.Mappper

@@ -1,6 +1,6 @@
 ﻿using Microsoft.Extensions.Configuration;
-using SinisterApi.Domain.Infrastructure.Exceptions;
-using SinisterApi.Domain.Models;
+using Domain.Core.Infrastructure.Exceptions;
+using Domain.Core.Models;
 using SinisterApi.Service.Configurations;
 using SinisterApi.Service.Http.Interfaces;
 using SinisterApi.Service.Interfaces;

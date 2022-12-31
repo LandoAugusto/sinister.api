@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using SinisterApi.API.Controllers.V1.Base;
-using SinisterApi.API.Models.Insured;
-using SinisterApi.Application.Interfaces;
-using SinisterApi.Domain.Models.Standard;
+using SinisterApi.DTO.Insured;
+using Application.Interfaces;
+using Domain.Core.Models.Standard;
 
 namespace SinisterApi.API.Controllers.V1
 {
@@ -18,7 +18,7 @@ namespace SinisterApi.API.Controllers.V1
         [ProducesResponseType(typeof(ResponseModel), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ErrorResponseModel), StatusCodes.Status400BadRequest)]
         [ProducesResponseType(typeof(ErrorResponseModel), StatusCodes.Status404NotFound)]
-        public async Task<IActionResult> ListInsuredAscync(ListInsuredRequestModel request)
+        public async Task<IActionResult> ListInsuredAscync(ListInsuredRequestDto request)
         {
             var response = await _insurdeApplication.ListInsuredAsync(request.Name, request.DocumentNumber);
             if (response == null)

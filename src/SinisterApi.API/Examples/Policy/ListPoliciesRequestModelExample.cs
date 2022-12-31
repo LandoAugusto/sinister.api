@@ -1,4 +1,4 @@
-﻿using SinisterApi.API.Models.Policy;
+﻿using SinisterApi.DTO.Policy;
 using Swashbuckle.AspNetCore.Filters;
 
 namespace SinisterApi.API.Examples.Policy

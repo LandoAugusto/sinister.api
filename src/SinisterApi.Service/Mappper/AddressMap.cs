@@ -1,5 +1,5 @@
-﻿using SinisterApi.Domain.Extensions;
-using SinisterApi.Domain.Models;
+﻿using Domain.Core.Extensions;
+using Domain.Core.Models;
 using SinisterApi.Service.Schemas;
 
 namespace SinisterApi.Service.Mappper

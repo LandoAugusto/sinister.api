@@ -1,5 +1,5 @@
 ﻿using Flurl.Http;
-using SinisterApi.Domain.Constants;
+using Domain.Core.Constants;
 using SinisterApi.Service.Exceptions;
 using SinisterApi.Service.Http.Interfaces;
 

@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using SinisterApi.API.Controllers.V1.Base;
-using SinisterApi.Application.Interfaces;
-using SinisterApi.Domain.Models.Standard;
+using Application.Interfaces;
+using Domain.Core.Models.Standard;
 
 namespace SinisterApi.API.Controllers.V1
 {
