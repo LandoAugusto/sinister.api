@@ -5,7 +5,7 @@ using Domain.Core.Eums;
 using Domain.Core.Extensions;
 using Domain.Core.Infrastructure.Exceptions;
 using Domain.Core.Models;
-using SinisterApi.Service.Interfaces;
+using Integration.BMG.Interfaces;
 
 namespace Application.Services
 {

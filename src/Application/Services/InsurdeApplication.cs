@@ -1,6 +1,6 @@
 ﻿using Application.Interfaces;
 using Domain.Core.Models;
-using SinisterApi.Service.Interfaces;
+using Integration.BMG.Interfaces;
 
 namespace Application.Services
 {
