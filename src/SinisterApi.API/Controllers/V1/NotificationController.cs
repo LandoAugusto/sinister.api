@@ -34,7 +34,7 @@ namespace SinisterApi.API.Controllers.V1
         [ProducesResponseType(typeof(ErrorResponseModel), StatusCodes.Status404NotFound)]
         public async Task<IActionResult> SaveAscync(SaveNotificationRequestDto request)
         {
-            var response = await _notificationApplication.SaveNotificationAsync(request.PolicyId, request.CodeItem);          
+            var response = await _notificationApplication.SaveNotificationAsync(request.PolicyId, request.CodeItem);
             if (response == null)
                 return ReturnNotFound();
 
@@ -65,12 +65,7 @@ namespace SinisterApi.API.Controllers.V1
         [ProducesResponseType(typeof(ErrorResponseModel), StatusCodes.Status404NotFound)]
         public async Task<IActionResult> SaveComunicantAsync(SaveCommunicantRequestDto request)
         {
-            //var response = await _notificationApplication.SaveNotificationAsync(request.PolicyId, request.CodeItem);
-
-            var response = "";
-            if (response == null)
-                return ReturnNotFound();
-
+            var response = await _notificationApplication.SaveCommunicantAsync(request, 1);
             return ReturnSuccess(response);
         }
 

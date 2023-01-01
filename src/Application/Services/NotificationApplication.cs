@@ -1,12 +1,12 @@
 ﻿using Application.Interfaces;
-using Infrastructure.Data.Repository.Interfaces.Repositories;
 using Domain.Core.Entities;
 using Domain.Core.Eums;
 using Domain.Core.Extensions;
 using Domain.Core.Infrastructure.Exceptions;
-
 using Integration.BMG.Interfaces;
 using Application.DTO.Notification;
+using SinisterApi.DTO.Notification;
+using Infrastructure.Data.Repository.Interfaces.Repositories;
 
 namespace Application.Services
 {
@@ -19,7 +19,7 @@ namespace Application.Services
             IPolicyService policyService,
             ICommunicantRepository communicantRepository,
             INotificationRepository notificationRepository) =>
-            (_policyService, _communicantRepository, _notificationRepository) = (policyService, communicantRepository,notificationRepository);
+            (_policyService, _communicantRepository, _notificationRepository) = (policyService, communicantRepository, notificationRepository);
 
         public async Task<IEnumerable<NotificationResponseDto>> ListNotificationAsync()
         {
@@ -45,10 +45,9 @@ namespace Application.Services
                 var result = await _notificationRepository.AddAsync(new Notification()
                 {
                     Stage = 1,
-                    StatusId = StatusEnum.Incompleto,
-                    SituationId = SituationEnum.Aberto,              
+                    StatusId = (int)StatusEnum.Incompleto,
+                    SituationId = (int)SituationEnum.Aberto,
                     InclusionUserId = 1,
-
                     Policy = new Policy()
                     {
                         ProductId = 1,
@@ -73,14 +72,36 @@ namespace Application.Services
             }
         }
 
-        public async Task<int> SaveNotificationAsync(Communicant entity)
+        public async Task<int> SaveCommunicantAsync(SaveCommunicantRequestDto request, int userId)
         {
             try
             {
+                var entity = new Communicant(request.NotificationIdId, request.CommunicantTypeId, request.Name, userId);
+                foreach(var email in request.Email)
+                {
+                    entity.CommunicantEmails.Add(new CommunicantEmail()
+                    {
+                        Email = email.Email,
+                        EmailTypeId = email.EmailTypeId,
+                        InclusionUserId = userId
+                    }); 
+                }
 
+                foreach (var phone in request.Phone)
+                {
+                    entity.CommunicantPhones.Add(new CommunicantPhone()
+                    {
+                        Ddd = phone.Ddd,
+                        PhoneTypeId = phone.PhoneTypeId,
+                        Phone = phone.Phone,
+                        InclusionUserId = userId
+                    }); 
+                }
 
-                return 1;
-                
+                var result = await _communicantRepository.AddAsync(entity);
+
+                return result.Id;
+
             }
             catch (Exception)
             {

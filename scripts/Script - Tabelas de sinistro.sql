@@ -73,45 +73,7 @@ CONSTRAINT [PK_Policy_Id] PRIMARY KEY CLUSTERED
 ) ON [PRIMARY]
 GO
 
-IF OBJECT_ID('dbo.Communicant', 'U') IS NOT NULL 
-  DROP TABLE dbo.Communicant; 
-GO
-CREATE TABLE  Communicant
-(
-	Id						INT IDENTITY(1,1) NOT NULL,
-	NotificationId			INT NOT NULL,
-	CommunicantTypeId		INT NOT NULL,	
-	Name					VARCHAR(50),
-	InclusionUserId			INT,
-	CreatedDate             DATETIME NOT NULL,
-	UpdatedDate             DATETIME NULL,
- 
-CONSTRAINT [PK_Communicant_Id] PRIMARY KEY CLUSTERED 
-(
-	[Id] ASC
-)WITH (STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
-) ON [PRIMARY]
-GO
 
-
-IF OBJECT_ID('dbo.CommunicantType', 'U') IS NOT NULL 
-  DROP TABLE dbo.CommunicantType; 
-GO
-CREATE TABLE  CommunicantType
-(
-	Id			INT IDENTITY(1,1) NOT NULL,
-	Name					VARCHAR(50)  NOT NULL,	
-	Active					BIT,
-	InclusionUserId			INT,
-	CreatedDate             DATETIME NOT NULL,
-	UpdatedDate             DATETIME NULL,
- 
-CONSTRAINT [PK_CommunicantType_Id] PRIMARY KEY CLUSTERED 
-(
-	[Id] ASC
-)WITH (STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
-) ON [PRIMARY]
-GO
 
 
 IF OBJECT_ID('dbo.CommunicantPhone', 'U') IS NOT NULL 
@@ -157,6 +119,44 @@ CONSTRAINT [PK_CommunicantEmail_Id] PRIMARY KEY CLUSTERED
 GO
 
 
+IF OBJECT_ID('dbo.Communicant', 'U') IS NOT NULL 
+  DROP TABLE dbo.Communicant; 
+GO
+CREATE TABLE  Communicant
+(
+	Id						INT IDENTITY(1,1) NOT NULL,
+	NotificationId			INT NOT NULL,
+	CommunicantTypeId		INT NOT NULL,	
+	Name					VARCHAR(50),
+	InclusionUserId			INT,
+	CreatedDate             DATETIME NOT NULL,
+	UpdatedDate             DATETIME NULL,
+ 
+CONSTRAINT [PK_Communicant_Id] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+IF OBJECT_ID('dbo.CommunicantType', 'U') IS NOT NULL 
+  DROP TABLE dbo.CommunicantType; 
+GO
+CREATE TABLE  CommunicantType
+(
+	Id			INT IDENTITY(1,1) NOT NULL,
+	Name					VARCHAR(50)  NOT NULL,	
+	Active					BIT,
+	InclusionUserId			INT,
+	CreatedDate             DATETIME NOT NULL,
+	UpdatedDate             DATETIME NULL,
+ 
+CONSTRAINT [PK_CommunicantType_Id] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
 
 
 IF OBJECT_ID('dbo.PhoneType', 'U') IS NOT NULL 
@@ -335,6 +335,10 @@ insert Product values ('GARANTIA SETOR PÚBLICO - UNIFICADO','12012'	 ,'/img/test
 
 
 select * from Communicant
+
+select * from CommunicantEmail
+
+select * from CommunicantPhone
 
 -- Notification
 -- Policy

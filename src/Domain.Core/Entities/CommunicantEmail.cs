@@ -9,7 +9,7 @@ namespace Domain.Core.Entities
         public int EmailTypeId { get; set; }
         public string Email { get; set; }
         public int InclusionUserId { get; set; }
-        public DateTime CreatedDate { get; set; }
+        public DateTime CreatedDate { get; set; } =    DateTime.Now;
         public DateTime? UpdatedDate { get; set; }
 
         public virtual Communicant Communicant { get; set; } = null!;
