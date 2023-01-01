@@ -5,7 +5,7 @@
         public bool Sucess { get; set; }
         public BrokerResponse Data { get; set; }
     }
-    internal class BrokerResponse
+    public class BrokerResponse
     {
         public int? PersonId { get; set; }
         public long? DocumentNumber { get; set; }

@@ -1,9 +1,9 @@
-﻿using Domain.Core.Models;
+﻿using Integration.BMG.Schemas;
 
 namespace Integration.BMG.Interfaces
 {
     public interface IBrokerService
     {
-        Task<BrokerModel> GetBrokerAsync(int brokerUserId);
+        Task<BrokerResponse> GetBrokerAsync(int brokerUserId);
     }
 }

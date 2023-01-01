@@ -1,12 +1,12 @@
 ﻿namespace Integration.BMG.Schemas
 {
 
-    internal class GetZipCodeResponseModel
+    public class GetZipCodeResponseModel
     {
         public bool Sucess { get; set; }
         public ZipCodeReponse Data { get; set; }
     }
-    internal class ZipCodeReponse
+    public class ZipCodeReponse
     {   
         public int? ZipCode { get; set; }
         public string? StreetName { get; set; }        

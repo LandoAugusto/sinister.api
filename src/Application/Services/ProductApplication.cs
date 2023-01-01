@@ -1,6 +1,7 @@
-﻿using Application.Interfaces;
+﻿using Application.DTO.Product;
+using Application.Interfaces;
 using Infrastructure.Data.Repository.Interfaces.Repositories;
-using Domain.Core.Models;
+
 
 namespace Application.Services
 {
@@ -11,15 +12,15 @@ namespace Application.Services
             _productRepository = productRepository;
 
 
-        public async Task<IEnumerable<ProductModel>> ListProductAsync()
+        public async Task<IEnumerable<ProductResponseDto>> ListProductAsync()
         {
             var list = await _productRepository.GetAllAsync();
 
             if (!list.Any()) return null;
 
-            var result = new List<ProductModel>();
+            var result = new List<ProductResponseDto>();
             foreach (var item in list)
-                result.Add(new ProductModel(int.Parse(item.ExternalId), item.Name, item.ImageUrl));
+                result.Add(new ProductResponseDto(int.Parse(item.ExternalId), item.Name, item.ImageUrl));
 
             return result;
         }

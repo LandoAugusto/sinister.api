@@ -4,9 +4,9 @@ using Swashbuckle.AspNetCore.Filters;
 
 namespace SinisterApi.API.Examples.Proposal
 {
-    public class GetBusinnesProposalRequestModelExample : IExamplesProvider<GetBusinnesProposalRequestModel>
+    public class GetBusinnesProposalRequestModelExample : IExamplesProvider<GetBusinnesProposalRequestDto>
     {
-        public GetBusinnesProposalRequestModel GetExamples() => new()
+        public GetBusinnesProposalRequestDto GetExamples() => new()
         {
             BrokerUserId = 601,
             ProposalNumber = "61587"

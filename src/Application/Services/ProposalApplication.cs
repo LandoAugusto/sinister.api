@@ -1,5 +1,6 @@
-﻿using Application.Interfaces;
-using Domain.Core.Models;
+﻿using Application.DTO.Proposal;
+using Application.Interfaces;
+using Application.Mappers;
 using Integration.BMG.Interfaces;
 
 namespace Application.Services
@@ -9,9 +10,9 @@ namespace Application.Services
         private readonly IProposalService _proposalSevice;
         public ProposalApplication(IProposalService proposalSevice) => _proposalSevice = proposalSevice;
 
-        public async Task<ProposalModel> GetBusinnesProposalAsync(int brokerUserId, string proposalNumber)
+        public async Task<ProposalResponseDto> GetBusinnesProposalAsync(int brokerUserId, string proposalNumber)
         {
-           return await _proposalSevice.GetBusinnesProposalAsync(brokerUserId, proposalNumber);
+            return ProposalMap.Map(await _proposalSevice.GetBusinnesProposalAsync(brokerUserId, proposalNumber));
         }
     }
 }

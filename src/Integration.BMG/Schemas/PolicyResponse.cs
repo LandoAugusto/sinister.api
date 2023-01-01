@@ -6,7 +6,7 @@
         public List<PolicyResponse> Data { get; set; }
     }
 
-    internal class PolicyResponse
+    public class PolicyResponse
     {
         public PolicyResponse()
         {

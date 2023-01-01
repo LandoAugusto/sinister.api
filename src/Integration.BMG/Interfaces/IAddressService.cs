@@ -1,9 +1,9 @@
-﻿using Domain.Core.Models;
+﻿using Integration.BMG.Schemas;
 
 namespace Integration.BMG.Interfaces
 {
     public interface IAddressService
     {
-        Task<ZipCodeModel> GetZipCodeAsync(int zipCode);
+        Task<ZipCodeReponse> GetZipCodeAsync(int zipCode);
     }
 }

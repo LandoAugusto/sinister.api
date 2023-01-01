@@ -1,8 +1,8 @@
-﻿using Application.Interfaces;
-using Infrastructure.Data.Repository.Interfaces.Repositories;
+﻿using Application.DTO.Common;
+using Application.Interfaces;
 using Domain.Core.Entities;
 using Domain.Core.Extensions;
-using Domain.Core.Models;
+using Infrastructure.Data.Repository.Interfaces.Repositories;
 using Integration.BMG.Interfaces;
 
 namespace Application.Services
@@ -35,76 +35,78 @@ namespace Application.Services
             _situationSinisterRepository = situationSinisterRepository;
         }
 
-        public async Task<ZipCodeModel> GetZipCodeAsync(int zipCode) =>
-             await _addressService.GetZipCodeAsync(zipCode);
+        public async Task<ZipCodeResponseDto> GetZipCodeAsync(int zipCode)
+        {
+            var result = await _addressService.GetZipCodeAsync(zipCode);
 
-
-        public async Task<IEnumerable<DomainModel>> ListPhoneTypeAsync()
+            return new ZipCodeResponseDto(result.StreetName, result.District, result.CityName, result.StateInitials, result.StateName);
+        }
+        public async Task<IEnumerable<DomainResponseDto>> ListPhoneTypeAsync()
         {
             var list = await _phoneTypeRepository.GetAllAsync();
             if (!list.IsAny<PhoneType>()) return null;
 
-            var result = new List<DomainModel>();
+            var result = new List<DomainResponseDto>();
             foreach (var item in list)
-                result.Add(new DomainModel(item.Id, item.Name));
+                result.Add(new DomainResponseDto(item.Id, item.Name));
 
             return result;
         }
-        public async Task<IEnumerable<DomainModel>> ListEmailTypeAsync()
+        public async Task<IEnumerable<DomainResponseDto>> ListEmailTypeAsync()
         {
             var list = await _emailTypeRepository.GetAllAsync();
             if (!list.IsAny<EmailType>()) return null;
 
-            var result = new List<DomainModel>();
+            var result = new List<DomainResponseDto>();
             foreach (var item in list)
-                result.Add(new DomainModel(item.Id, item.Name));
+                result.Add(new DomainResponseDto(item.Id, item.Name));
 
             return result;
         }
-        public async Task<IEnumerable<DomainModel>> ListPeriodTypeAsync()
+        public async Task<IEnumerable<DomainResponseDto>> ListPeriodTypeAsync()
         {
             var list = await _periodTypeRepository.GetAllAsync();
             if (!list.IsAny<PeriodType>()) return null;
 
-            var result = new List<DomainModel>();
+            var result = new List<DomainResponseDto>();
             foreach (var item in list)
-                result.Add(new DomainModel(item.Id, item.Name));
+                result.Add(new DomainResponseDto(item.Id, item.Name));
 
             return result;
         }
 
-        public async Task<IEnumerable<DomainModel>> ListCommunicantTypeAsync()
+        public async Task<IEnumerable<DomainResponseDto>> ListCommunicantTypeAsync()
         {
             var list = await _communicantTypeRepository.GetAllAsync();
             if (!list.IsAny<CommunicantType>()) return null;
 
-            var result = new List<DomainModel>();
+            var result = new List<DomainResponseDto>();
             foreach (var item in list)
-                result.Add(new DomainModel(item.Id, item.Name));
+                result.Add(new DomainResponseDto(item.Id, item.Name));
 
             return result;
         }
 
-        public async Task<IEnumerable<DomainModel>> ListStatusAsync()
+        public async Task<IEnumerable<DomainResponseDto>> ListStatusAsync()
         {
             var list = await _statusSinisterRepository.GetAllAsync();
             if (!list.IsAny<Status>()) return null;
 
-            var result = new List<DomainModel>();
+            var result = new List<DomainResponseDto>();
             foreach (var item in list)
-                result.Add(new DomainModel(item.Id, item.Name));
+                result.Add(new DomainResponseDto(item.Id, item.Name));
 
             return result;
         }
 
-        public async Task<IEnumerable<DomainModel>> ListSituationAsync()
+        public async Task<IEnumerable<DomainResponseDto>> ListSituationAsync()
         {
             var list = await _situationSinisterRepository.GetAllAsync();
             if (!list.IsAny<Situation>()) return null;
 
-            var result = new List<DomainModel>();
+            var result = new List<DomainResponseDto>();
             foreach (var item in list)
-                result.Add(new DomainModel(item.Id, item.Name));
+                result.Add(new DomainResponseDto(item.Id, item.Name));
 
             return result;
         }

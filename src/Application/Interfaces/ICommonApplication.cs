@@ -1,15 +1,15 @@
-﻿using Domain.Core.Models;
+﻿using Application.DTO.Common;
 
 namespace Application.Interfaces
 {
     public interface ICommonApplication
     {
-        Task<ZipCodeModel> GetZipCodeAsync(int zipCode);
-        Task<IEnumerable<DomainModel>> ListPeriodTypeAsync();
-        Task<IEnumerable<DomainModel>>ListCommunicantTypeAsync();
-        Task<IEnumerable<DomainModel>> ListStatusAsync();
-        Task<IEnumerable<DomainModel>> ListSituationAsync();
-        Task<IEnumerable<DomainModel>> ListPhoneTypeAsync();
-        Task<IEnumerable<DomainModel>> ListEmailTypeAsync();
+        Task<ZipCodeResponseDto> GetZipCodeAsync(int zipCode);
+        Task<IEnumerable<DomainResponseDto>> ListPeriodTypeAsync();
+        Task<IEnumerable<DomainResponseDto>>ListCommunicantTypeAsync();
+        Task<IEnumerable<DomainResponseDto>> ListStatusAsync();
+        Task<IEnumerable<DomainResponseDto>> ListSituationAsync();
+        Task<IEnumerable<DomainResponseDto>> ListPhoneTypeAsync();
+        Task<IEnumerable<DomainResponseDto>> ListEmailTypeAsync();
     }
 }

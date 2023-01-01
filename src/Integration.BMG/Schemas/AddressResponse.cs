@@ -1,9 +1,6 @@
 ﻿namespace Integration.BMG.Schemas
 {
-
- 
-
-    internal class AddressResponse
+    public class AddressResponse
     {
         public int? Id { get; set; }
         public AddressTypeResponse AddressType { get; set; }

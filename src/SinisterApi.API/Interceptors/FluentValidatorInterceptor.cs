@@ -1,10 +1,9 @@
-﻿using FluentValidation;
+﻿using Application.DTO.Standard;
+using FluentValidation;
 using FluentValidation.AspNetCore;
 using FluentValidation.Results;
-using Microsoft.AspNetCore.Mvc;
-using Domain.Core.Models;
-using Domain.Core.Models.Standard;
 using Infrastruture.Logger.Interfaces;
+using Microsoft.AspNetCore.Mvc;
 
 namespace SinisterApi.API.Interceptors
 {

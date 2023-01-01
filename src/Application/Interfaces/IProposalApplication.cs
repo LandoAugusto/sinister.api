@@ -1,9 +1,9 @@
-﻿using Domain.Core.Models;
+﻿using Application.DTO.Proposal;
 
 namespace Application.Interfaces
 {
     public interface IProposalApplication
     {
-        Task<ProposalModel> GetBusinnesProposalAsync(int brokerUserId, string proposalNumber);
+        Task<ProposalResponseDto> GetBusinnesProposalAsync(int brokerUserId, string proposalNumber);
     }
 }

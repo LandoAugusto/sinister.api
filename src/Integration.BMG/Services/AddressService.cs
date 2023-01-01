@@ -1,15 +1,13 @@
-﻿using Microsoft.Extensions.Configuration;
-using Domain.Core.Infrastructure.Exceptions;
-using Domain.Core.Models;
+﻿using Domain.Core.Infrastructure.Exceptions;
 using Integration.BMG.Configurations;
 using Integration.BMG.Http.Interfaces;
 using Integration.BMG.Interfaces;
-using Integration.BMG.Mappper;
 using Integration.BMG.Schemas;
+using Microsoft.Extensions.Configuration;
 
 namespace Integration.BMG.Services
 {
-    internal class AddressService : IAddressService
+    public class AddressService : IAddressService
     {
         private const string ADDRESS_SERVICE_NAME = "address/";
         private readonly int TimeoutInMilliseconds;
@@ -20,7 +18,7 @@ namespace Integration.BMG.Services
         public AddressService(IRequestExecutador requestExecutador, MiddlewareApiConfig apiConfig, IConfiguration configuration) =>
            (_requestExecutador, _apiConfig, TimeoutInMilliseconds) = (requestExecutador, apiConfig, int.Parse(configuration["ExecuteTimeoutInMilliseconds"]));
 
-        public async Task<ZipCodeModel> GetZipCodeAsync(int zipCode)
+        public async Task<ZipCodeReponse> GetZipCodeAsync(int zipCode)
         {
             try
             {
@@ -35,7 +33,7 @@ namespace Integration.BMG.Services
                     throw new BusinessException(response.ErrorResponseObject.Detail);
                 }
 
-                return ZipCodeMap.Map(response.ResponseObject.Data);
+                return response.ResponseObject.Data;
             }
             catch (Exception)
             {

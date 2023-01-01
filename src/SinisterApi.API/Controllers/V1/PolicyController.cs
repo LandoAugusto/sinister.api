@@ -1,8 +1,8 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Application.DTO.Standard;
+using Application.Interfaces;
+using Microsoft.AspNetCore.Mvc;
 using SinisterApi.API.Controllers.V1.Base;
 using SinisterApi.DTO.Policy;
-using Application.Interfaces;
-using Domain.Core.Models.Standard;
 
 namespace SinisterApi.API.Controllers.V1
 {
@@ -18,7 +18,7 @@ namespace SinisterApi.API.Controllers.V1
         [ProducesResponseType(typeof(ResponseModel), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ErrorResponseModel), StatusCodes.Status400BadRequest)]
         [ProducesResponseType(typeof(ErrorResponseModel), StatusCodes.Status404NotFound)]
-        public async Task<IActionResult> ListPoliciesAscync(ListPoliciesRequestModel request)
+        public async Task<IActionResult> ListPoliciesAscync(ListPoliciesRequestDto request)
         {
             var response = await _policyApplication.ListPolicyAsync(request.PolicyId, request.InsuredPersonId, request.StipulatorPersonId, request.Certificate);
             if (response == null)

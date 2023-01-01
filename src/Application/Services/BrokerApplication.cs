@@ -1,5 +1,6 @@
-﻿using Application.Interfaces;
-using Domain.Core.Models;
+﻿using Application.DTO.Broker;
+using Application.Interfaces;
+using Application.Mappers;
 using Integration.BMG.Interfaces;
 
 namespace Application.Services
@@ -10,7 +11,7 @@ namespace Application.Services
         public BrokerApplication(IBrokerService brokerService) =>
             _brokerService = brokerService;
 
-        public async Task<BrokerModel> GetBrokerAsync(int brokerUserId) =>
-             await _brokerService.GetBrokerAsync(brokerUserId);
+        public async Task<BrokerResponseDto> GetBrokerAsync(int brokerUserId) =>
+            BrokerMap.Map(await _brokerService.GetBrokerAsync(brokerUserId));
     }
 }

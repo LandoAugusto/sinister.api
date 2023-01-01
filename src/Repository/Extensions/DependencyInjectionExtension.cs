@@ -28,6 +28,7 @@ namespace Infrastructure.Data.Repository.Extensions
             .AddScoped<IEmailTypeRepository, EmailTypeRepository>()
             .AddScoped<IStatusRepository, StatusRepository>()
             .AddScoped<IPeriodTypeRepository, PeriodTypeRepository>()
+            .AddScoped<ICommunicantRepository, CommunicantRepository>()
             .AddScoped<ICommunicantTypeRepository, CommunicantTypeRepository>()
             .AddScoped<IProductRepository, ProductRepository>()
             .AddScoped<INotificationRepository, NotificationRepository>()

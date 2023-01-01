@@ -1,6 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Application.DTO.Standard;
+using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
-using Domain.Core.Models.Standard;
 
 namespace SinisterApi.API.Controllers.V1.Base
 {

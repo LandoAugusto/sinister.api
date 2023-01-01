@@ -1,9 +1,9 @@
-﻿using Domain.Core.Models;
+﻿using Integration.BMG.Schemas;
 
 namespace Integration.BMG.Interfaces
 {
     public interface IPolicyService
     {
-        Task<IList<PolicyModel>> ListPolicyAsync(int? policyId, int? insuredPersonId, int? stipulatorPersonId, int? certificate);
+        Task<IList<PolicyResponse>> ListPolicyAsync(int? policyId, int? insuredPersonId, int? stipulatorPersonId, int? certificate);
     }
 }

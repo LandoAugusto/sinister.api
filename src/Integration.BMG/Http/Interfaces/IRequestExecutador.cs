@@ -1,6 +1,6 @@
 ﻿namespace Integration.BMG.Http.Interfaces
 {
-    internal interface IRequestExecutador
+    public interface IRequestExecutador
     {
         Task<(TResponse, TErrorResponse)> GetJsonApiAsync<TResponse, TErrorResponse>(
               string url,
