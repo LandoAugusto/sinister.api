@@ -1,9 +1,9 @@
-﻿using Domain.Core.Models;
+﻿using Application.DTO.Product;
 
 namespace Application.Interfaces
 {
     public interface IProductApplication
     {
-        Task<IEnumerable<ProductModel>> ListProductAsync();
+        Task<IEnumerable<ProductResponseDto>> ListProductAsync();
     }
 }

@@ -1,8 +1,8 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Application.DTO.Standard;
+using Application.Interfaces;
+using Microsoft.AspNetCore.Mvc;
 using SinisterApi.API.Controllers.V1.Base;
 using SinisterApi.DTO.Notification;
-using Application.Interfaces;
-using Domain.Core.Models.Standard;
 
 namespace SinisterApi.API.Controllers.V1
 {
@@ -18,7 +18,7 @@ namespace SinisterApi.API.Controllers.V1
         [ProducesResponseType(typeof(ResponseModel), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ErrorResponseModel), StatusCodes.Status400BadRequest)]
         [ProducesResponseType(typeof(ErrorResponseModel), StatusCodes.Status404NotFound)]
-        public async Task<IActionResult> ListNotificationAscync(ListNotificationRequestModel request)
+        public async Task<IActionResult> ListNotificationAscync(ListNotificationRequestDto request)
         {
             var response = await _notificationApplication.ListNotificationAsync();
             if (response == null)
@@ -32,7 +32,7 @@ namespace SinisterApi.API.Controllers.V1
         [ProducesResponseType(typeof(ResponseModel), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ErrorResponseModel), StatusCodes.Status400BadRequest)]
         [ProducesResponseType(typeof(ErrorResponseModel), StatusCodes.Status404NotFound)]
-        public async Task<IActionResult> SaveAscync(SaveNotificationRequestModel request)
+        public async Task<IActionResult> SaveAscync(SaveNotificationRequestDto request)
         {
             var response = await _notificationApplication.SaveNotificationAsync(request.PolicyId, request.CodeItem);          
             if (response == null)
@@ -63,7 +63,7 @@ namespace SinisterApi.API.Controllers.V1
         [ProducesResponseType(typeof(ResponseModel), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ErrorResponseModel), StatusCodes.Status400BadRequest)]
         [ProducesResponseType(typeof(ErrorResponseModel), StatusCodes.Status404NotFound)]
-        public async Task<IActionResult> SaveComunicantAsync(SaveCommunicantRequestModel request)
+        public async Task<IActionResult> SaveComunicantAsync(SaveCommunicantRequestDto request)
         {
             //var response = await _notificationApplication.SaveNotificationAsync(request.PolicyId, request.CodeItem);
 
@@ -97,7 +97,7 @@ namespace SinisterApi.API.Controllers.V1
         [ProducesResponseType(typeof(ResponseModel), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ErrorResponseModel), StatusCodes.Status400BadRequest)]
         [ProducesResponseType(typeof(ErrorResponseModel), StatusCodes.Status404NotFound)]
-        public async Task<IActionResult> SaveOccurenceAsync(SaveNotificationRequestModel request)
+        public async Task<IActionResult> SaveOccurenceAsync(SaveNotificationRequestDto request)
         {
             //var response = await _notificationApplication.ListInsuredAsync(request.Name, request.DocumentNumber);
 

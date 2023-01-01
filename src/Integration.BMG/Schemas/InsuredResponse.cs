@@ -12,7 +12,7 @@
         public InsuredResponse Data { get; set; }
     }
 
-    internal class InsuredResponse
+    public class InsuredResponse
     {
         public int? PersonId { get; set; }
         public string? Name { get; set; }

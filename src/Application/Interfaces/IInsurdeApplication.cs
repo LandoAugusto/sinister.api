@@ -1,10 +1,10 @@
-﻿using Domain.Core.Models;
+﻿using Application.DTO.Insured;
 
 namespace Application.Interfaces
 {
     public interface IInsurdeApplication
     {
-        Task<InsuredModel> GetInsuredAsync(int insuredPersonId);
-        Task<List<InsuredModel>> ListInsuredAsync(string name, string documentNumber);
+        Task<InsuredResponseDto> GetInsuredAsync(int insuredPersonId);
+        Task<List<InsuredResponseDto>> ListInsuredAsync(string name, string documentNumber);
     }
 }

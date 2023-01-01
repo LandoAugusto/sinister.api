@@ -1,9 +1,10 @@
-﻿using Domain.Core.Models;
+﻿using Application.DTO.Broker;
+
 
 namespace Application.Interfaces
 {
     public interface IBrokerApplication
     {
-        Task<BrokerModel> GetBrokerAsync(int brokerUserId);
+        Task<BrokerResponseDto> GetBrokerAsync(int brokerUserId);
     }
 }

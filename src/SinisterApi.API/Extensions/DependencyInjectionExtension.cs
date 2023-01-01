@@ -10,7 +10,7 @@ using SinisterApi.API.Interceptors;
 using Domain.Core.Constants;
 using Domain.Core.Infrastructure.Contexts;
 using Domain.Core.Infrastructure.Contexts.Intefaces;
-using Domain.Core.Models;
+
 using Swashbuckle.AspNetCore.Filters;
 using Swashbuckle.AspNetCore.SwaggerGen;
 using System.IO.Compression;

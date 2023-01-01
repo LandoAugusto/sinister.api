@@ -1,9 +1,9 @@
-﻿using Domain.Core.Models;
+﻿using Application.DTO.Policy;
 
 namespace Application.Interfaces
 {
     public interface IPolicyApplication
     {
-        Task<IList<PolicyModel>> ListPolicyAsync(int? policyId, int? insuredPersonId, int? stipulatorPersonId, int? certificate);
+        Task<IList<PolicyResponseDto>> ListPolicyAsync(int? policyId, int? insuredPersonId, int? stipulatorPersonId, int? certificate);
     }
 }

@@ -4,8 +4,9 @@ using Domain.Core.Entities;
 using Domain.Core.Eums;
 using Domain.Core.Extensions;
 using Domain.Core.Infrastructure.Exceptions;
-using Domain.Core.Models;
+
 using Integration.BMG.Interfaces;
+using Application.DTO.Notification;
 
 namespace Application.Services
 {
@@ -20,14 +21,14 @@ namespace Application.Services
             INotificationRepository notificationRepository) =>
             (_policyService, _communicantRepository, _notificationRepository) = (policyService, communicantRepository,notificationRepository);
 
-        public async Task<IEnumerable<NotificationModel>> ListNotificationAsync()
+        public async Task<IEnumerable<NotificationResponseDto>> ListNotificationAsync()
         {
             var list = await _notificationRepository.GetAllAsync();
             if (!list.IsAny<Notification>()) return null;
 
-            var result = new List<NotificationModel>();
+            var result = new List<NotificationResponseDto>();
             foreach (var item in list)
-                result.Add(new NotificationModel(item.Id, item.PolicyId, item.Stage, item.DateNotification));
+                result.Add(new NotificationResponseDto(item.Id, item.PolicyId, item.Stage, item.DateNotification));
 
             return result;
         }

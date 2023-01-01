@@ -6,7 +6,7 @@
         public ProposalResponse Data { get; set; }
     }
 
-    internal class ProposalResponse
+    public class ProposalResponse
     {
         public ProposalResponse()
         {
@@ -16,10 +16,6 @@
             this.Broker = new BrokerResponse();
             this.Taker = new TakerResponse();
             this.Insured = new InsuredResponse();
-            //this.Billing = new ProposalBilling();
-            //this.Warranty = new ProposalWarranty();
-
-            //this.InsuredObject = new InsuredObject();
             this.InclusionUser = new UserResponse();
             this.LastChangeUser = new UserResponse();
         }
@@ -38,20 +34,11 @@
         public BrokerResponse Broker { get; set; }
         public TakerResponse Taker { get; set; }
         public InsuredResponse Insured { get; set; }
-        //public ProposalBilling Billing { get; set; }
-        //public ProposalWarranty Warranty { get; set; }
-
-        //public InsuredObject InsuredObject { get; set; }
         public string? AttachedTextContents { get; set; }
         public bool IsInformedPremium { get; set; }
         public bool HasMaximumWarrantyLimit { get; set; }
         public UserResponse InclusionUser { get; set; }
         public UserResponse LastChangeUser { get; set; }
-
-        //public IList<ProposalInstallment>? Installments { get; set; }
-        //public IList<ProposalCoBroker>? CoBrokers { get; set; }
-        //public IList<ProposalItem>? Items { get; set; }
-        //public IList<ProposalCoInsurance>? CoInsurance { get; set; }
 
     }
 }

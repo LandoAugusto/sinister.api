@@ -1,9 +1,11 @@
-﻿using Domain.Core.Models;
+﻿
+
+using Integration.BMG.Schemas;
 
 namespace Integration.BMG.Interfaces
 {
     public interface IProposalService
     {
-        Task<ProposalModel> GetBusinnesProposalAsync(int brokerUserId, string proposalNumber);
+        Task<ProposalResponse> GetBusinnesProposalAsync(int brokerUserId, string proposalNumber);
     }
 }

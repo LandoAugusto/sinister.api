@@ -1,11 +1,11 @@
-﻿using Domain.Core.Models;
+﻿using Integration.BMG.Schemas;
 
 namespace Integration.BMG.Interfaces
 {
     public interface IInsuredService
     {
-        Task<InsuredModel> GetInsuredAsync(int insuredPersonId);
+        Task<InsuredResponse> GetInsuredAsync(int insuredPersonId);
 
-        Task<List<InsuredModel>> ListInsuredAsync(string name, string documentNumber);
+        Task<List<InsuredResponse>> ListInsuredAsync(string name, string documentNumber);
     }
 }

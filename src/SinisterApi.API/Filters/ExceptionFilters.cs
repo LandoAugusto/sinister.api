@@ -1,10 +1,8 @@
-﻿using Microsoft.AspNetCore.Mvc.Filters;
-using Microsoft.AspNetCore.Mvc;
+﻿using Application.DTO.Standard;
 using Domain.Core.Infrastructure.Contexts.Intefaces;
 using Infrastruture.Logger.Interfaces;
-using Integration.BMG.Exceptions;
-using Newtonsoft.Json;
-using Domain.Core.Models.Standard;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Filters;
 
 namespace SinisterApi.API.Filters
 {
