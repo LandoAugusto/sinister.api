@@ -15,6 +15,9 @@ using Swashbuckle.AspNetCore.Filters;
 using Swashbuckle.AspNetCore.SwaggerGen;
 using System.IO.Compression;
 using System.Reflection;
+using FluentValidation;
+using SinisterApi.DTO.Validators;
+using SinisterApi.DTO.Policy;
 
 namespace SinisterApi.API.Extensions
 {
@@ -26,7 +29,7 @@ namespace SinisterApi.API.Extensions
                 .AddScoped<IRequestContextHolder, RequestContextHolder>()
                 .ConfigControllersPipeline()
                 .ConfigAppVersioning()
-                .ConfigSwagger()                
+                .ConfigSwagger()
                 .Configure<GzipCompressionProviderOptions>(gzipCompressionProviderOptions =>
                     gzipCompressionProviderOptions.Level = CompressionLevel.Fastest)
                 .AddResponseCompression(compressionOptions =>
@@ -54,10 +57,9 @@ namespace SinisterApi.API.Extensions
                         options.JsonSerializerOptions.PropertyNamingPolicy = null;
                         options.JsonSerializerOptions.PropertyNameCaseInsensitive = false;
                     })
-                .ConfigureApiBehaviorOptions(opt => opt
-                    .SuppressModelStateInvalidFilter = true);
+               .AddFluentValidation(fvc => fvc.RegisterValidatorsFromAssemblyContaining<ListPoliciesRequestDto>())
+                .ConfigureApiBehaviorOptions(opt => opt.SuppressModelStateInvalidFilter = true);
 
-            services.AddFluentValidationAutoValidation();
             services.AddTransient<IValidatorInterceptor, FluentValidatorInterceptor>();
 
             return services;

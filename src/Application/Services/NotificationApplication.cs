@@ -1,12 +1,14 @@
-﻿using Application.Interfaces;
+﻿using Application.DTO.Common;
+using Application.DTO.Notification;
+using Application.DTO.Policy;
+using Application.Interfaces;
 using Domain.Core.Entities;
 using Domain.Core.Eums;
 using Domain.Core.Extensions;
 using Domain.Core.Infrastructure.Exceptions;
-using Integration.BMG.Interfaces;
-using Application.DTO.Notification;
-using SinisterApi.DTO.Notification;
 using Infrastructure.Data.Repository.Interfaces.Repositories;
+using Integration.BMG.Interfaces;
+using SinisterApi.DTO.Notification;
 
 namespace Application.Services
 {
@@ -21,17 +23,49 @@ namespace Application.Services
             INotificationRepository notificationRepository) =>
             (_policyService, _communicantRepository, _notificationRepository) = (policyService, communicantRepository, notificationRepository);
 
-        public async Task<IEnumerable<NotificationResponseDto>> ListNotificationAsync()
+        public async Task<IEnumerable<ListNotificationResponseDto>> ListNotificationAsync()
         {
-            var list = await _notificationRepository.GetAllAsync();
+            var list = await _notificationRepository.ListNotificationAsync();
             if (!list.IsAny<Notification>()) return null;
 
-            var result = new List<NotificationResponseDto>();
+            var result = new List<ListNotificationResponseDto>();
             foreach (var item in list)
-                result.Add(new NotificationResponseDto(item.Id, item.PolicyId, item.Stage, item.DateNotification));
+            {
+                var notification = new ListNotificationResponseDto(item.Id, item.PolicyId, item.Stage, item.DateNotification)
+                {
+                    Situation = new DomainResponseDto(item.Situation.Id, item.Situation.Name),
+                    Status = new DomainResponseDto(item.Status.Id, item.Status.Name),
+                    Policy = new PolicyResponseDto(item.Policy.Id, item.Policy.ProposalNumber, item.Policy.PolicyId, item.Policy.EndorsementId, item.Policy.PolicyNumber, item.Policy.ProposalDate, item.Policy.PolicyDate, item.Policy.StartOfTerm, item.Policy.EndOfTerm.Date, item.Policy.Item)
+                    {
+                        Product = new(item.Policy.Product.Id, item.Policy.Product.Name, item.Policy.Product.ImageUrl),
+                        InclusionUser = new(item.Policy.InclusionUserId, null),
+                    }
+                };
+
+                result.Add(notification);
+            }
+            return result;
+        }
+
+        public async Task<GetCommunicantResponseDto> GetCommunicantAsync(int notificationId)
+        {
+            var entity = await _communicantRepository.GetByIdAsync(notificationId);
+            if (entity is null) return null;
+
+            var result = new GetCommunicantResponseDto(
+                entity.Id, entity.NotificationId, entity.CommunicantTypeId, entity.Name, entity.InclusionUserId, entity.CreatedDate);
+
+            foreach (var item in entity.CommunicantEmails)
+                result.Email.Add(new EmailResponseDto(
+                    item.Id, item.EmailTypeId, item.Email, item.CreatedDate));
+
+            foreach (var item in entity.CommunicantPhones)
+                result.Phone.Add(new PhoneResponseDto(
+                    item.Id, item.PhoneTypeId, item.Ddd, item.Phone, item.CreatedDate));
 
             return result;
         }
+
 
         public async Task<int> SaveNotificationAsync(int policyId, int codeItem)
         {
@@ -56,7 +90,7 @@ namespace Application.Services
                         ProposalNumber = policy.ProposalNumber,
                         PolicyNumber = policy.PolicyNumber,
                         ProposalDate = policy.ProposalDate,
-                        Item = 1,
+                        Item = codeItem,
                         PolicyDate = policy.PolicyDate,
                         StartOfTerm = policy.StartOfTerm,
                         EndOfTerm = policy.EndOfTerm,
@@ -77,26 +111,11 @@ namespace Application.Services
             try
             {
                 var entity = new Communicant(request.NotificationIdId, request.CommunicantTypeId, request.Name, userId);
-                foreach(var email in request.Email)
-                {
-                    entity.CommunicantEmails.Add(new CommunicantEmail()
-                    {
-                        Email = email.Email,
-                        EmailTypeId = email.EmailTypeId,
-                        InclusionUserId = userId
-                    }); 
-                }
+                foreach (var email in request.Email)
+                    entity.CommunicantEmails.Add(new CommunicantEmail(default, default, email.EmailTypeId, email.Email, userId));
 
                 foreach (var phone in request.Phone)
-                {
-                    entity.CommunicantPhones.Add(new CommunicantPhone()
-                    {
-                        Ddd = phone.Ddd,
-                        PhoneTypeId = phone.PhoneTypeId,
-                        Phone = phone.Phone,
-                        InclusionUserId = userId
-                    }); 
-                }
+                    entity.CommunicantPhones.Add(new CommunicantPhone(default, default, phone.PhoneTypeId, phone.Ddd, phone.Phone, userId));
 
                 var result = await _communicantRepository.AddAsync(entity);
 

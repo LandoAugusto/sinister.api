@@ -1,13 +1,13 @@
 ﻿using FluentValidation;
 using SinisterApi.DTO.Policy;
 
-namespace Domain.Core.Validators.Policy
+namespace SinisterApi.DTO.Validators
 {
-    public class LIstPolicyValidator : AbstractValidator<ListPoliciesRequestDto>
+    public class ListPolicyValidator : AbstractValidator<ListPoliciesRequestDto>
     {
         private readonly string _inconsistentDataCode = "40";
 
-        public LIstPolicyValidator()
+        public ListPolicyValidator()
         {
             Validate();
         }
@@ -18,7 +18,7 @@ namespace Domain.Core.Validators.Policy
                .Cascade(CascadeMode.Stop)
                .NotNull()
                .WithErrorCode(_inconsistentDataCode)
-               .WithMessage("Obrigatorio informar o id da apolice");              
+               .WithMessage("Obrigatorio informar o id da apolice");
         }
     }
 }

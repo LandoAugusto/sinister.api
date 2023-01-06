@@ -2,6 +2,7 @@
 using Infrastructure.Data.Repository.Contexts;
 using Infrastructure.Data.Repository.Interfaces.Repositories;
 using Infrastructure.Data.Repository.Repositories.Standard;
+using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure.Data.Repository.Repositories
 {
@@ -15,6 +16,21 @@ namespace Infrastructure.Data.Repository.Repositories
             IQueryable<Communicant> query = await Task.FromResult(GenerateQuery(filter: null,
                                                                                 orderBy: (item => item.OrderBy(y => y.Name))));
             return query.AsEnumerable();
+        }
+
+        public async Task<Communicant> GetByIdAsync(int notificationId)
+        {            
+            IQueryable<Communicant> query =
+                    await Task.FromResult(
+                        GenerateQuery(
+                            filter: (item => item.NotificationId.Equals(notificationId)),
+                            orderBy: (item => item.OrderBy(y => y.Name)),
+                            includeProperties: source =>
+                                    source
+                                    .Include(x => x.CommunicantEmails)
+                                    .Include(x => x.CommunicantPhones)));
+
+            return query.FirstOrDefault();
         }
     }
 }

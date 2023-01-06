@@ -7,7 +7,7 @@ namespace Domain.Core.Entities
         public int Id { get; set; }
         public int ProposalNumber { get; set; }
         public int PolicyId { get; set; }
-        public int EndorsementId { get; set; }
+        public string EndorsementId { get; set; }
         public int ProductId { get; set; }
         public int Item { get; set; }        
         public long PolicyNumber { get; set; }
