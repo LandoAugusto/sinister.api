@@ -2,6 +2,7 @@
 using Domain.Core.Entities.Interfaces;
 using Repository.Interfaces.Repositories.Standard;
 using System.Linq.Expressions;
+using Microsoft.EntityFrameworkCore.Query;
 
 namespace Infrastructure.Data.Repository.Repositories.Standard
 {
@@ -85,13 +86,18 @@ namespace Infrastructure.Data.Repository.Repositories.Standard
         }
 
         #region ProtectedMethods
-        protected override IQueryable<TEntity> GenerateQuery(Expression<Func<TEntity, bool>> filter = null,
-            Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy = null,
-            params string[] includeProperties)
+        protected override IQueryable<TEntity> GenerateQuery(
+               Expression<Func<TEntity, bool>> filter = null,
+               Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy = null,
+               Func<IQueryable<TEntity>, IIncludableQueryable<TEntity, object>> includeProperties = null)
         {
             IQueryable<TEntity> query = dbSet;
             query = GenerateQueryableWhereExpression(query, filter);
-            query = GenerateIncludeProperties(query, includeProperties);
+
+            if (includeProperties != null)
+            {
+                query = includeProperties(query);
+            }
 
             if (orderBy != null)
                 return orderBy(query);
@@ -105,15 +111,7 @@ namespace Infrastructure.Data.Repository.Repositories.Standard
                 return query.Where(filter);
 
             return query;
-        }
-
-        private IQueryable<TEntity> GenerateIncludeProperties(IQueryable<TEntity> query, params string[] includeProperties)
-        {
-            foreach (string includeProperty in includeProperties)
-                query = query.Include(includeProperty);
-
-            return query;
-        }
+        }    
 
         protected override IEnumerable<TEntity> GetYieldManipulated(IEnumerable<TEntity> entities, Func<TEntity, TEntity> DoAction)
         {

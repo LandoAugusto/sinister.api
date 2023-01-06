@@ -2,7 +2,7 @@
 {
     public class ProductResponseDto
     {
-        public ProductResponseDto(int? id, string? name, string imageUrl)
+        public ProductResponseDto(int? id, string? name, string imageUrl = null)
         {
             Id = id;
             Name = name;

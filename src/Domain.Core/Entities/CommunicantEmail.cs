@@ -4,6 +4,15 @@ namespace Domain.Core.Entities
 {
     public class CommunicantEmail : IIdentityEntity
     {
+        public CommunicantEmail(int id, int communicantId, int emailTypeId, string email, int inclusionUserId)
+        {
+            Id = id;
+            CommunicantId = communicantId;
+            EmailTypeId = emailTypeId;
+            Email = email;
+            InclusionUserId = inclusionUserId;            
+        }
+
         public int Id { get; set; }
         public int CommunicantId { get; set; }
         public int EmailTypeId { get; set; }

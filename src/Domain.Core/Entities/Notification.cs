@@ -1,5 +1,4 @@
 ﻿using Domain.Core.Entities.Interfaces;
-using Domain.Core.Eums;
 
 namespace Domain.Core.Entities
 {
@@ -10,7 +9,7 @@ namespace Domain.Core.Entities
         public int SituationId { get; set; }
         public int StatusId { get; set; }
         public int Stage { get; set; }
-        public DateTime? DateNotification { get; set; } = DateTime.Now;
+        public DateTime DateNotification { get; set; } = DateTime.Now;
         public int InclusionUserId { get; set; }
         public DateTime CreatedDate { get; set; } = DateTime.Now;
         public DateTime? UpdatedDate { get; set; }

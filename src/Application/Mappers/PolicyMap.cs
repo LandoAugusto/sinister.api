@@ -9,26 +9,19 @@ namespace Application.Mappers
         {
             var result = new List<PolicyResponseDto>();
 
-            foreach (var policy in response)
+            foreach (var item in response)
             {
-                result.Add(new PolicyResponseDto()
+                var policy = new PolicyResponseDto(default, item.ProposalNumber, item.PolicyId, item.EndorsementId, item.PolicyNumber, item.ProposalDate, item.PolicyDate, item.StartOfTerm, item.EndOfTerm)
                 {
-                    ProposalNumber = policy.ProposalNumber,
-                    PolicyId = policy.PolicyId,
-                    EndorsementId = policy.EndorsementId,
-                    PolicyNumber = policy.PolicyNumber,
-                    ProposalDate = policy.ProposalDate,
-                    PolicyDate = policy.PolicyDate,
-                    StartOfTerm = policy.StartOfTerm,
-                    EndOfTerm = policy.EndOfTerm,
-                    Broker = BrokerMap.Map(policy.Broker),
-                    Status = new(policy.Status.Id, policy.Status.Name),
-                    Product = new(policy.Product.Id, policy.Product.Name, null),
-                    Business = new(policy.Business.Id, policy.Business.SusepCode, policy.Business.Name),
-                    InclusionUser = new(policy.InclusionUser.Id, policy.InclusionUser.Name),
-                    LastChangeUser = new(policy.LastChangeUser.Id, policy.LastChangeUser.Name),
-                    Insured = new(policy.Insured.PersonId, policy.Insured.Name, policy.Insured.DocumentNumber, AddressMap.Map(policy.Insured.Addressess)),
-                });
+                    Broker = BrokerMap.Map(item.Broker),
+                    Status = new(item.Status.Id, item.Status.Name),
+                    Product = new(item.Product.Id, item.Product.Name),
+                    Business = new(item.Business.Id, item.Business.SusepCode, item.Business.Name),
+                    InclusionUser = new(item.InclusionUser.Id, item.InclusionUser.Name),
+                    LastChangeUser = new(item.LastChangeUser.Id, item.LastChangeUser.Name),
+                    Insured = new(item.Insured.PersonId, item.Insured.Name, item.Insured.DocumentNumber, AddressMap.Map(item.Insured.Addressess))
+                };
+                result.Add(policy);
             }
             return result;
         }
