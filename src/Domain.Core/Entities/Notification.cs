@@ -16,5 +16,6 @@ namespace Domain.Core.Entities
         public virtual Policy Policy { get; set; } = null!;
         public virtual Situation Situation { get; set; } = null!;
         public virtual Status Status { get; set; } = null!;
+        public virtual ICollection<Communicant> Communicants { get; set; }
     }
 }

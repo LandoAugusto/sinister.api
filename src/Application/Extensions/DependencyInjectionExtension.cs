@@ -9,6 +9,8 @@ namespace Application.Extensions
         public static IServiceCollection AddApplicationIoC(this IServiceCollection services) =>
            services
             .AddScoped<IBrokerApplication, BrokerApplication>()
+            .AddScoped<ICommunicantApplication, CommunicantApplication>()
+            .AddScoped<IOccurenceApplication, OccurenceApplication>()
             .AddScoped<ICommonApplication, CommonApplication>()
             .AddScoped<IInsurdeApplication, InsurdeApplication>()
             .AddScoped<IPolicyApplication, PolicyApplication>()

@@ -1,7 +1,7 @@
 ﻿using FluentValidation;
-using SinisterApi.DTO.Policy;
+using Application.DTO.Policy;
 
-namespace SinisterApi.DTO.Validators
+namespace Application.DTO.Validators
 {
     public class ListPolicyValidator : AbstractValidator<ListPoliciesRequestDto>
     {

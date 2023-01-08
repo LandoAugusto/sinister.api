@@ -18,6 +18,7 @@ namespace Domain.Core.Entities
         public int InclusionUserId { get; set; }
         public DateTime CreatedDate { get; set; } = DateTime.Now;
         public DateTime? UpdatedDate { get; set; }
+        public virtual Notification Notification { get; set; } = null!;
         public virtual CommunicantType CommunicantType { get; set; } = null!;
         public virtual ICollection<CommunicantEmail> CommunicantEmails { get; set; } = new HashSet<CommunicantEmail>();
         public virtual ICollection<CommunicantPhone> CommunicantPhones { get; set; } = new HashSet<CommunicantPhone>();

@@ -2,7 +2,7 @@
 using Application.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using SinisterApi.API.Controllers.V1.Base;
-using SinisterApi.DTO.Insured;
+using Application.DTO.Insured;
 
 namespace SinisterApi.API.Controllers.V1
 {

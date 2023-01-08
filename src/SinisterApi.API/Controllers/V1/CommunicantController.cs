@@ -1,27 +1,26 @@
-﻿using Application.DTO.Occurence;
+﻿using Application.DTO.Communicant;
 using Application.DTO.Standard;
 using Application.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using SinisterApi.API.Controllers.V1.Base;
-using Application.DTO.Notification;
 
 namespace SinisterApi.API.Controllers.V1
 {
-    public class NotificationController : BaseController
+    public class CommunicantController : BaseController
     {
-        private readonly INotificationApplication _notificationApplication;
+        private readonly ICommunicantApplication _communicantApplication;
 
-        public NotificationController(INotificationApplication notificationApplication) =>
-            _notificationApplication = notificationApplication;
+        public CommunicantController(ICommunicantApplication communicantApplication) =>
+            _communicantApplication = communicantApplication;
 
-        [HttpPost]
-        [Route("ListNotification")]
+        [HttpGet]
+        [Route("GetComunicant/{notificationId}")]
         [ProducesResponseType(typeof(ResponseModel), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ErrorResponseModel), StatusCodes.Status400BadRequest)]
         [ProducesResponseType(typeof(ErrorResponseModel), StatusCodes.Status404NotFound)]
-        public async Task<IActionResult> ListNotificationAscync(ListNotificationRequestDto request)
+        public async Task<IActionResult> GetComunicantAsync(int notificationId)
         {
-            var response = await _notificationApplication.ListNotificationAsync();
+            var response = await _communicantApplication.GetCommunicantAsync(notificationId);
             if (response == null)
                 return ReturnNotFound();
 
@@ -29,18 +28,14 @@ namespace SinisterApi.API.Controllers.V1
         }
 
         [HttpPost]
-        [Route("SaveNotification")]
+        [Route("SaveCommunicant")]
         [ProducesResponseType(typeof(ResponseModel), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ErrorResponseModel), StatusCodes.Status400BadRequest)]
         [ProducesResponseType(typeof(ErrorResponseModel), StatusCodes.Status404NotFound)]
-        public async Task<IActionResult> SaveAscync(SaveNotificationRequestDto request)
+        public async Task<IActionResult> SaveCommunicantAsync(SaveCommunicantRequestDto request)
         {
-            var response = await _notificationApplication.SaveNotificationAsync(request.PolicyId, request.CodeItem);
-            if (response == null)
-                return ReturnNotFound();
-
+            var response = await _communicantApplication.SaveCommunicantAsync(request, 1);
             return ReturnSuccess(response);
         }
-
     }
 }

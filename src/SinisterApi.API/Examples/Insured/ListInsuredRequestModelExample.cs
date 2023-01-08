@@ -1,4 +1,4 @@
-﻿using SinisterApi.DTO.Insured;
+﻿using Application.DTO.Insured;
 using Swashbuckle.AspNetCore.Filters;
 
 namespace SinisterApi.API.Examples.Insured

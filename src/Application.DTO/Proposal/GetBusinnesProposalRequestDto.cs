@@ -1,4 +1,4 @@
-﻿namespace SinisterApi.DTO.Proposal
+﻿namespace Application.DTO.Proposal
 {
     public class GetBusinnesProposalRequestDto
     {
