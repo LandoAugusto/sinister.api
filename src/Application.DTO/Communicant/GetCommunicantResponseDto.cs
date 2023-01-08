@@ -1,19 +1,19 @@
 ﻿using Application.DTO.Common;
 
-namespace Application.DTO.Notification
+namespace Application.DTO.Communicant
 {
     public class GetCommunicantResponseDto
     {
 
         public GetCommunicantResponseDto(int id, int notificationId, int communicantTypeId, string name, int inclusionUserId, DateTime createdDate)
         {
-            this.Id = id;
-            this.NotificationId = notificationId;
-            this.CommunicantTypeId = communicantTypeId;
-            this.Name = name;
-            this.Name = name;
-            this.InclusionUserId = inclusionUserId;
-            this.CreatedDate = createdDate;
+            Id = id;
+            NotificationId = notificationId;
+            CommunicantTypeId = communicantTypeId;
+            Name = name;
+            Name = name;
+            InclusionUserId = inclusionUserId;
+            CreatedDate = createdDate;
         }
         public int Id { get; set; }
         public int NotificationId { get; set; }

@@ -3,25 +3,25 @@ using Application.DTO.Standard;
 using Application.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using SinisterApi.API.Controllers.V1.Base;
-using Application.DTO.Notification;
 
 namespace SinisterApi.API.Controllers.V1
 {
-    public class NotificationController : BaseController
+    public class OccurenceController : BaseController
     {
-        private readonly INotificationApplication _notificationApplication;
+        private readonly IOccurenceApplication _occurenceApplication;
+        public OccurenceController(IOccurenceApplication occurenceApplication) =>
+            _occurenceApplication = occurenceApplication;
 
-        public NotificationController(INotificationApplication notificationApplication) =>
-            _notificationApplication = notificationApplication;
-
-        [HttpPost]
-        [Route("ListNotification")]
+        [HttpGet]
+        [Route("GetOccurence/{notificationId}")]
         [ProducesResponseType(typeof(ResponseModel), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ErrorResponseModel), StatusCodes.Status400BadRequest)]
         [ProducesResponseType(typeof(ErrorResponseModel), StatusCodes.Status404NotFound)]
-        public async Task<IActionResult> ListNotificationAscync(ListNotificationRequestDto request)
+        public async Task<IActionResult> GetOccurenceAsync(int notificationId)
         {
-            var response = await _notificationApplication.ListNotificationAsync();
+            //var response = await _occurenceApplication.ListInsuredAsync(request.Name, request.DocumentNumber);
+
+            var response = "";
             if (response == null)
                 return ReturnNotFound();
 
@@ -29,18 +29,20 @@ namespace SinisterApi.API.Controllers.V1
         }
 
         [HttpPost]
-        [Route("SaveNotification")]
+        [Route("SaveOccurence")]
         [ProducesResponseType(typeof(ResponseModel), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ErrorResponseModel), StatusCodes.Status400BadRequest)]
         [ProducesResponseType(typeof(ErrorResponseModel), StatusCodes.Status404NotFound)]
-        public async Task<IActionResult> SaveAscync(SaveNotificationRequestDto request)
+        public async Task<IActionResult> SaveOccurenceAsync(SaveOccurenceRequestDto request)
         {
-            var response = await _notificationApplication.SaveNotificationAsync(request.PolicyId, request.CodeItem);
+            //var response = await _occurenceApplication.ListInsuredAsync(request.Name, request.DocumentNumber);
+
+            var response = "";
             if (response == null)
                 return ReturnNotFound();
 
             return ReturnSuccess(response);
         }
-
     }
 }
+

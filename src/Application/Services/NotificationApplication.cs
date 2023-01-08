@@ -8,7 +8,6 @@ using Domain.Core.Extensions;
 using Domain.Core.Infrastructure.Exceptions;
 using Infrastructure.Data.Repository.Interfaces.Repositories;
 using Integration.BMG.Interfaces;
-using SinisterApi.DTO.Notification;
 
 namespace Application.Services
 {
@@ -16,12 +15,10 @@ namespace Application.Services
     {
         private readonly IPolicyService _policyService;
         private readonly INotificationRepository _notificationRepository;
-        private readonly ICommunicantRepository _communicantRepository;
         public NotificationApplication(
             IPolicyService policyService,
-            ICommunicantRepository communicantRepository,
             INotificationRepository notificationRepository) =>
-            (_policyService, _communicantRepository, _notificationRepository) = (policyService, communicantRepository, notificationRepository);
+            (_policyService, _notificationRepository) = (policyService, notificationRepository);
 
         public async Task<IEnumerable<ListNotificationResponseDto>> ListNotificationAsync()
         {
@@ -46,27 +43,6 @@ namespace Application.Services
             }
             return result;
         }
-
-        public async Task<GetCommunicantResponseDto> GetCommunicantAsync(int notificationId)
-        {
-            var entity = await _communicantRepository.GetByIdAsync(notificationId);
-            if (entity is null) return null;
-
-            var result = new GetCommunicantResponseDto(
-                entity.Id, entity.NotificationId, entity.CommunicantTypeId, entity.Name, entity.InclusionUserId, entity.CreatedDate);
-
-            foreach (var item in entity.CommunicantEmails)
-                result.Email.Add(new EmailResponseDto(
-                    item.Id, item.EmailTypeId, item.Email, item.CreatedDate));
-
-            foreach (var item in entity.CommunicantPhones)
-                result.Phone.Add(new PhoneResponseDto(
-                    item.Id, item.PhoneTypeId, item.Ddd, item.Phone, item.CreatedDate));
-
-            return result;
-        }
-
-
         public async Task<int> SaveNotificationAsync(int policyId, int codeItem)
         {
             try
@@ -106,26 +82,5 @@ namespace Application.Services
             }
         }
 
-        public async Task<int> SaveCommunicantAsync(SaveCommunicantRequestDto request, int userId)
-        {
-            try
-            {
-                var entity = new Communicant(request.NotificationIdId, request.CommunicantTypeId, request.Name, userId);
-                foreach (var email in request.Email)
-                    entity.CommunicantEmails.Add(new CommunicantEmail(default, default, email.EmailTypeId, email.Email, userId));
-
-                foreach (var phone in request.Phone)
-                    entity.CommunicantPhones.Add(new CommunicantPhone(default, default, phone.PhoneTypeId, phone.Ddd, phone.Phone, userId));
-
-                var result = await _communicantRepository.AddAsync(entity);
-
-                return result.Id;
-
-            }
-            catch (Exception)
-            {
-                throw;
-            }
-        }
     }
 }

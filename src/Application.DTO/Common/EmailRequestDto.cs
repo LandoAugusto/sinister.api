@@ -1,4 +1,4 @@
-﻿namespace SinisterApi.DTO.Common
+﻿namespace Application.DTO.Common
 {
     public class EmailRequestDto
     {

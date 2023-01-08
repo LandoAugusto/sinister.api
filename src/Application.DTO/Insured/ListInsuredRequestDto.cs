@@ -1,4 +1,4 @@
-﻿namespace SinisterApi.DTO.Insured
+﻿namespace Application.DTO.Insured
 {
     public class ListInsuredRequestDto
     {

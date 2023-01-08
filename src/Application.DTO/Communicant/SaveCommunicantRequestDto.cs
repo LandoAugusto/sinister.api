@@ -1,6 +1,6 @@
-﻿using SinisterApi.DTO.Common;
+﻿using Application.DTO.Common;
 
-namespace SinisterApi.DTO.Notification
+namespace Application.DTO.Communicant
 {
     public class SaveCommunicantRequestDto
     {

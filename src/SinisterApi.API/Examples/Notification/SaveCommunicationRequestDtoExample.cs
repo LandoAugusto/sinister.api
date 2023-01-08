@@ -1,5 +1,5 @@
-﻿using SinisterApi.DTO.Common;
-using SinisterApi.DTO.Notification;
+﻿using Application.DTO.Common;
+using Application.DTO.Communicant;
 using Swashbuckle.AspNetCore.Filters;
 
 namespace SinisterApi.API.Examples.Notification

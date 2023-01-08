@@ -1,4 +1,4 @@
-﻿namespace SinisterApi.DTO.Policy
+﻿namespace Application.DTO.Policy
 {
     public class ListPoliciesRequestDto
     {

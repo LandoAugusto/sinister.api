@@ -1,4 +1,4 @@
-﻿namespace SinisterApi.DTO.Notification
+﻿namespace Application.DTO.Notification
 {
     public class ListNotificationRequestDto
     {

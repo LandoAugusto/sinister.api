@@ -16,8 +16,8 @@ using Swashbuckle.AspNetCore.SwaggerGen;
 using System.IO.Compression;
 using System.Reflection;
 using FluentValidation;
-using SinisterApi.DTO.Validators;
-using SinisterApi.DTO.Policy;
+using Application.DTO.Validators;
+using Application.DTO.Policy;
 
 namespace SinisterApi.API.Extensions
 {

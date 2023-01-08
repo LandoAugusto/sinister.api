@@ -1,4 +1,4 @@
-﻿using SinisterApi.DTO.Notification;
+﻿using Application.DTO.Notification;
 using Swashbuckle.AspNetCore.Filters;
 
 namespace SinisterApi.API.Examples.Notification
