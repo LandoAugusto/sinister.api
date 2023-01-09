@@ -9,6 +9,7 @@ using Infrastruture.CrossCutting.Identity.Models;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
+using Microsoft.AspNetCore.Authorization;
 
 namespace SinisterApi.API.Controllers.V1
 {
@@ -26,6 +27,7 @@ namespace SinisterApi.API.Controllers.V1
             this.userManager = userManager;
         }
 
+        [AllowAnonymous]
         [HttpPost("GetToken")]
         public async Task<ActionResult> TokenRequestAsync(GetTokenModel loginViewModel)
         {

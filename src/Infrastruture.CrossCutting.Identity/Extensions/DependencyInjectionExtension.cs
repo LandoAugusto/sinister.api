@@ -1,6 +1,7 @@
 ﻿using Application.DTO.Standard;
 using Infrastruture.CrossCutting.Identity.Configuration;
 using Infrastruture.CrossCutting.Identity.Context;
+using Infrastruture.CrossCutting.Identity.Interfaces;
 using Infrastruture.CrossCutting.Identity.Models;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Http;
@@ -8,7 +9,6 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using System.Diagnostics.CodeAnalysis;
 using System.IdentityModel.Tokens.Jwt;
@@ -29,7 +29,8 @@ namespace Infrastruture.CrossCutting.Identity.Extensions
                 .AddDefaultTokenProviders();
 
             services
-                .AddConfiguration(configuration);        
+                .AddConfiguration(configuration)
+                .AddScoped<IUser,User>();        
 
             return services;
         }
@@ -39,13 +40,10 @@ namespace Infrastruture.CrossCutting.Identity.Extensions
             var signingConfigurations = new SigningConfiguration();
 
             services.AddSingleton(signingConfigurations);
-
-            var tokenConfigurations = new TokenConfiguration();
-
-            new ConfigureFromConfigurationOptions<TokenConfiguration>
-                (configuration.GetSection("TokenConfiguration")).Configure(tokenConfigurations);
-
-            services.AddSingleton(tokenConfigurations);
+            
+            var tokenConfiguration = configuration.GetSection("TokenConfiguration");
+            services.Configure<TokenConfiguration>(tokenConfiguration);
+            var config = tokenConfiguration.Get<TokenConfiguration>();            
 
             services.AddAuthentication(authOptions =>
             {
@@ -59,8 +57,8 @@ namespace Infrastruture.CrossCutting.Identity.Extensions
 
                 var paramsValidation = jwtOptions.TokenValidationParameters;
                 paramsValidation.IssuerSigningKey = signingConfigurations.Key;
-                paramsValidation.ValidAudience = tokenConfigurations.ValidoEm;
-                paramsValidation.ValidIssuer = tokenConfigurations.Emissor;
+                paramsValidation.ValidAudience = config.ValidoEm;
+                paramsValidation.ValidIssuer = config.Emissor;
                 paramsValidation.ValidateIssuerSigningKey = true;
                 paramsValidation.ValidateLifetime = true;
                 paramsValidation.ClockSkew = TimeSpan.Zero;

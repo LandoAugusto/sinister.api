@@ -1,4 +1,5 @@
 ﻿using Application.DTO.Standard;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 
@@ -7,6 +8,7 @@ namespace SinisterApi.API.Controllers.V1.Base
     [ApiVersion("1.0")]
     [Route("v{version:apiVersion}/[controller]")]
     [ApiController]
+    [Authorize]
     public abstract class BaseController : ControllerBase
     {
         protected ActionResult ReturnSuccess(object data = null)
