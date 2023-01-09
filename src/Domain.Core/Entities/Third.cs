@@ -9,7 +9,6 @@ namespace Domain.Core.Entities
         public int NotificationId { get; set; }
         public bool IsHaveInsurance { get; set; }
         public int? InsuranceId { get; set; }
-        public int PolicyNumber { get; set; }
-        public Person Person { get; set; }
+        public int PolicyNumber { get; set; }        
     }
 }

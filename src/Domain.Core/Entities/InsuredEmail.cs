@@ -2,7 +2,7 @@
 
 namespace Domain.Core.Entities
 {
-    public class PersonEmail : IIdentityEntity
+    public class InsuredEmail : IIdentityEntity
     {
         public int Id { get; set; }
         public int PersonId { get; set; }

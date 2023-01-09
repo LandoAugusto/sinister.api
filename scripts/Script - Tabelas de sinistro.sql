@@ -202,6 +202,49 @@ CONSTRAINT [PK_Notification_Id] PRIMARY KEY CLUSTERED
 ) ON [PRIMARY]
 GO
 
+
+IF OBJECT_ID('dbo.InsuredEmail', 'U') IS NOT NULL 
+  DROP TABLE dbo.InsuredEmail; 
+GO
+CREATE TABLE  InsuredEmail
+(
+	Id						INT IDENTITY(1,1) NOT NULL,
+	InsuredId				INT NOT NULL,
+	EmailTypeId				INT NOT NULL,		
+	Email					VARCHAR(50),
+	InclusionUserId			INT NOT NULL,
+	CreatedDate             DATETIME NOT NULL,
+	UpdatedDate             DATETIME NULL 
+ 
+CONSTRAINT [PK_InsuredEmail_Id] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+
+IF OBJECT_ID('dbo.InsuredPhone', 'U') IS NOT NULL 
+  DROP TABLE dbo.InsuredPhone; 
+GO
+CREATE TABLE  InsuredPhone
+(
+	Id						INT IDENTITY(1,1) NOT NULL,
+	InsuredId			INT NOT NULL,
+	PhoneTypeId				INT NOT NULL,	
+	Ddd						VARCHAR(3),
+	Phone					VARCHAR(14),
+	InclusionUserId			INT NOT NULL,
+	CreatedDate             DATETIME NOT NULL,
+	UpdatedDate             DATETIME NULL,
+ 
+CONSTRAINT [PK_InsuredPhone_Id] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
 IF OBJECT_ID('dbo.PhoneType', 'U') IS NOT NULL 
   DROP TABLE dbo.PhoneType; 
 GO
@@ -281,13 +324,72 @@ CONSTRAINT [PK_Situation_Id] PRIMARY KEY CLUSTERED
 GO
 
 
+IF OBJECT_ID('dbo.InsuredAddress', 'U') IS NOT NULL 
+  DROP TABLE dbo.InsuredAddress; 
+GO
+CREATE TABLE  InsuredAddress
+(
+	Id						INT IDENTITY(1,1) NOT NULL,
+	InsuredId				INT NOT NULL,
+	ZipCode					VARCHAR(10) NOT NULL,
+	StreetName				VARCHAR(50),
+	StateName				VARCHAR(50) NOT NULL,
+	StateInitials			VARCHAR(2) NOT NULL,
+	Number					VARCHAR(15),
+	Complement				VARCHAR(50),
+	District				VARCHAR(50),
+	City					VARCHAR(50),
+	InclusionUserId			INT NOT NULL,
+	CreatedDate             DATETIME NOT NULL,
+	UpdatedDate             DATETIME NULL,
+ 
+CONSTRAINT [PK_InsuredAddress_Id] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+
+
+IF OBJECT_ID('dbo.Insured', 'U') IS NOT NULL 
+  DROP TABLE dbo.Insured; 
+GO
+CREATE TABLE  Insured
+(
+	Id						INT IDENTITY(1,1) NOT NULL,
+	PolicyId				INT NOT NULL,		
+	InsuredId			    INT NOT NULL,		
+	DocumentType			INT NOT NULL,	
+	Document			    VARCHAR(20) NOT NULL,	
+	Name					VARCHAR(50) NOT NULL,	
+	Sex						Varchar(1) ,	
+	MaritalStatus			INT ,	
+	Profession				VARCHAR(50) ,	
+	Nationality				VARCHAR(50) ,	
+	Activity				VARCHAR(50) ,	
+	MonthlyIncome			DECIMAL ,	
+	RegistrationMunicipal	VARCHAR(50) ,	
+	DateFoundation			VARCHAR(50) ,	
+	EstimatedEquity			DECIMAL ,	
+	InclusionUserId			INT NOT NULL,
+	CreatedDate             DATETIME NOT NULL	
+ 
+CONSTRAINT [PK_Insured_Id] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+
 IF OBJECT_ID('dbo.Policy', 'U') IS NOT NULL 
   DROP TABLE dbo.Policy; 
 GO
 CREATE TABLE  Policy
 (
-	Id						INT IDENTITY(1,1) NOT NULL,
-	ProductId			    INT NOT NULL,
+	Id						INT IDENTITY(1,1) NOT NULL,	
+	ProductId			    INT NOT NULL,	
 	EndorsementId			VARCHAR (15) NOT NULL,	
 	ProposalNumber          INT  NOT NULL,
 	ProposalDate			DATETIME NOT NULL,
@@ -295,7 +397,7 @@ CREATE TABLE  Policy
 	PolicyNumber            BIGINT  NOT NULL,
 	PolicyDate				DATETIME NOT NULL,
 	StartOfTerm				DATETIME NOT NULL,
-	EndOfTerm					DATETIME NOT NULL,	
+	EndOfTerm				DATETIME NOT NULL,		
 	Item					INT NOT NULL,	
 	InclusionUserId			INT NOT NULL,
 	CreatedDate             DATETIME NOT NULL,	
@@ -330,12 +432,6 @@ CONSTRAINT [PK_Product_Id] PRIMARY KEY CLUSTERED
 GO
 
 
-
-
-
-
-
-
 ALTER TABLE [dbo].[Notification]  WITH CHECK ADD  CONSTRAINT [FK_Notification_Status_StatusId] FOREIGN KEY([StatusId])
 REFERENCES [dbo].[Status] ([Id])
 GO
@@ -352,6 +448,30 @@ ALTER TABLE [dbo].[Policy]  WITH CHECK ADD  CONSTRAINT [FK_Policy_Product_Produc
 REFERENCES [dbo].[Product] ([Id])
 GO
 
+ALTER TABLE [dbo].[Insured]  WITH CHECK ADD  CONSTRAINT [FK_Insured_Policy_PolicyId] FOREIGN KEY([PolicyId])
+REFERENCES [dbo].[Policy] ([Id])
+
+
+ALTER TABLE [dbo].[InsuredPhone]  WITH CHECK ADD  CONSTRAINT [FK_InsuredPhone_Insured_InsuredId] FOREIGN KEY([InsuredId])
+REFERENCES [dbo].[Insured] ([Id])
+GO
+
+ALTER TABLE [dbo].[InsuredPhone]  WITH CHECK ADD  CONSTRAINT [FK_InsuredPhone_PhoneType_PhoneTypeId] FOREIGN KEY([PhoneTypeId])
+REFERENCES [dbo].[PhoneType] ([Id])
+GO
+
+ALTER TABLE [dbo].[InsuredEmail]  WITH CHECK ADD  CONSTRAINT [FK_InsuredEmail_Insured_InsuredId] FOREIGN KEY([InsuredId])
+REFERENCES [dbo].[Insured] ([Id])
+GO
+
+ALTER TABLE [dbo].[InsuredEmail]  WITH CHECK ADD  CONSTRAINT [FK_InsuredEmail_EmailType_EmailTypeId] FOREIGN KEY([EmailTypeId])
+REFERENCES [dbo].[EmailType] ([Id])
+
+
+ALTER TABLE [dbo].[InsuredAddress]  WITH CHECK ADD  CONSTRAINT [FK_InsuredAddress_Insured_InsuredId] FOREIGN KEY([InsuredId])
+REFERENCES [dbo].[Insured] ([Id])
+
+
 ALTER TABLE [dbo].[Communicant]  WITH CHECK ADD  CONSTRAINT [FK_Communicant_CommunicanType_CommunicanTypeId] FOREIGN KEY([CommunicantTypeId])
 REFERENCES [dbo].[CommunicantType] ([Id])
 GO
@@ -359,7 +479,6 @@ GO
 ALTER TABLE [dbo].[Communicant]  WITH CHECK ADD  CONSTRAINT [FK_Communicant_Notification_NotificationId] FOREIGN KEY([NotificationId])
 REFERENCES [dbo].[Notification] ([Id])
 GO
-
 
 ALTER TABLE [dbo].[CommunicantPhone]  WITH CHECK ADD  CONSTRAINT [FK_CommunicantPhone_Communicant_CommunicantId] FOREIGN KEY([CommunicantId])
 REFERENCES [dbo].[Communicant] ([Id])

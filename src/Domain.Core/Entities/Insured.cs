@@ -2,7 +2,7 @@
 
 namespace Domain.Core.Entities
 {
-    public class Person : IIdentityEntity
+    public class Insured : IIdentityEntity
     {
         public int Id { get; set; }
         public string Name { get; set; }
@@ -11,9 +11,9 @@ namespace Domain.Core.Entities
         public int InclusionUserId { get; set; }
         public DateTime CreatedDate { get; set; }
         public DateTime? UpdatedDate { get; set; }
-        public PersonEmail PersonEmail { get; set; }
-        public PersonPhone PersonPhone { get; set; }
-        public PersonAddress PersonAddress { get; set; }
+        public InsuredEmail PersonEmail { get; set; }
+        public InsuredPhone PersonPhone { get; set; }
+        public InsuredAddress PersonAddress { get; set; }
         public List<Communicant> Communicant { get; set; }
     }
 }

@@ -9,6 +9,7 @@ namespace Domain.Core.Entities
         public int PolicyId { get; set; }
         public string EndorsementId { get; set; }
         public int ProductId { get; set; }
+        public int InsuredId { get; set; }
         public int Item { get; set; }        
         public long PolicyNumber { get; set; }
         public DateTime ProposalDate { get; set; }
@@ -17,7 +18,7 @@ namespace Domain.Core.Entities
         public DateTime EndOfTerm { get; set; }
         public int InclusionUserId { get; set; }
         public DateTime CreatedDate { get; set; } = DateTime.Now;
-        public DateTime? UpdatedDate { get; set; }
+        public DateTime? UpdatedDate { get; set; }       
 
         public virtual Product Product { get; set; } = null!;
         public virtual ICollection<Notification> Notifications { get; set; }
