@@ -11,6 +11,7 @@ namespace Domain.Core.Entities
         public DateTime CreatedDate { get; set; }
         public DateTime? UpdatedDate { get; set; }
 
-        public virtual ICollection<CommunicantEmail> CommunicantEmails { get; set; }
+        public virtual ICollection<CommunicantEmail> CommunicantEmail { get; set; }
+        public virtual ICollection<InsuredEmail> InsuredEmail { get; set; }
     }
 }

@@ -22,13 +22,13 @@ CONSTRAINT [PK_PeriodType_Id] PRIMARY KEY CLUSTERED
 GO
 
 
-IF OBJECT_ID('dbo.OccurencePhone', 'U') IS NOT NULL 
-  DROP TABLE dbo.OccurencePhone; 
+IF OBJECT_ID('dbo.OccurrencePhone', 'U') IS NOT NULL 
+  DROP TABLE dbo.OccurrencePhone; 
 GO
-CREATE TABLE  OccurencePhone
+CREATE TABLE  OccurrencePhone
 (
 	Id						INT IDENTITY(1,1) NOT NULL,
-	OccurenceId			INT NOT NULL,
+	OccurrenceId			INT NOT NULL,
 	PhoneTypeId				INT NOT NULL,	
 	Ddd						VARCHAR(3),
 	Phone					VARCHAR(14),
@@ -36,20 +36,20 @@ CREATE TABLE  OccurencePhone
 	CreatedDate             DATETIME NOT NULL,
 	UpdatedDate             DATETIME NULL,
  
-CONSTRAINT [PK_OccurencePhone_Id] PRIMARY KEY CLUSTERED 
+CONSTRAINT [PK_OccurrencePhone_Id] PRIMARY KEY CLUSTERED 
 (
 	[Id] ASC
 )WITH (STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
 
-IF OBJECT_ID('dbo.OccurenceAddress', 'U') IS NOT NULL 
-  DROP TABLE dbo.OccurenceAddress; 
+IF OBJECT_ID('dbo.OccurrenceAddress', 'U') IS NOT NULL 
+  DROP TABLE dbo.OccurrenceAddress; 
 GO
-CREATE TABLE  OccurenceAddress
+CREATE TABLE  OccurrenceAddress
 (
 	Id						INT IDENTITY(1,1) NOT NULL,
-	OccurenceId				INT NOT NULL,
+	OccurrenceId				INT NOT NULL,
 	ZipCode					VARCHAR(10) NOT NULL,
 	StreetName				VARCHAR(50),
 	StateName				VARCHAR(50) NOT NULL,
@@ -62,7 +62,7 @@ CREATE TABLE  OccurenceAddress
 	CreatedDate             DATETIME NOT NULL,
 	UpdatedDate             DATETIME NULL,
  
-CONSTRAINT [PK_OccurenceAddress_Id] PRIMARY KEY CLUSTERED 
+CONSTRAINT [PK_OccurrenceAddress_Id] PRIMARY KEY CLUSTERED 
 (
 	[Id] ASC
 )WITH (STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
@@ -70,16 +70,16 @@ CONSTRAINT [PK_OccurenceAddress_Id] PRIMARY KEY CLUSTERED
 GO
 
 
-IF OBJECT_ID('dbo.Occurence', 'U') IS NOT NULL 
-  DROP TABLE dbo.Occurence; 
+IF OBJECT_ID('dbo.Occurrence', 'U') IS NOT NULL 
+  DROP TABLE dbo.Occurrence; 
 GO
-CREATE TABLE  Occurence
+CREATE TABLE  Occurrence
 (
 	Id						INT IDENTITY(1,1) NOT NULL,
 	NotificationId			INT NOT NULL,
-	DateOccurence           VARCHAR(12) NOT NULL,
+	DateOccurrence           VARCHAR(12) NOT NULL,
 	TimeOccurrence			VARCHAR(10) NOT NULL,
-	DescriptonOccurence		VARCHAR(300) NOT NULL,
+	DescriptonOccurrence	VARCHAR(300) NOT NULL,
 	DescriptionDamage		VARCHAR(300),
 	Damage					Decimal,
 	IsRiskLocation			BIT,
@@ -88,7 +88,7 @@ CREATE TABLE  Occurence
 	CreatedDate             DATETIME NOT NULL,
 	UpdatedDate             DATETIME NULL,
  
-CONSTRAINT [PK_Occurence_Id] PRIMARY KEY CLUSTERED 
+CONSTRAINT [PK_Occurrence_Id] PRIMARY KEY CLUSTERED 
 (
 	[Id] ASC
 )WITH (STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
@@ -176,9 +176,6 @@ CONSTRAINT [PK_CommunicantType_Id] PRIMARY KEY CLUSTERED
 )WITH (STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-
-
-
 
 IF OBJECT_ID('dbo.Notification', 'U') IS NOT NULL 
   DROP TABLE dbo.Notification; 
@@ -496,16 +493,16 @@ ALTER TABLE [dbo].[CommunicantEmail]  WITH CHECK ADD  CONSTRAINT [FK_Communicant
 REFERENCES [dbo].[EmailType] ([Id])
 GO
 
-ALTER TABLE [dbo].[Occurence]  WITH CHECK ADD  CONSTRAINT [FK_Occurence_Notification_NotificationId] FOREIGN KEY([NotificationId])
+ALTER TABLE [dbo].[Occurrence]  WITH CHECK ADD  CONSTRAINT [FK_Occurrence_Notification_NotificationId] FOREIGN KEY([NotificationId])
 REFERENCES [dbo].[Notification] ([Id])
 GO
 
-ALTER TABLE [dbo].[OccurencePhone]  WITH CHECK ADD  CONSTRAINT [FK_OccurencePhone_Occurence_OccurenceId] FOREIGN KEY([OccurenceId])
-REFERENCES [dbo].[Occurence] ([Id])
+ALTER TABLE [dbo].[OccurrencePhone]  WITH CHECK ADD  CONSTRAINT [FK_OccurrencePhone_Occurrence_OccurrenceId] FOREIGN KEY([OccurrenceId])
+REFERENCES [dbo].[Occurrence] ([Id])
 GO
 
-ALTER TABLE [dbo].[OccurenceAddress]  WITH CHECK ADD  CONSTRAINT [FK_OccurenceAddress_Occurence_OccurenceId] FOREIGN KEY([OccurenceId])
-REFERENCES [dbo].[Occurence] ([Id])
+ALTER TABLE [dbo].[OccurrenceAddress]  WITH CHECK ADD  CONSTRAINT [FK_OccurrenceAddress_Occurrence_OccurrenceId] FOREIGN KEY([OccurrenceId])
+REFERENCES [dbo].[Occurrence] ([Id])
 GO
 
 

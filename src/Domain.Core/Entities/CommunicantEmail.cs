@@ -17,6 +17,7 @@ namespace Domain.Core.Entities
         public int CommunicantId { get; set; }
         public int EmailTypeId { get; set; }
         public string Email { get; set; }
+        public bool SendAutomatic { get; set; }
         public int InclusionUserId { get; set; }
         public DateTime CreatedDate { get; set; } =    DateTime.Now;
         public DateTime? UpdatedDate { get; set; }
