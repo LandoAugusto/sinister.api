@@ -27,8 +27,8 @@ namespace Infrastructure.Data.Repository.Repositories
                             orderBy: (item => item.OrderBy(y => y.Name)),
                             includeProperties: source =>
                                     source
-                                    .Include(x => x.CommunicantEmails)
-                                    .Include(x => x.CommunicantPhones)));
+                                    .Include(x => x.CommunicantEmail)
+                                    .Include(x => x.CommunicantPhone)));
 
             return query.FirstOrDefault();
         }

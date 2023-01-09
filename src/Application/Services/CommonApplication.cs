@@ -38,6 +38,8 @@ namespace Application.Services
         public async Task<ZipCodeResponseDto> GetZipCodeAsync(int zipCode)
         {
             var result = await _addressService.GetZipCodeAsync(zipCode);
+            if (result == null)
+                return null;
 
             return new ZipCodeResponseDto(result.StreetName, result.District, result.CityName, result.StateInitials, result.StateName);
         }

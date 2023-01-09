@@ -22,11 +22,11 @@ namespace Application.Services
             var result = new GetCommunicantResponseDto(
                 entity.Id, entity.NotificationId, entity.CommunicantTypeId, entity.Name, entity.InclusionUserId, entity.CreatedDate);
 
-            foreach (var item in entity.CommunicantEmails)
+            foreach (var item in entity.CommunicantEmail)
                 result.Email.Add(new EmailResponseDto(
                     item.Id, item.EmailTypeId, item.Email, item.CreatedDate));
 
-            foreach (var item in entity.CommunicantPhones)
+            foreach (var item in entity.CommunicantPhone)
                 result.Phone.Add(new PhoneResponseDto(
                     item.Id, item.PhoneTypeId, item.Ddd, item.Phone, item.CreatedDate));
 
@@ -39,10 +39,10 @@ namespace Application.Services
             {
                 var entity = new Communicant(request.NotificationIdId, request.CommunicantTypeId, request.Name, userId);
                 foreach (var email in request.Email)
-                    entity.CommunicantEmails.Add(new CommunicantEmail(default, default, email.EmailTypeId, email.Email, userId));
+                    entity.CommunicantEmail.Add(new CommunicantEmail(default, default, email.EmailTypeId, email.Email, userId));
 
                 foreach (var phone in request.Phone)
-                    entity.CommunicantPhones.Add(new CommunicantPhone(default, default, phone.PhoneTypeId, phone.Ddd, phone.Phone, userId));
+                    entity.CommunicantPhone.Add(new CommunicantPhone(default, default, phone.PhoneTypeId, phone.Ddd, phone.Phone, userId));
 
                 var result = await _communicantRepository.AddAsync(entity);
 

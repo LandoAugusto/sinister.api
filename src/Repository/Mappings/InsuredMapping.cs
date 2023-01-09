@@ -62,7 +62,7 @@ namespace Repository.Mappings
 
             builder
                 .HasOne(d => d.Policy)
-                .WithMany(p => p.Insureds)
+                .WithMany(p => p.Insured)
                 .HasForeignKey(d => d.PolicyId)
                 .OnDelete(DeleteBehavior.ClientSetNull);
 
