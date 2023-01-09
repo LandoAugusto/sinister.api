@@ -2,10 +2,10 @@
 
 namespace Domain.Core.Entities
 {
-    public class OccurrenceAddrress : IIdentityEntity
+    public class InsuredAddress : IIdentityEntity
     {
         public int Id { get; set; }
-        public int OccurenceId { get; set; }
+        public int InsuredId { get; set; }
         public string ZipCode { get; set; } = null!;
         public string? StreetName { get; set; }
         public string StateName { get; set; } = null!;
@@ -16,7 +16,7 @@ namespace Domain.Core.Entities
         public string? City { get; set; }
         public int InclusionUserId { get; set; }
         public DateTime CreatedDate { get; set; }
-        public DateTime? UpdatedDate { get; set; }      
-        public virtual Occurrence Occurence { get; set; } = null!;
+        public DateTime? UpdatedDate { get; set; }
+        public virtual Insured Insured { get; set; } = null!;
     }
 }
