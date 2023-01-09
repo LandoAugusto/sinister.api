@@ -14,6 +14,20 @@ namespace SinisterApi.API.Controllers.V1
         public NotificationController(INotificationApplication notificationApplication) =>
             _notificationApplication = notificationApplication;
 
+        [HttpGet]
+        [Route("GetNotification/{notificationId}")]
+        [ProducesResponseType(typeof(ResponseModel), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(ErrorResponseModel), StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(typeof(ErrorResponseModel), StatusCodes.Status404NotFound)]
+        public async Task<IActionResult> GetNotificationAscync(int notificationId)
+        {
+            var response = await _notificationApplication.GetNotificationAscync(notificationId);
+            if (response == null)
+                return ReturnNotFound();
+
+            return ReturnSuccess(response);
+        }
+
         [HttpPost]
         [Route("ListNotification")]
         [ProducesResponseType(typeof(ResponseModel), StatusCodes.Status200OK)]
@@ -41,6 +55,5 @@ namespace SinisterApi.API.Controllers.V1
 
             return ReturnSuccess(response);
         }
-
     }
 }

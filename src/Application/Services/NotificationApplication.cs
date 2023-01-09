@@ -20,6 +20,15 @@ namespace Application.Services
             INotificationRepository notificationRepository) =>
             (_policyService, _notificationRepository) = (policyService, notificationRepository);
 
+
+        public async Task<GetNotificationResponseDto> GetNotificationAscync(int notificationId)
+        {
+            var entity = await _notificationRepository.GetByIdAsync(notificationId);
+            if (entity == null) return null;
+
+            return new(entity.Id, entity.PolicyId, entity.Stage, entity.DateNotification); ;
+        }
+
         public async Task<IEnumerable<ListNotificationResponseDto>> ListNotificationAsync()
         {
             var list = await _notificationRepository.ListNotificationAsync();
