@@ -8,7 +8,7 @@ namespace SinisterApi.API.Controllers.V1.Base
     [ApiVersion("1.0")]
     [Route("v{version:apiVersion}/[controller]")]
     [ApiController]
-    [Authorize]
+   // [Authorize]
     public abstract class BaseController : ControllerBase
     {
         protected ActionResult ReturnSuccess(object data = null)
