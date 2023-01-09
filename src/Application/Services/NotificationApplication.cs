@@ -61,7 +61,7 @@ namespace Application.Services
                     throw new BusinessException("Apolice não encontrada!");
 
                 var policy = list.First();
-                var result = await _notificationRepository.AddAsync(new Notification()
+                var notification = new Notification()
                 {
                     Stage = 1,
                     StatusId = (int)StatusEnum.Incompleto,
@@ -81,7 +81,17 @@ namespace Application.Services
                         EndOfTerm = policy.EndOfTerm,
                         InclusionUserId = 1,
                     }
+                };
+
+                notification.Policy.Insured.Add(new Insured()
+                {
+                    DocumentType = 1,
+                    InsuredId = policy.Insured.PersonId.Value,
+                    Name = policy.Insured.Name,
+                    Document = policy.Insured.DocumentNumber.ToString(),
+                    InclusionUserId = 1,
                 });
+                var result = await _notificationRepository.AddAsync(notification);
 
                 return result.Id;
             }

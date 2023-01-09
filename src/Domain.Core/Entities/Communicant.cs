@@ -20,8 +20,8 @@ namespace Domain.Core.Entities
         public DateTime? UpdatedDate { get; set; }
         public virtual Notification Notification { get; set; } = null!;
         public virtual CommunicantType CommunicantType { get; set; } = null!;
-        public virtual ICollection<CommunicantEmail> CommunicantEmails { get; set; } = new HashSet<CommunicantEmail>();
-        public virtual ICollection<CommunicantPhone> CommunicantPhones { get; set; } = new HashSet<CommunicantPhone>();
+        public virtual ICollection<CommunicantEmail> CommunicantEmail { get; set; } = new HashSet<CommunicantEmail>();
+        public virtual ICollection<CommunicantPhone> CommunicantPhone { get; set; } = new HashSet<CommunicantPhone>();
 
     }
 }

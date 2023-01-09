@@ -16,11 +16,10 @@ namespace Domain.Core.Entities
         public DateTime EndOfTerm { get; set; }
         public int Item { get; set; }
         public int InclusionUserId { get; set; }
-        public DateTime CreatedDate { get; set; }
+        public DateTime CreatedDate { get; set; } = DateTime.Now;
         public DateTime? UpdatedDate { get; set; }
-
         public virtual Product Product { get; set; } = null!;
-        public virtual ICollection<Insured> Insureds { get; set; } = new HashSet<Insured>();
+        public virtual ICollection<Insured> Insured { get; set; } = new HashSet<Insured>();
         public virtual ICollection<Notification> Notifications { get; set; } = new HashSet<Notification>();
 
     }
