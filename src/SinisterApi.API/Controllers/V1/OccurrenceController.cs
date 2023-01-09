@@ -6,18 +6,18 @@ using SinisterApi.API.Controllers.V1.Base;
 
 namespace SinisterApi.API.Controllers.V1
 {
-    public class OccurenceController : BaseController
+    public class OccurrenceController : BaseController
     {
         private readonly IOccurenceApplication _occurenceApplication;
-        public OccurenceController(IOccurenceApplication occurenceApplication) =>
+        public OccurrenceController(IOccurenceApplication occurenceApplication) =>
             _occurenceApplication = occurenceApplication;
 
         [HttpGet]
-        [Route("GetOccurence/{notificationId}")]
+        [Route("GetOccurrence/{notificationId}")]
         [ProducesResponseType(typeof(ResponseModel), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ErrorResponseModel), StatusCodes.Status400BadRequest)]
         [ProducesResponseType(typeof(ErrorResponseModel), StatusCodes.Status404NotFound)]
-        public async Task<IActionResult> GetOccurenceAsync(int notificationId)
+        public async Task<IActionResult> GetOccurrenceAsync(int notificationId)
         {
             //var response = await _occurenceApplication.ListInsuredAsync(request.Name, request.DocumentNumber);
 
@@ -29,11 +29,11 @@ namespace SinisterApi.API.Controllers.V1
         }
 
         [HttpPost]
-        [Route("SaveOccurence")]
+        [Route("SaveOccurrence")]
         [ProducesResponseType(typeof(ResponseModel), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ErrorResponseModel), StatusCodes.Status400BadRequest)]
         [ProducesResponseType(typeof(ErrorResponseModel), StatusCodes.Status404NotFound)]
-        public async Task<IActionResult> SaveOccurenceAsync(SaveOccurenceRequestDto request)
+        public async Task<IActionResult> SaveOccurrenceAsync(SaveOccurenceRequestDto request)
         {
             //var response = await _occurenceApplication.ListInsuredAsync(request.Name, request.DocumentNumber);
 
