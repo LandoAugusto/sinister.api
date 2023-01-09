@@ -9,5 +9,11 @@ namespace Application.Services
 {
     internal class OccurenceApplication : IOccurenceApplication
     {
+         
+
+        public OccurenceApplication()
+        {
+
+        }
     }
 }

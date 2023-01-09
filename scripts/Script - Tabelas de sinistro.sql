@@ -49,7 +49,7 @@ GO
 CREATE TABLE  OccurrenceAddress
 (
 	Id						INT IDENTITY(1,1) NOT NULL,
-	OccurrenceId				INT NOT NULL,
+	OccurrenceId			INT NOT NULL,
 	ZipCode					VARCHAR(10) NOT NULL,
 	StreetName				VARCHAR(50),
 	StateName				VARCHAR(50) NOT NULL,
@@ -126,6 +126,7 @@ CREATE TABLE  CommunicantEmail
 	CommunicantId			INT NOT NULL,
 	EmailTypeId				INT NOT NULL,		
 	Email					VARCHAR(50),
+	SendAutomatic           BIT,
 	InclusionUserId			INT NOT NULL,
 	CreatedDate             DATETIME NOT NULL,
 	UpdatedDate             DATETIME NULL,
@@ -209,6 +210,7 @@ CREATE TABLE  InsuredEmail
 	InsuredId				INT NOT NULL,
 	EmailTypeId				INT NOT NULL,		
 	Email					VARCHAR(50),
+	SendAutomatic           BIT,
 	InclusionUserId			INT NOT NULL,
 	CreatedDate             DATETIME NOT NULL,
 	UpdatedDate             DATETIME NULL 
