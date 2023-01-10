@@ -20,16 +20,19 @@ namespace SinisterApi.API
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Sinister.Api v1"));
+                app.UseCors(MyAllowSpecificOrigins);
             }
 
             app.UseHttpsRedirection();
 
-            app.UseRouting();
+            app.UseRouting();            
 
             app.UseAuthentication();
 

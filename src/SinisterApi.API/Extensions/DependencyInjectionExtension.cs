@@ -1,28 +1,26 @@
-﻿using ASinisterApi.API.Configurations;
+﻿using Application.DTO.Policy;
+using ASinisterApi.API.Configurations;
+using Domain.Core.Constants;
+using Domain.Core.Infrastructure.Contexts;
+using Domain.Core.Infrastructure.Contexts.Intefaces;
 using FluentValidation.AspNetCore;
-using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.ResponseCompression;
 using Microsoft.Extensions.Options;
 using Microsoft.OpenApi.Models;
 using SinisterApi.API.Configurations;
 using SinisterApi.API.Filters;
 using SinisterApi.API.Interceptors;
-using Domain.Core.Constants;
-using Domain.Core.Infrastructure.Contexts;
-using Domain.Core.Infrastructure.Contexts.Intefaces;
-
 using Swashbuckle.AspNetCore.Filters;
 using Swashbuckle.AspNetCore.SwaggerGen;
 using System.IO.Compression;
 using System.Reflection;
-using FluentValidation;
-using Application.DTO.Validators;
-using Application.DTO.Policy;
 
 namespace SinisterApi.API.Extensions
 {
     internal static class DependencyInjectionExtension
     {
+        private const string MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
+
         private const string BearerAuthenticationDescription = "JWT Authorization header using the Bearer scheme. Enter 'Bearer' [space] and then your token in the text input below. Example: 'Bearer 12345abcdef'";
         public static IServiceCollection AddApi(this IServiceCollection services, IConfiguration configuration) =>
             services
@@ -40,7 +38,15 @@ namespace SinisterApi.API.Extensions
                     {
                         HttpHeaders.JsonApiContentType
                     });
-                });
+                })
+            .AddCors(options =>
+            {
+                options.AddPolicy(
+                    name: MyAllowSpecificOrigins, builder =>
+                    {
+                        builder.WithOrigins("https://localhost:7001/");
+                    });
+            });
 
         private static IServiceCollection ConfigControllersPipeline(this IServiceCollection services)
         {

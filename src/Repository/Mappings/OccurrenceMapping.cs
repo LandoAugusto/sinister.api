@@ -11,7 +11,7 @@ namespace Repository.Mappings
             builder
            .HasKey(x => x.Id);
 
-            builder.Property(e => e.DateOccurence)
+            builder.Property(e => e.DateOccurrence)
                 .HasMaxLength(12)
                 .IsUnicode(false);
 
@@ -19,7 +19,7 @@ namespace Repository.Mappings
                 .HasMaxLength(300)
                 .IsUnicode(false);
 
-            builder.Property(e => e.DescriptonOccurence)
+            builder.Property(e => e.DescriptonOccurrence)
                 .HasMaxLength(300)
                 .IsUnicode(false);
 

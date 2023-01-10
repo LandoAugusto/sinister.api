@@ -15,7 +15,7 @@ namespace Repository.Mappings
                 .Property(e => e.CreatedDate).HasColumnType("datetime");
 
             builder
-                .Property(e => e.DDD)
+                .Property(e => e.Ddd)
                 .HasMaxLength(3)
                 .IsUnicode(false);
 
@@ -30,7 +30,7 @@ namespace Repository.Mappings
             builder
                 .HasOne(d => d.Occurence)
                 .WithMany(p => p.OccurencePhone)
-                .HasForeignKey(d => d.OccurenceId)
+                .HasForeignKey(d => d.OccurrenceId)
                 .OnDelete(DeleteBehavior.ClientSetNull);
         }
     }
