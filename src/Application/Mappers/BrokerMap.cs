@@ -7,6 +7,9 @@ namespace Application.Mappers
     {
         public static BrokerResponseDto Map(BrokerResponse response)
         {
+            if (response == null)
+                return null;
+
             return new(response.PersonId, response.DocumentNumber, response.Name, response.SusepCode);
         }
     }

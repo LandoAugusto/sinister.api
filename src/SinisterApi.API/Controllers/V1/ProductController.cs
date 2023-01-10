@@ -1,5 +1,6 @@
 ﻿using Application.DTO.Standard;
 using Application.Interfaces;
+using Infrastruture.CrossCutting.Identity.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using SinisterApi.API.Controllers.V1.Base;
 
@@ -8,7 +9,10 @@ namespace SinisterApi.API.Controllers.V1
     public class ProductController : BaseController
     {
         private readonly IProductApplication _productApplication;
-        public ProductController(IProductApplication productApplication) =>
+        public ProductController(
+            IUser user,
+            ILogger<ProductController> logger,
+            IProductApplication productApplication) : base(user, logger) =>
             _productApplication = productApplication;
 
         [HttpGet]

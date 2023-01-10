@@ -14,11 +14,11 @@ namespace Application.DTO.Validators
 
         private void Validate()
         {
-            RuleFor(x => x.PolicyId)
+            RuleFor(x => x.InsuredPersonId)
                .Cascade(CascadeMode.Stop)
                .NotNull()
                .WithErrorCode(_inconsistentDataCode)
-               .WithMessage("Obrigatorio informar o id da apolice");
+               .WithMessage("Obrigatorio informar o id do segurado");
         }
     }
 }

@@ -5,6 +5,7 @@ namespace SinisterApi.API
 {
     public class Startup
     {
+        private const string MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -14,13 +15,12 @@ namespace SinisterApi.API
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddApi(Configuration);
+            services.AddApi(MyAllowSpecificOrigins, Configuration);
             services.AddIoC(Configuration);
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
 
             if (env.IsDevelopment())
             {
@@ -32,7 +32,7 @@ namespace SinisterApi.API
 
             app.UseHttpsRedirection();
 
-            app.UseRouting();            
+            app.UseRouting();
 
             app.UseAuthentication();
 

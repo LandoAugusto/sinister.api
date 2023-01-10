@@ -3,16 +3,15 @@ using Application.DTO.Communicant;
 using Application.Interfaces;
 using Domain.Core.Entities;
 using Infrastructure.Data.Repository.Interfaces.Repositories;
-using Application.DTO.Notification;
 
 namespace Application.Services
 {
     internal class CommunicantApplication : ICommunicantApplication
     {
         private readonly ICommunicantRepository _communicantRepository;
-
-        public CommunicantApplication(ICommunicantRepository communicantRepository) =>
-            _communicantRepository = communicantRepository;
+        private readonly INotificationApplication _notificationApplication;
+        public CommunicantApplication(ICommunicantRepository communicantRepository, INotificationApplication notificationApplication) =>
+            (_communicantRepository, _notificationApplication) = (communicantRepository, notificationApplication);
 
         public async Task<GetCommunicantResponseDto> GetCommunicantAsync(int notificationId)
         {
@@ -37,7 +36,7 @@ namespace Application.Services
         {
             try
             {
-                var entity = new Communicant(request.NotificationIdId, request.CommunicantTypeId, request.Name, userId);
+                var entity = new Communicant(request.NotificationId, request.CommunicantTypeId, request.Name, userId);
                 foreach (var email in request.Email)
                     entity.CommunicantEmail.Add(new CommunicantEmail(default, default, email.EmailTypeId, email.Email, userId));
 
@@ -45,6 +44,7 @@ namespace Application.Services
                     entity.CommunicantPhone.Add(new CommunicantPhone(default, default, phone.PhoneTypeId, phone.Ddd, phone.Phone, userId));
 
                 var result = await _communicantRepository.AddAsync(entity);
+                await _notificationApplication.UpdateStageNotificationAscync(request.NotificationId, Domain.Core.Eums.PhaseEnum.Occurrence);
 
                 return result.Id;
 

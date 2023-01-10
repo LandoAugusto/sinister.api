@@ -2,7 +2,7 @@
 {
     public enum StatusEnum
     {
-        Completo = 1,
-        Incompleto = 2
+        Incompleto = 1,
+        Completo = 2,        
     }
 }

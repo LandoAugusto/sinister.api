@@ -20,9 +20,9 @@ namespace SinisterApi.API.Extensions
 {
     internal static class DependencyInjectionExtension
     {
-        private const string MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
+
         private const string BearerAuthenticationDescription = "JWT Authorization header using the Bearer scheme. Enter 'Bearer' [space] and then your token in the text input below. Example: 'Bearer 12345abcdef'";
-        public static IServiceCollection AddApi(this IServiceCollection services, IConfiguration configuration) =>
+        public static IServiceCollection AddApi(this IServiceCollection services, string MyAllowSpecificOrigins, IConfiguration configuration) =>
             services
                 .AddScoped<IRequestContextHolder, RequestContextHolder>()
                 .ConfigControllersPipeline()
@@ -44,7 +44,9 @@ namespace SinisterApi.API.Extensions
                 options.AddPolicy(
                     name: MyAllowSpecificOrigins, builder =>
                     {
-                        builder.WithOrigins("https://localhost:7001/");
+                        builder.WithOrigins("https://localhost:7001/")
+                        .AllowAnyMethod()
+                        .AllowAnyHeader();
                     });
             });
 
@@ -61,7 +63,7 @@ namespace SinisterApi.API.Extensions
                     options =>
                     {
                         options.JsonSerializerOptions.PropertyNamingPolicy = JsonNamingPolicy.CamelCase;
-                        options.JsonSerializerOptions.PropertyNameCaseInsensitive = true;                        
+                        options.JsonSerializerOptions.PropertyNameCaseInsensitive = true;
                     })
                .AddFluentValidation(fvc => fvc.RegisterValidatorsFromAssemblyContaining<ListPoliciesRequestDto>())
                 .ConfigureApiBehaviorOptions(opt => opt.SuppressModelStateInvalidFilter = true);

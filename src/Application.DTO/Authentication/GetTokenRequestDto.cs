@@ -1,6 +1,6 @@
-﻿namespace Infrastruture.CrossCutting.Identity.Models
+﻿namespace Application.DTO.Authentication
 {
-    public class GetTokenModel
+    public class GetTokenRequestDto
     {
         public string Login { get; set; }
         public string Password { get; set; }

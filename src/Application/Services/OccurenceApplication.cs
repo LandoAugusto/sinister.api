@@ -1,6 +1,7 @@
 ﻿using Application.DTO.Occurence;
 using Application.Interfaces;
 using Domain.Core.Entities;
+using Domain.Core.Eums;
 using Repository.Interfaces.Repositories;
 
 namespace Application.Services
@@ -8,9 +9,10 @@ namespace Application.Services
     internal class OccurenceApplication : IOccurenceApplication
     {
         private readonly IOccurrenceRepository _occurrenceRepository;
+        private readonly INotificationApplication _notificationApplication;
 
-        public OccurenceApplication(IOccurrenceRepository occurrenceRepository) =>
-            _occurrenceRepository = occurrenceRepository;
+        public OccurenceApplication(IOccurrenceRepository occurrenceRepository, INotificationApplication notificationApplication) =>
+            (_occurrenceRepository, _notificationApplication) = (occurrenceRepository, notificationApplication);
 
         public async Task<int> SaveOccurrenceAsync(int userId, SaveOccurenceRequestDto request)
         {
@@ -46,6 +48,7 @@ namespace Application.Services
                 {
                     entity.OccurencePhone.Add(new OccurrencePhone()
                     {
+                        Name = phone.Name,
                         PhoneTypeId = phone.PhoneTypeId,
                         Ddd = phone.Ddd,
                         Phone = phone.Phone,
@@ -53,6 +56,7 @@ namespace Application.Services
                     });
                 }
                 var result = await _occurrenceRepository.AddAsync(entity);
+                await _notificationApplication.UpdateStageNotificationAscync(request.NotificationId, PhaseEnum.Insured);
 
                 return result.Id;
             }

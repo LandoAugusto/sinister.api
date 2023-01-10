@@ -3,6 +3,7 @@ using Application.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using SinisterApi.API.Controllers.V1.Base;
 using Application.DTO.Insured;
+using Infrastruture.CrossCutting.Identity.Interfaces;
 
 namespace SinisterApi.API.Controllers.V1
 {
@@ -10,7 +11,10 @@ namespace SinisterApi.API.Controllers.V1
     {
         private readonly IInsurdeApplication _insurdeApplication;
 
-        public InsuredController(IInsurdeApplication insurdeApplication) =>
+        public InsuredController(
+            IUser user,
+            ILogger<InsuredController> logger,
+            IInsurdeApplication insurdeApplication) : base(user, logger) =>
             _insurdeApplication = insurdeApplication;
 
         [HttpPost]

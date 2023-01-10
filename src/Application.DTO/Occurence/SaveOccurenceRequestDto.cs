@@ -11,8 +11,17 @@ namespace Application.DTO.Occurence
         public string DescriptionDamage { get; set; }
         public decimal? Damage { get; set; }
         public string Comments { get; set; }
-        public IEnumerable<PhoneRequestDto> Phone { get; set; }
+        public IEnumerable<SaveOccurencePhoneResquestDto> Phone { get; set; }
         public bool IsRiskLocation { get; set; }
         public IEnumerable<AddressResquestDto> Address { get; set; }
+
+    }
+
+    public class SaveOccurencePhoneResquestDto
+    {        
+        public string Name { get; set; }
+        public int PhoneTypeId { get; set; }
+        public string Ddd { get; set; }
+        public string Phone { get; set; }        
     }
 }

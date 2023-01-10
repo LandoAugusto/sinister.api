@@ -18,8 +18,9 @@ namespace SinisterApi.API.Examples.Occurrence
             IsRiskLocation = true,
             Phone = new[]
             {
-                new PhoneRequestDto()
+                new SaveOccurencePhoneResquestDto()
                 {
+                    Name = "Teste teste teste teste",
                     PhoneTypeId = 1,
                     Ddd ="11",
                     Phone = "1198282399898"

@@ -6,7 +6,6 @@ namespace Infrastruture.CrossCutting.Identity
 {
     public class User : IUser
     {
-
         private readonly IHttpContextAccessor _accessor;
 
         public User(IHttpContextAccessor accessor)
@@ -20,20 +19,19 @@ namespace Infrastruture.CrossCutting.Identity
         {
             return IsAuthenticated() ? Guid.Parse(_accessor.HttpContext.User.GetUserId()) : Guid.Empty;
         }
-
-        public string GetUserEmail()
+        public string? GetUserEmail()
         {
-            return IsAuthenticated() ? _accessor.HttpContext.User.GetUserEmail() : "";
+            return IsAuthenticated() ? _accessor.HttpContext.User.GetUserEmail() : String.Empty;
         }
 
-        public string GetUserName()
+        public string? GetUserName()
         {
-            return IsAuthenticated() ? _accessor.HttpContext.User.GetUserName() : "";
+            return IsAuthenticated() ? _accessor.HttpContext.User.GetUserName() : String.Empty;
         }
 
-        public int GetExternalId()
+        public int? GetExternalId()
         {
-            return IsAuthenticated() ? _accessor.HttpContext.User.GetExtenalID() : 0;
+            return IsAuthenticated() ? _accessor.HttpContext.User.GetExtenalID() : null;
         }
 
         public bool IsAuthenticated()
@@ -60,38 +58,42 @@ namespace Infrastruture.CrossCutting.Identity
             {
                 throw new ArgumentException(nameof(principal));
             }
-            var claim = principal.FindFirst(ClaimTypes.NameIdentifier);
+            var claim = principal.FindFirst("userId");
+            if (claim == null) return null;
             return claim?.Value;
         }
 
-        public static string GetUserEmail(this ClaimsPrincipal principal)
+        public static string? GetUserEmail(this ClaimsPrincipal principal)
         {
             if (principal == null)
             {
                 throw new ArgumentException(nameof(principal));
             }
             var claim = principal.FindFirst(ClaimTypes.Email);
-            return claim?.Value;
+            if (claim == null) return null;
+            return claim.Value;
         }
 
-        public static string GetUserName(this ClaimsPrincipal principal)
+        public static string? GetUserName(this ClaimsPrincipal principal)
         {
             if (principal == null)
             {
                 throw new ArgumentException(nameof(principal));
             }
             var claim = principal.FindFirst("userName");
-            return claim?.Value;
+            if (claim == null) return null;
+            return claim.Value;
         }
 
-        public static int GetExtenalID(this ClaimsPrincipal principal)
+        public static int? GetExtenalID(this ClaimsPrincipal principal)
         {
             if (principal == null)
             {
                 throw new ArgumentException(nameof(principal));
             }
             var claim = principal.FindFirst("extID");
-            return int.Parse(claim?.Value);
+            if (claim == null) return null;
+            return int.Parse(claim.Value);
         }
     }
 }

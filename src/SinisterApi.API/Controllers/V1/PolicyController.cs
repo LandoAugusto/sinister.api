@@ -3,15 +3,18 @@ using Application.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using SinisterApi.API.Controllers.V1.Base;
 using Application.DTO.Policy;
+using Infrastruture.CrossCutting.Identity.Interfaces;
 
 namespace SinisterApi.API.Controllers.V1
 {
     public class PolicyController : BaseController
     {
         private readonly IPolicyApplication _policyApplication;
-
-        public PolicyController(IPolicyApplication policyApplication)
-            => _policyApplication = policyApplication;
+        public PolicyController(
+         IUser user,
+         ILogger<PolicyController> logger,
+         IPolicyApplication policyApplication) : base(user, logger) =>
+         _policyApplication = policyApplication;
 
         [HttpPost]
         [Route("ListPolicies")]
