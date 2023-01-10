@@ -1,9 +1,9 @@
-﻿using Integration.BMG.Schemas;
+﻿using Application.DTO.Common;
 
 namespace Integration.BMG.Interfaces
 {
     public interface IAddressService
     {
-        Task<ZipCodeReponse> GetZipCodeAsync(int zipCode);
+        Task<ZipCodeResponseDto> GetZipCodeAsync(int zipCode);
     }
 }

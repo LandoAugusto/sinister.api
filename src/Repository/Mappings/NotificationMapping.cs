@@ -29,8 +29,6 @@ namespace Infrastructure.Data.Repository.Mappings
                 .WithMany(p => p.Notifications)
                 .HasForeignKey(d => d.StatusId)
                 .OnDelete(DeleteBehavior.ClientSetNull);
-
-           
         }
     }
 }

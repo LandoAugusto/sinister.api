@@ -17,6 +17,7 @@ namespace Application.Extensions
             .AddScoped<IProposalApplication, ProposalApplication>()
             .AddScoped<IProductApplication, ProductApplication>()
             .AddScoped<INotificationApplication, NotificationApplication>()
+            .AddScoped<INotificationComplementApplication, NotificationComplementApplication>()
             .AddScoped<ISinisterApplication, SinisterApplication>();
     }
 }

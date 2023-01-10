@@ -2,6 +2,7 @@ USE Sinister
 GO
 
 
+
 IF OBJECT_ID('dbo.PeriodType', 'U') IS NOT NULL 
   DROP TABLE dbo.PeriodType; 
 GO
@@ -10,7 +11,7 @@ CREATE TABLE  PeriodType
 	Id			INT IDENTITY(1,1) NOT NULL,
 	Name					VARCHAR(50)  NOT NULL,	
 	Active					BIT,
-	InclusionUserId			INT,
+	InclusionUserId			INT NOT NULL,
 	CreatedDate             DATETIME NOT NULL,
 	UpdatedDate             DATETIME NULL,
  
@@ -179,6 +180,51 @@ CONSTRAINT [PK_CommunicantType_Id] PRIMARY KEY CLUSTERED
 ) ON [PRIMARY]
 GO
 
+IF OBJECT_ID('dbo.NotificationComplement', 'U') IS NOT NULL 
+  DROP TABLE dbo.NotificationComplement; 
+GO
+CREATE TABLE  NotificationComplement
+(
+	Id						INT IDENTITY(1,1) NOT NULL,
+	NotificationId			INT NOT NULL,
+	IsContentious			BIT,
+	ProcessNumber			VARCHAR(20) NULL,
+	ProcessDate				DATETIME NULL,		
+	ProcessTypeId			INT NULL,	
+	IsPoliceReport			BIT,
+	PoliceReportNumber		VARCHAR(20) NULL,
+	IsThird					BIT,
+	IsProvedor				BIT,
+	InclusionUserId			INT NOT NULL,
+	CreatedDate             DATETIME NOT NULL,
+	UpdatedDate             DATETIME NULL,
+ 
+CONSTRAINT [PK_NotificationComplement_Id] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+IF OBJECT_ID('dbo.ProcessType', 'U') IS NOT NULL 
+  DROP TABLE dbo.ProcessType; 
+GO
+CREATE TABLE  ProcessType
+(
+	Id						INT IDENTITY(1,1) NOT NULL,
+	Name					VARCHAR(50)  NOT NULL,	
+	Active					BIT,
+	InclusionUserId			INT NOT NULL,
+	CreatedDate             DATETIME NOT NULL,
+	UpdatedDate             DATETIME NULL,
+ 
+CONSTRAINT [PK_ProcessType_Id] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
 IF OBJECT_ID('dbo.Notification', 'U') IS NOT NULL 
   DROP TABLE dbo.Notification; 
 GO
@@ -190,7 +236,7 @@ CREATE TABLE  Notification
 	SituationId				INT NOT NULL,
 	PhaseId					INT NOT NULL,	
 	DateNotification        DATETIME NULL,	
-	InclusionUserId			INT,
+	InclusionUserId			INT NOT NULL,
 	CreatedDate             DATETIME NOT NULL,
 	UpdatedDate             DATETIME NULL,
  
@@ -444,6 +490,17 @@ ALTER TABLE [dbo].[Notification]  WITH CHECK ADD  CONSTRAINT [FK_Notification_Po
 REFERENCES [dbo].[Policy] ([Id])
 GO
 
+
+ALTER TABLE [dbo].[NotificationComplement]  WITH CHECK ADD  CONSTRAINT [FK_NotificationComplement_ProcessType_ProcessTypeId] FOREIGN KEY([ProcessTypeId])
+REFERENCES [dbo].[ProcessType] ([Id])
+GO
+
+
+
+ALTER TABLE [dbo].[NotificationComplement]  WITH CHECK ADD  CONSTRAINT [FK_NotificationComplement_Notification_NotificationId] FOREIGN KEY([NotificationId])
+REFERENCES [dbo].[Notification] ([Id])
+GO
+
 ALTER TABLE [dbo].[Policy]  WITH CHECK ADD  CONSTRAINT [FK_Policy_Product_ProductId] FOREIGN KEY([ProductId])
 REFERENCES [dbo].[Product] ([Id])
 GO
@@ -529,8 +586,14 @@ Insert into Situation values('Liquidado',1,1,Getdate(),null)
 Insert into Situation values('Indeferido',1,1,Getdate(),null)
 Insert into Situation values('Deferido',1,1,Getdate(),null)
 
-Insert into Status values('Completo',1,1,Getdate(),null)
+
+Insert into ProcessType values('Remota',1,1,Getdate(),null)
+Insert into ProcessType values('Provável',1,1,Getdate(),null)
+Insert into ProcessType values('Possível',1,1,Getdate(),null)
+
+
 Insert into Status values('Incompleto',1,1,Getdate(),null)
+Insert into Status values('Completo',1,1,Getdate(),null)
 
 Insert into CommunicantType values('Corretor',1,1,Getdate(),null)
 Insert into CommunicantType values('Segurado',1,1,Getdate(),null)

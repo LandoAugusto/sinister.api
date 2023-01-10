@@ -71,8 +71,8 @@ namespace Application.Services
                     request.DescriptionDamage, request.Damage, request.IsRiskLocation, request.Comments, userId);
 
                 foreach (var occurenceAddress in request.Address)
-                    entity.OccurenceAddress.Add(new OccurrenceAddress(occurenceAddress.ZipCode.ToString(), occurenceAddress.StreetName, occurenceAddress.StateInitials,
-                        occurenceAddress.StateName, occurenceAddress.Number, occurenceAddress.Complement, occurenceAddress.District, occurenceAddress.City, userId));
+                    entity.OccurenceAddress.Add(new OccurrenceAddress(occurenceAddress.ZipCode.ToString(), occurenceAddress.StreetName, 
+                        occurenceAddress.StateName, occurenceAddress.StateInitials, occurenceAddress.Number, occurenceAddress.Complement, occurenceAddress.District, occurenceAddress.City, userId));
 
                 foreach (var occurrencePhone in request.Phone)
                     entity.OccurencePhone.Add(new OccurrencePhone(occurrencePhone.Name, occurrencePhone.PhoneTypeId, occurrencePhone.Ddd, occurrencePhone.Phone, userId));
