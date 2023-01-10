@@ -4,9 +4,9 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Repository.Mappings
 {
-    internal class OccurrenceAddrressMapping : IEntityTypeConfiguration<OccurrenceAddrress>
+    internal class OccurrenceAddrressMapping : IEntityTypeConfiguration<OccurrenceAddress>
     {
-        public void Configure(EntityTypeBuilder<OccurrenceAddrress> builder)
+        public void Configure(EntityTypeBuilder<OccurrenceAddress> builder)
         {
             builder
            .HasKey(x => x.Id);
@@ -60,7 +60,7 @@ namespace Repository.Mappings
             builder
                 .HasOne(d => d.Occurence)
                 .WithMany(p => p.OccurenceAddress)
-                .HasForeignKey(d => d.OccurenceId)
+                .HasForeignKey(d => d.OccurrenceId)
                 .OnDelete(DeleteBehavior.ClientSetNull);
         }
     }

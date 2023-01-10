@@ -4,6 +4,8 @@ using Infrastructure.Data.Repository.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Repository.Interfaces.Repositories;
+using Repository.Repositories;
 using System.Diagnostics.CodeAnalysis;
 
 namespace Infrastructure.Data.Repository.Extensions
@@ -30,7 +32,8 @@ namespace Infrastructure.Data.Repository.Extensions
             .AddScoped<IPeriodTypeRepository, PeriodTypeRepository>()
             .AddScoped<ICommunicantRepository, CommunicantRepository>()
             .AddScoped<ICommunicantTypeRepository, CommunicantTypeRepository>()
-            .AddScoped<IProductRepository, ProductRepository>()
+            .AddScoped<IProductRepository, ProductRepository>()                                              
+            .AddScoped<IOccurrenceRepository, OccurrenceRepository>()
             .AddScoped<INotificationRepository, NotificationRepository>()
             .AddScoped<ISituationRepository, SituationRepository>();
     }

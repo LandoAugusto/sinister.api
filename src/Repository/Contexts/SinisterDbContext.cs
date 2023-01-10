@@ -23,9 +23,9 @@ namespace Infrastructure.Data.Repository.Contexts
         public virtual DbSet<Status> Status { get; set; }
         public virtual DbSet<Situation> Situation{ get; set; }
         public virtual DbSet<Product> Product { get; set; }
-        public virtual DbSet<Occurrence> Occurence { get; set; } = null!;
-        public virtual DbSet<OccurrenceAddrress> OccurrenceAddrress { get; set; } = null!;
-        public virtual DbSet<OccurrencePhone> OccurencePhone { get; set; } = null!;
+        public virtual DbSet<Occurrence> Occurrence { get; set; } = null!;
+        public virtual DbSet<OccurrenceAddress> OccurrenceAddress { get; set; } = null!;
+        public virtual DbSet<OccurrencePhone> OccurrencePhone { get; set; } = null!;
         public virtual DbSet<Insured> Insured { get; set; } = null!;
         public virtual DbSet<InsuredAddress> InsuredAddress { get; set; } = null!;
         public virtual DbSet<InsuredEmail> InsuredEmail { get; set; } = null!;

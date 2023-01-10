@@ -29,6 +29,7 @@ CREATE TABLE  OccurrencePhone
 (
 	Id						INT IDENTITY(1,1) NOT NULL,
 	OccurrenceId			INT NOT NULL,
+	Name					VARCHAR(100),
 	PhoneTypeId				INT NOT NULL,	
 	Ddd						VARCHAR(3),
 	Phone					VARCHAR(14),
