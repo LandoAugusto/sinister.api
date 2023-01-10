@@ -1,11 +1,9 @@
-﻿
-
-using Integration.BMG.Schemas;
+﻿using Application.DTO.Proposal;
 
 namespace Integration.BMG.Interfaces
 {
     public interface IProposalService
     {
-        Task<ProposalResponse> GetBusinnesProposalAsync(int brokerUserId, string proposalNumber);
+        Task<ProposalResponseDto> GetBusinnesProposalAsync(int brokerUserId, string proposalNumber);
     }
 }

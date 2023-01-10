@@ -1,7 +1,9 @@
-﻿using Domain.Core.Infrastructure.Exceptions;
+﻿using Application.DTO.Policy;
+using Domain.Core.Infrastructure.Exceptions;
 using Integration.BMG.Configurations;
 using Integration.BMG.Http.Interfaces;
 using Integration.BMG.Interfaces;
+using Integration.BMG.Mappers;
 using Integration.BMG.Schemas;
 using Microsoft.Extensions.Configuration;
 
@@ -18,7 +20,7 @@ namespace Integration.BMG.Services
         public PolicyService(IRequestExecutador requestExecutador, MiddlewareApiConfig apiConfig, IConfiguration configuration) =>
            (_requestExecutador, _apiConfig, TimeoutInMilliseconds) = (requestExecutador, apiConfig, int.Parse(configuration["ExecuteTimeoutInMilliseconds"]));
 
-        public async Task<IList<PolicyResponse>> ListPolicyAsync(int? policyId, int? insuredPersonId, int? stipulatorPersonId, int? certificate)
+        public async Task<IList<PolicyResponseDto>> ListPolicyAsync(int? policyId, int? insuredPersonId, int? stipulatorPersonId, int? certificate)
         {
             try
             {
@@ -42,7 +44,7 @@ namespace Integration.BMG.Services
                     throw new BusinessException(response.ErrorResponseObject.Detail);
                 }
 
-                return response.ResponseObject.Data;
+                return PolicyMap.Map(response.ResponseObject.Data);
             }
             catch (Exception)
             {

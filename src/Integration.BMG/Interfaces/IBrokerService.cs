@@ -1,9 +1,10 @@
-﻿using Integration.BMG.Schemas;
+﻿using Application.DTO.Broker;
+using Integration.BMG.Schemas;
 
 namespace Integration.BMG.Interfaces
 {
     public interface IBrokerService
     {
-        Task<BrokerResponse> GetBrokerAsync(int brokerUserId);
+        Task<BrokerResponseDto> GetBrokerAsync(int brokerUserId);
     }
 }

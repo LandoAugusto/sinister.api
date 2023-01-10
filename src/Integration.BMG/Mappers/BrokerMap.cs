@@ -1,7 +1,7 @@
 ﻿using Application.DTO.Broker;
 using Integration.BMG.Schemas;
 
-namespace Application.Mappers
+namespace Integration.BMG.Mappers
 {
     internal static class BrokerMap
     {

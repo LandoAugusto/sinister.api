@@ -4,6 +4,20 @@ namespace Domain.Core.Entities
 {
     public class OccurrenceAddress : IIdentityEntity
     {
+
+        public OccurrenceAddress(string zipCode, string? streetName, string stateName, string stateInitials, string? number, string? complement, string? district, string? city, int inclusionUserId)
+        {
+            this.ZipCode = zipCode;
+            this.StreetName = streetName;
+            this.StateName = stateName;
+            this.StateInitials = stateInitials;
+            this.Number = number;
+            this.Complement = complement;
+            this.District = district;
+            this.City = city;
+            this.InclusionUserId = inclusionUserId;      
+        }
+
         public int Id { get; set; }
         public int OccurrenceId { get; set; }
         public string ZipCode { get; set; } = null!;

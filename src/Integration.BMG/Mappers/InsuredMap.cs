@@ -1,7 +1,7 @@
 ﻿using Application.DTO.Insured;
 using Integration.BMG.Schemas;
 
-namespace Application.Mappers
+namespace Integration.BMG.Mappers
 {
     internal class InsuredMap
     {

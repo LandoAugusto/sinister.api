@@ -1,11 +1,12 @@
-﻿using Integration.BMG.Schemas;
+﻿using Application.DTO.Insured;
+using Integration.BMG.Schemas;
 
 namespace Integration.BMG.Interfaces
 {
     public interface IInsuredService
     {
-        Task<InsuredResponse> GetInsuredAsync(int insuredPersonId);
+        Task<InsuredResponseDto> GetInsuredAsync(int insuredPersonId);
 
-        Task<List<InsuredResponse>> ListInsuredAsync(string name, string documentNumber);
+        Task<List<InsuredResponseDto>> ListInsuredAsync(string name, string documentNumber);
     }
 }

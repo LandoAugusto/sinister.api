@@ -1,7 +1,9 @@
-﻿using Domain.Core.Infrastructure.Exceptions;
+﻿using Application.DTO.Insured;
+using Domain.Core.Infrastructure.Exceptions;
 using Integration.BMG.Configurations;
 using Integration.BMG.Http.Interfaces;
 using Integration.BMG.Interfaces;
+using Integration.BMG.Mappers;
 using Integration.BMG.Schemas;
 using Microsoft.Extensions.Configuration;
 
@@ -18,7 +20,7 @@ namespace Integration.BMG.Services
         public InsuredService(IRequestExecutador requestExecutador, MiddlewareApiConfig apiConfig, IConfiguration configuration) =>
            (_requestExecutador, _apiConfig, TimeoutInMilliseconds) = (requestExecutador, apiConfig, int.Parse(configuration["ExecuteTimeoutInMilliseconds"]));
 
-        public async Task<List<InsuredResponse>> ListInsuredAsync(string name, string documentNumber)
+        public async Task<List<InsuredResponseDto>> ListInsuredAsync(string name, string documentNumber)
         {
             try
             {
@@ -33,7 +35,7 @@ namespace Integration.BMG.Services
                     throw new BusinessException(response.ErrorResponseObject.Detail);
                 };                
 
-                return response.ResponseObject.Data;
+                return InsuredMap.Map(response.ResponseObject.Data);
             }
             catch (Exception)
             {
@@ -41,7 +43,7 @@ namespace Integration.BMG.Services
             }
         }
 
-        public async Task<InsuredResponse> GetInsuredAsync(int insuredPersonId)
+        public async Task<InsuredResponseDto> GetInsuredAsync(int insuredPersonId)
         {
             try
             {              
@@ -56,7 +58,7 @@ namespace Integration.BMG.Services
                     throw new BusinessException(response.ErrorResponseObject.Detail);
                 }
 
-                return response.ResponseObject.Data;
+                return InsuredMap.Map(response.ResponseObject.Data);
             }
             catch (Exception)
             {
