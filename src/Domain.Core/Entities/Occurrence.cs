@@ -9,7 +9,7 @@ namespace Domain.Core.Entities
         {
 
         }
-        public Occurrence(int notificationId, string dateOccurence, string timeOccurrence, string descriptonOccurence, string? descriptionDamage, decimal? damage, bool? isRiskLocation, string? comments, int inclusionUserId)
+        public Occurrence(int notificationId, string dateOccurence, string timeOccurrence, string descriptonOccurence, string? descriptionDamage, decimal? damage, bool isRiskLocation, string? comments, int inclusionUserId)
         {
             this.NotificationId = notificationId;
             this.DateOccurrence = dateOccurence;
@@ -29,7 +29,7 @@ namespace Domain.Core.Entities
         public string DescriptonOccurrence { get; set; } = null!;
         public string? DescriptionDamage { get; set; }
         public decimal? Damage { get; set; }
-        public bool? IsRiskLocation { get; set; }
+        public bool IsRiskLocation { get; set; }
         public string? Comments { get; set; }
         public int InclusionUserId { get; set; }
         public DateTime CreatedDate { get; set; } = DateTime.Now;

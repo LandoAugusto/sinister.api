@@ -1,7 +1,9 @@
-﻿using Domain.Core.Infrastructure.Exceptions;
+﻿using Application.DTO.Proposal;
+using Domain.Core.Infrastructure.Exceptions;
 using Integration.BMG.Configurations;
 using Integration.BMG.Http.Interfaces;
 using Integration.BMG.Interfaces;
+using Integration.BMG.Mappers;
 using Integration.BMG.Schemas;
 using Microsoft.Extensions.Configuration;
 
@@ -19,7 +21,7 @@ namespace Integration.BMG.Services
            (_requestExecutador, _apiConfig, TimeoutInMilliseconds) = (requestExecutador, apiConfig, int.Parse(configuration["ExecuteTimeoutInMilliseconds"]));
 
 
-        public async Task<ProposalResponse> GetBusinnesProposalAsync(int brokerUserId, string proposalNumber)
+        public async Task<ProposalResponseDto> GetBusinnesProposalAsync(int brokerUserId, string proposalNumber)
         {
             try
             {
@@ -34,7 +36,7 @@ namespace Integration.BMG.Services
                     throw new BusinessException(response.ErrorResponseObject.Detail);
                 }   
 
-                return response.ResponseObject.Data;                
+                return ProposalMap.Map(response.ResponseObject.Data);                
             }
             catch (Exception)
             {

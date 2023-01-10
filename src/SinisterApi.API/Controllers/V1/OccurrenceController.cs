@@ -23,9 +23,7 @@ namespace SinisterApi.API.Controllers.V1
         [ProducesResponseType(typeof(ErrorResponseModel), StatusCodes.Status404NotFound)]
         public async Task<IActionResult> GetOccurrenceAsync(int notificationId)
         {
-            //var response = await _occurenceApplication.ListInsuredAsync(request.Name, request.DocumentNumber);
-
-            var response = "";
+            var response = await _occurenceApplication.GetOccurrenceAsync(notificationId);            
             if (response == null)
                 return ReturnNotFound();
 

@@ -2,7 +2,7 @@
 using Domain.Core.Extensions;
 using Integration.BMG.Schemas;
 
-namespace Application.Mappers
+namespace Integration.BMG.Mappers
 {
     internal static class AddressMap
     {
@@ -16,7 +16,7 @@ namespace Application.Mappers
                     list.Add(new AddressResponseDto()
                     {
                         Id = address.Id,
-                        ZipCode = address.ZipCode,
+                        ZipCode = address.ZipCode.ToString(),
                         StreetName = address.StreetName,
                         StateInitials = address.City.State.Initials,
                         StateName = address.City.State.Name,

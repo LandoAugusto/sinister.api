@@ -1,9 +1,9 @@
-﻿using Application.DTO.Standard;
+﻿using Application.DTO.Insured;
+using Application.DTO.Standard;
 using Application.Interfaces;
+using Infrastruture.CrossCutting.Identity.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using SinisterApi.API.Controllers.V1.Base;
-using Application.DTO.Insured;
-using Infrastruture.CrossCutting.Identity.Interfaces;
 
 namespace SinisterApi.API.Controllers.V1
 {

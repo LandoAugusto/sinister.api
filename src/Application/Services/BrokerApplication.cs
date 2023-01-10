@@ -1,6 +1,5 @@
 ﻿using Application.DTO.Broker;
 using Application.Interfaces;
-using Application.Mappers;
 using Integration.BMG.Interfaces;
 
 namespace Application.Services
@@ -11,7 +10,12 @@ namespace Application.Services
         public BrokerApplication(IBrokerService brokerService) =>
             _brokerService = brokerService;
 
-        public async Task<BrokerResponseDto> GetBrokerAsync(int brokerUserId) =>
-            BrokerMap.Map(await _brokerService.GetBrokerAsync(brokerUserId));
+        public async Task<BrokerResponseDto?> GetBrokerAsync(int brokerUserId)
+        {
+            var response =  await _brokerService.GetBrokerAsync(brokerUserId);
+            if (response == null) return null;
+
+            return response;
+        }
     }
 }

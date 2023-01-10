@@ -4,6 +4,6 @@ namespace Application.Interfaces
 {
     public interface IProposalApplication
     {
-        Task<ProposalResponseDto> GetBusinnesProposalAsync(int brokerUserId, string proposalNumber);
+        Task<ProposalResponseDto?> GetBusinnesProposalAsync(int brokerUserId, string proposalNumber);
     }
 }

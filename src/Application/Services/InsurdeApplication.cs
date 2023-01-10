@@ -1,6 +1,6 @@
 ﻿using Application.DTO.Insured;
 using Application.Interfaces;
-using Application.Mappers;
+using Domain.Core.Extensions;
 using Integration.BMG.Interfaces;
 
 namespace Application.Services
@@ -11,13 +11,20 @@ namespace Application.Services
         public InsurdeApplication(IInsuredService insuredService) =>
             _insuredService = insuredService;
 
-        public async Task<List<InsuredResponseDto>> ListInsuredAsync(string name, string documentNumber)
+        public async Task<List<InsuredResponseDto>?> ListInsuredAsync(string name, string documentNumber)
         {
-            return InsuredMap.Map(await _insuredService.ListInsuredAsync(name, documentNumber));
+            var list = await _insuredService.ListInsuredAsync(name, documentNumber);
+            if (!list.IsAny<InsuredResponseDto>()) return null;
+
+            return list;
+
         }
-        public async Task<InsuredResponseDto> GetInsuredAsync(int insuredPersonId)
+        public async Task<InsuredResponseDto?> GetInsuredAsync(int insuredPersonId)
         {
-            return InsuredMap.Map(await _insuredService.GetInsuredAsync(insuredPersonId));
+            var response = await _insuredService.GetInsuredAsync(insuredPersonId);
+            if (response == null) return null;
+
+            return response;
         }
     }
 }

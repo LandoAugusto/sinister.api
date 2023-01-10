@@ -4,6 +4,15 @@ namespace Domain.Core.Entities
 {
     public class OccurrencePhone : IIdentityEntity
     {
+        public OccurrencePhone( string name, int phoneTypeId, string ddd, string phone, int inclusionUserId)
+        {   
+            Name = name;
+            PhoneTypeId = phoneTypeId;
+            Ddd = ddd;
+            Phone = phone;
+            InclusionUserId = inclusionUserId;
+        }
+
         public int Id { get; set; }
         public int OccurrenceId { get; set; }
         public string Name { get; set; }
