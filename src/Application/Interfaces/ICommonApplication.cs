@@ -11,5 +11,6 @@ namespace Application.Interfaces
         Task<IEnumerable<DomainResponseDto>> ListSituationAsync();
         Task<IEnumerable<DomainResponseDto>> ListPhoneTypeAsync();
         Task<IEnumerable<DomainResponseDto>> ListEmailTypeAsync();
+        Task<IEnumerable<DomainResponseDto>> ListProcessTypeAsync();
     }
 }

@@ -16,7 +16,7 @@ namespace Integration.BMG.Mappers
                     list.Add(new AddressResponseDto()
                     {
                         Id = address.Id,
-                        ZipCode = address.ZipCode.ToString(),
+                        ZipCode = address.ZipCode.ToString().PadLeft(8, '0'),
                         StreetName = address.StreetName,
                         StateInitials = address.City.State.Initials,
                         StateName = address.City.State.Name,
@@ -28,6 +28,12 @@ namespace Integration.BMG.Mappers
                 }
             }
             return list;
+        }
+
+        public static ZipCodeResponseDto Map(ZipCodeReponse address)
+        {
+            if (address == null) return null;
+            return new ZipCodeResponseDto(address.StreetName, address.StateInitials, address.StateName, address.District, address.CityName);
         }
     }
 }

@@ -28,6 +28,7 @@ namespace Infrastructure.Data.Repository.Extensions
             services
             .AddScoped<IPhoneTypeRepository, PhoneTypeRepository>()
             .AddScoped<IEmailTypeRepository, EmailTypeRepository>()
+            .AddScoped<IProcessTypeRepository, ProcessTypeRepository>()
             .AddScoped<IStatusRepository, StatusRepository>()
             .AddScoped<IPeriodTypeRepository, PeriodTypeRepository>()
             .AddScoped<ICommunicantRepository, CommunicantRepository>()
@@ -35,6 +36,7 @@ namespace Infrastructure.Data.Repository.Extensions
             .AddScoped<IProductRepository, ProductRepository>()                                              
             .AddScoped<IOccurrenceRepository, OccurrenceRepository>()
             .AddScoped<INotificationRepository, NotificationRepository>()
+            .AddScoped<INotificationComplementRepository, NotificationComplementRepository>()
             .AddScoped<ISituationRepository, SituationRepository>();
     }
 }

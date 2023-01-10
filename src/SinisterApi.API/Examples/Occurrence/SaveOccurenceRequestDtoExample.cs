@@ -30,7 +30,7 @@ namespace SinisterApi.API.Examples.Occurrence
             {
                  new AddressResquestDto()
                 {
-                    ZipCode = 06360290,
+                    ZipCode = "06360290",
                     StateName = "São Paulo",
                     StateInitials ="SP",
                     City = "Cotia",

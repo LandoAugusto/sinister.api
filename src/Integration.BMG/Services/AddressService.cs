@@ -1,7 +1,9 @@
-﻿using Domain.Core.Infrastructure.Exceptions;
+﻿using Application.DTO.Common;
+using Domain.Core.Infrastructure.Exceptions;
 using Integration.BMG.Configurations;
 using Integration.BMG.Http.Interfaces;
 using Integration.BMG.Interfaces;
+using Integration.BMG.Mappers;
 using Integration.BMG.Schemas;
 using Microsoft.Extensions.Configuration;
 
@@ -18,7 +20,7 @@ namespace Integration.BMG.Services
         public AddressService(IRequestExecutador requestExecutador, MiddlewareApiConfig apiConfig, IConfiguration configuration) =>
            (_requestExecutador, _apiConfig, TimeoutInMilliseconds) = (requestExecutador, apiConfig, int.Parse(configuration["ExecuteTimeoutInMilliseconds"]));
 
-        public async Task<ZipCodeReponse> GetZipCodeAsync(int zipCode)
+        public async Task<ZipCodeResponseDto> GetZipCodeAsync(int zipCode)
         {
             try
             {
@@ -33,7 +35,7 @@ namespace Integration.BMG.Services
                     throw new BusinessException(response.ErrorResponseObject.Detail);
                 }
 
-                return response.ResponseObject.Data;
+                return AddressMap.Map(response.ResponseObject.Data);
             }
             catch (Exception)
             {

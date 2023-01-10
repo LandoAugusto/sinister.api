@@ -4,6 +4,7 @@ using Domain.Core.Entities;
 using Domain.Core.Extensions;
 using Infrastructure.Data.Repository.Interfaces.Repositories;
 using Integration.BMG.Interfaces;
+using Repository.Interfaces.Repositories;
 
 namespace Application.Services
 {
@@ -12,6 +13,7 @@ namespace Application.Services
         private readonly IAddressService _addressService;
         private readonly IPhoneTypeRepository _phoneTypeRepository;
         private readonly IEmailTypeRepository _emailTypeRepository;
+        private readonly IProcessTypeRepository _processTypeRepository;
         private readonly ICommunicantTypeRepository _communicantTypeRepository;
         private readonly IPeriodTypeRepository _periodTypeRepository;
         private readonly IStatusRepository _statusSinisterRepository;
@@ -21,6 +23,7 @@ namespace Application.Services
             IAddressService addressService,
             IPhoneTypeRepository phoneTypeRepository,
             IEmailTypeRepository emailTypeRepository,
+            IProcessTypeRepository processTypeRepository,
             ICommunicantTypeRepository communicantTypeRepository,
             IPeriodTypeRepository periodTypeRepository,
             IStatusRepository statusSinisterRepository,
@@ -29,20 +32,16 @@ namespace Application.Services
             _addressService = addressService;
             _phoneTypeRepository = phoneTypeRepository;
             _emailTypeRepository = emailTypeRepository;
+            _processTypeRepository = processTypeRepository;
             _communicantTypeRepository = communicantTypeRepository;
             _periodTypeRepository = periodTypeRepository;
             _statusSinisterRepository = statusSinisterRepository;
             _situationSinisterRepository = situationSinisterRepository;
         }
 
-        public async Task<ZipCodeResponseDto> GetZipCodeAsync(int zipCode)
-        {
-            var result = await _addressService.GetZipCodeAsync(zipCode);
-            if (result == null)
-                return null;
+        public async Task<ZipCodeResponseDto> GetZipCodeAsync(int zipCode) =>
+             await _addressService.GetZipCodeAsync(zipCode);
 
-            return new ZipCodeResponseDto(result.StreetName, result.District, result.CityName, result.StateInitials, result.StateName);
-        }
         public async Task<IEnumerable<DomainResponseDto>> ListPhoneTypeAsync()
         {
             var list = await _phoneTypeRepository.GetAllAsync();
@@ -105,6 +104,18 @@ namespace Application.Services
         {
             var list = await _situationSinisterRepository.GetAllAsync();
             if (!list.IsAny<Situation>()) return null;
+
+            var result = new List<DomainResponseDto>();
+            foreach (var item in list)
+                result.Add(new DomainResponseDto(item.Id, item.Name));
+
+            return result;
+        }
+
+        public async Task<IEnumerable<DomainResponseDto>> ListProcessTypeAsync()
+        {
+            var list = await _processTypeRepository.GetAllAsync();
+            if (!list.IsAny<ProcessType>()) return null;
 
             var result = new List<DomainResponseDto>();
             foreach (var item in list)

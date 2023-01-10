@@ -3,7 +3,7 @@
     public class AddressResquestDto
     {
         public int? Id { get; set; }
-        public int? ZipCode { get; set; }
+        public string ZipCode { get; set; }
         public string? StreetName { get; set; }
         public string? StateName { get; set; }
         public string? StateInitials { get; set; }
