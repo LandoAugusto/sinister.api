@@ -29,5 +29,20 @@ namespace SinisterApi.API.Controllers.V1
 
             return ReturnSuccess(response);
         }
+
+        [HttpPost]
+        [Route("GetPolicyInsured/{notificationId}")]
+        [ProducesResponseType(typeof(ResponseModel), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(ErrorResponseModel), StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(typeof(ErrorResponseModel), StatusCodes.Status404NotFound)]
+        public async Task<IActionResult> GetPolicyInsured(int notificationId)
+        {
+            //var response = await _policyApplication.ListPolicyAsync(request.PolicyId, request.InsuredPersonId, request.StipulatorPersonId, request.Certificate);
+            var response = "";
+            if (response == null)
+                return ReturnNotFound();
+
+            return ReturnSuccess(response);
+        }
     }
 }
