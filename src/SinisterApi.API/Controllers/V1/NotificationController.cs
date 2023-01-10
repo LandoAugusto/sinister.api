@@ -4,6 +4,7 @@ using Application.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using SinisterApi.API.Controllers.V1.Base;
 using Application.DTO.Notification;
+using Infrastruture.CrossCutting.Identity.Interfaces;
 
 namespace SinisterApi.API.Controllers.V1
 {
@@ -11,7 +12,10 @@ namespace SinisterApi.API.Controllers.V1
     {
         private readonly INotificationApplication _notificationApplication;
 
-        public NotificationController(INotificationApplication notificationApplication) =>
+        public NotificationController(
+            IUser user,
+            ILogger<NotificationController> logger,
+            INotificationApplication notificationApplication) : base(user, logger) =>
             _notificationApplication = notificationApplication;
 
         [HttpGet]

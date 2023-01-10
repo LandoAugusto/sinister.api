@@ -10,6 +10,8 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 using Microsoft.AspNetCore.Authorization;
+using Infrastruture.CrossCutting.Identity.Interfaces;
+using Application.DTO.Authentication;
 
 namespace SinisterApi.API.Controllers.V1
 {
@@ -19,8 +21,11 @@ namespace SinisterApi.API.Controllers.V1
         private readonly UserManager<ApplicationUser> userManager;
         private readonly TokenConfiguration tokenConfiguration;
 
-        public AuthenticationController(IOptions<TokenConfiguration> tokenConfiguration, ILogger<AuthenticationController> logger,
-                                        SignInManager<ApplicationUser> signInManager, UserManager<ApplicationUser> userManager)
+        public AuthenticationController(
+            IOptions<TokenConfiguration> tokenConfiguration,
+            IUser user,
+            ILogger<AuthenticationController> logger,
+            SignInManager<ApplicationUser> signInManager, UserManager<ApplicationUser> userManager) : base(user, logger)
         {
             this.tokenConfiguration = tokenConfiguration.Value;
             this.signInManager = signInManager;
@@ -29,9 +34,8 @@ namespace SinisterApi.API.Controllers.V1
 
         [AllowAnonymous]
         [HttpPost("GetToken")]
-        public async Task<ActionResult> TokenRequestAsync(GetTokenModel loginViewModel)
+        public async Task<ActionResult> TokenRequestAsync(GetTokenRequestDto loginViewModel)
         {
-            var request = new { loginViewModel.Login, Password = string.IsNullOrWhiteSpace(loginViewModel.Password) ? "não informada" : new string('*', loginViewModel.Password.Length) };
             try
             {
                 var result = await signInManager.PasswordSignInAsync(loginViewModel.Login, loginViewModel.Password, false, true);
@@ -46,7 +50,6 @@ namespace SinisterApi.API.Controllers.V1
                 }
 
                 throw new BusinessException("Usuário ou senha incorretos.");
-
             }
             catch (Exception)
             {
@@ -54,7 +57,7 @@ namespace SinisterApi.API.Controllers.V1
             }
         }
 
-        private async Task<GetTokenResponseModel> GerarJwt(string login)
+        private async Task<GetTokenResponseDto> GerarJwt(string login)
         {
             var user = await userManager.FindByNameAsync(login);
             var claims = await userManager.GetClaimsAsync(user);
@@ -88,11 +91,11 @@ namespace SinisterApi.API.Controllers.V1
 
             var encodedToken = tokenHandler.WriteToken(token);
 
-            var response = new GetTokenResponseModel
+            var response = new GetTokenResponseDto
             {
                 AccessToken = encodedToken,
                 ExpiresIn = TimeSpan.FromHours(tokenConfiguration.ExpiracaoHoras).TotalSeconds,
-                Claims = claims.Select(c => new ClaimViewModel { Type = c.Type, Value = c.Value })
+                Claims = claims.Select(c => new ClaimViewResponseDto { Type = c.Type, Value = c.Value })
             };
 
             return response;

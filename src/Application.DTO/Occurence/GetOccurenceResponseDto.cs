@@ -13,7 +13,18 @@ namespace Application.DTO.Occurence
         public decimal? Damage { get; set; }
         public string Comments { get; set; }
         public bool IsRiskLocation { get; set; }
-        public IEnumerable<PhoneResponseDto> Phone { get; set; }        
+        public IEnumerable<OccurencePhoneResponseDto> Phone { get; set; }
         public IEnumerable<AddressResponseDto> Address { get; set; }
+    }
+
+
+    public class OccurencePhoneResponseDto
+    {
+        public int Id { get; set; }
+        public string  Name { get; set; }
+        public int PhoneTypeId { get; set; }
+        public string Ddd { get; set; }
+        public string Phone { get; set; }
+        public DateTime CreatedDate { get; set; }
     }
 }

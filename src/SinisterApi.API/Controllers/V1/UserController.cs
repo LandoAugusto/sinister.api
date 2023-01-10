@@ -12,7 +12,10 @@ namespace SinisterApi.API.Controllers.V1
     {
         private readonly UserManager<ApplicationUser> userManager;
 
-        public UserController(IUser user, ILogger<UserController> logger, UserManager<ApplicationUser> userManager) =>
+        public UserController(
+            IUser user, 
+            ILogger<UserController> logger, 
+            UserManager<ApplicationUser> userManager) : base(user,logger) =>
             this.userManager = userManager;
 
         [HttpPost("GetUser")]

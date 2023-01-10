@@ -1,6 +1,7 @@
 ﻿using Application.DTO.Standard;
 using Application.Interfaces;
 using Domain.Core.Extensions;
+using Infrastruture.CrossCutting.Identity.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using SinisterApi.API.Controllers.V1.Base;
 
@@ -10,7 +11,11 @@ namespace SinisterApi.API.Controllers.V1
     {
         private readonly ICommonApplication _commonApplication;
 
-        public CommonController(ICommonApplication commonApplication) => 
+        public CommonController(
+            IUser user,
+            ILogger<CommonController> logger,
+            IBrokerApplication brokerApplication,
+            ICommonApplication commonApplication) : base(user, logger) =>
             _commonApplication = commonApplication;
 
         [HttpGet]
@@ -34,7 +39,7 @@ namespace SinisterApi.API.Controllers.V1
         [ProducesResponseType(typeof(ErrorResponseModel), StatusCodes.Status404NotFound)]
         public async Task<IActionResult> ListCommunicantTypeAsync()
         {
-            var response = await _commonApplication.ListCommunicantTypeAsync ();
+            var response = await _commonApplication.ListCommunicantTypeAsync();
             if (response == null)
                 return ReturnNotFound();
 
@@ -80,7 +85,7 @@ namespace SinisterApi.API.Controllers.V1
             if (response == null)
                 return ReturnNotFound();
 
-            return ReturnSuccess( response);
+            return ReturnSuccess(response);
         }
 
         [HttpGet]

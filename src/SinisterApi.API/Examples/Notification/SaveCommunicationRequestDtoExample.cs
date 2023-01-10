@@ -8,7 +8,7 @@ namespace SinisterApi.API.Examples.Notification
     {
         public SaveCommunicantRequestDto GetExamples() => new()
         {
-            NotificationIdId = 1,
+            NotificationId = 1,
             CommunicantTypeId = 1,
             Name = "Teste Teste Teste",
             Email = new[] {

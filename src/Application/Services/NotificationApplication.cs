@@ -20,15 +20,13 @@ namespace Application.Services
             INotificationRepository notificationRepository) =>
             (_policyService, _notificationRepository) = (policyService, notificationRepository);
 
-
         public async Task<GetNotificationResponseDto> GetNotificationAscync(int notificationId)
         {
             var entity = await _notificationRepository.GetByIdAsync(notificationId);
             if (entity == null) return null;
 
-            return new(entity.Id, entity.PolicyId, entity.Stage, entity.DateNotification); ;
+            return new(entity.Id, entity.PolicyId, entity.PhaseId, entity.DateNotification); ;
         }
-
         public async Task<IEnumerable<ListNotificationResponseDto>> ListNotificationAsync()
         {
             var list = await _notificationRepository.ListNotificationAsync();
@@ -37,7 +35,7 @@ namespace Application.Services
             var result = new List<ListNotificationResponseDto>();
             foreach (var item in list)
             {
-                var notification = new ListNotificationResponseDto(item.Id, item.PolicyId, item.Stage, item.DateNotification)
+                var notification = new ListNotificationResponseDto(item.Id, item.PolicyId, item.PhaseId, item.DateNotification)
                 {
                     Situation = new DomainResponseDto(item.Situation.Id, item.Situation.Name),
                     Status = new DomainResponseDto(item.Status.Id, item.Status.Name),
@@ -52,6 +50,15 @@ namespace Application.Services
             }
             return result;
         }
+        public async Task UpdateStageNotificationAscync(int notificationId, PhaseEnum phase)
+        {
+            var entity = await _notificationRepository.GetByIdAsync(notificationId);
+            if (entity == null)
+                throw new BusinessException("Erro ao atualizar status do aviso");
+
+            entity.PhaseId = (int)phase;
+            await _notificationRepository.UpdateAsync(entity);
+        }
         public async Task<int> SaveNotificationAsync(int policyId, int codeItem)
         {
             try
@@ -63,7 +70,7 @@ namespace Application.Services
                 var policy = list.First();
                 var notification = new Notification()
                 {
-                    Stage = 1,
+                    PhaseId = (int)PhaseEnum.Communicant,
                     StatusId = (int)StatusEnum.Incompleto,
                     SituationId = (int)SituationEnum.Aberto,
                     InclusionUserId = 1,

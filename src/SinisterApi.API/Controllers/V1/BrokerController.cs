@@ -1,5 +1,6 @@
 ﻿using Application.DTO.Standard;
 using Application.Interfaces;
+using Infrastruture.CrossCutting.Identity.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using SinisterApi.API.Controllers.V1.Base;
 
@@ -9,7 +10,10 @@ namespace SinisterApi.API.Controllers.V1
     {
         private readonly IBrokerApplication _brokerApplication;
 
-        public BrokerController(IBrokerApplication brokerApplication) =>
+        public BrokerController(
+            IUser user,
+            ILogger<BrokerController> logger,
+            IBrokerApplication brokerApplication) : base(user, logger) =>
             _brokerApplication = brokerApplication;
 
         [HttpGet]

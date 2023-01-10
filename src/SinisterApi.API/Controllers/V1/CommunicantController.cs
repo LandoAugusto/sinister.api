@@ -1,6 +1,7 @@
 ﻿using Application.DTO.Communicant;
 using Application.DTO.Standard;
 using Application.Interfaces;
+using Infrastruture.CrossCutting.Identity.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using SinisterApi.API.Controllers.V1.Base;
 
@@ -10,7 +11,10 @@ namespace SinisterApi.API.Controllers.V1
     {
         private readonly ICommunicantApplication _communicantApplication;
 
-        public CommunicantController(ICommunicantApplication communicantApplication) =>
+        public CommunicantController(
+            IUser user,
+            ILogger<CommunicantController> logger,
+            ICommunicantApplication communicantApplication) : base(user, logger) =>
             _communicantApplication = communicantApplication;
 
         [HttpGet]

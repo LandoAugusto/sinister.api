@@ -188,7 +188,7 @@ CREATE TABLE  Notification
 	PolicyId				INT NOT NULL,
 	StatusId				INT NOT NULL,
 	SituationId				INT NOT NULL,
-	Stage					INT NOT NULL,	
+	PhaseId					INT NOT NULL,	
 	DateNotification        DATETIME NULL,	
 	InclusionUserId			INT,
 	CreatedDate             DATETIME NOT NULL,

@@ -1,6 +1,7 @@
 ﻿using Application.DTO.Occurence;
 using Application.DTO.Standard;
 using Application.Interfaces;
+using Infrastruture.CrossCutting.Identity.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using SinisterApi.API.Controllers.V1.Base;
 
@@ -9,7 +10,10 @@ namespace SinisterApi.API.Controllers.V1
     public class OccurrenceController : BaseController
     {
         private readonly IOccurenceApplication _occurenceApplication;
-        public OccurrenceController(IOccurenceApplication occurenceApplication) =>
+        public OccurrenceController(
+            IUser user,
+            ILogger<NotificationController> logger,
+            IOccurenceApplication occurenceApplication) : base(user, logger) =>
             _occurenceApplication = occurenceApplication;
 
         [HttpGet]
@@ -36,8 +40,7 @@ namespace SinisterApi.API.Controllers.V1
         public async Task<IActionResult> SaveOccurrenceAsync(SaveOccurenceRequestDto request)
         {
             var response = await _occurenceApplication.SaveOccurrenceAsync(1, request);
-            
-            if (response == null)
+            if (response == 0)
                 return ReturnNotFound();
 
             return ReturnSuccess(response);
