@@ -20,14 +20,14 @@ namespace Application.Services
             INotificationRepository notificationRepository) =>
             (_policyService, _notificationRepository) = (policyService, notificationRepository);
 
-        public async Task<GetNotificationResponseDto> GetNotificationAscync(int notificationId)
+        public async Task<GetNotificationResponseDto?> GetNotificationAscync(int notificationId)
         {
             var entity = await _notificationRepository.GetByIdAsync(notificationId);
             if (entity == null) return null;
 
             return new(entity.Id, entity.PolicyId, entity.PhaseId, entity.DateNotification); ;
         }
-        public async Task<IEnumerable<ListNotificationResponseDto>> ListNotificationAsync()
+        public async Task<IEnumerable<ListNotificationResponseDto>?> ListNotificationAsync()
         {
             var list = await _notificationRepository.ListNotificationAsync();
             if (!list.IsAny<Notification>()) return null;
@@ -88,18 +88,8 @@ namespace Application.Services
                         EndOfTerm = policy.EndOfTerm,
                         InclusionUserId = 1,
                     }
-                };
-
-                notification.Policy.Insured.Add(new Insured()
-                {
-                    DocumentType = 1,
-                    InsuredId = policy.Insured.PersonId.Value,
-                    Name = policy.Insured.Name,
-                    Document = policy.Insured.DocumentNumber.ToString(),
-                    InclusionUserId = 1,
-                });
+                };                
                 var result = await _notificationRepository.AddAsync(notification);
-
                 return result.Id;
             }
             catch (Exception)

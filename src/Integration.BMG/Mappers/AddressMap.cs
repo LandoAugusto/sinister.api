@@ -33,7 +33,7 @@ namespace Integration.BMG.Mappers
         public static ZipCodeResponseDto Map(ZipCodeReponse address)
         {
             if (address == null) return null;
-            return new ZipCodeResponseDto(address.StreetName, address.StateInitials, address.StateName, address.District, address.CityName);
+            return new ZipCodeResponseDto(address.StreetName, address.District, address.CityName,address.StateInitials, address.StateName  );
         }
     }
 }
