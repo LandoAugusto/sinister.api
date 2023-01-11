@@ -1,8 +1,7 @@
 ﻿namespace Application.DTO.Common
 {
     public class AddressResquestDto
-    {
-        public int? Id { get; set; }
+    {        
         public string ZipCode { get; set; }
         public string? StreetName { get; set; }
         public string? StateName { get; set; }

@@ -12,7 +12,7 @@ namespace Application.Extensions
             .AddScoped<ICommunicantApplication, CommunicantApplication>()
             .AddScoped<IOccurenceApplication, OccurenceApplication>()
             .AddScoped<ICommonApplication, CommonApplication>()
-            .AddScoped<IInsurdeApplication, InsurdeApplication>()
+            .AddScoped<IInsuredApplication, InsuredApplication>()
             .AddScoped<IPolicyApplication, PolicyApplication>()
             .AddScoped<IProposalApplication, ProposalApplication>()
             .AddScoped<IProductApplication, ProductApplication>()

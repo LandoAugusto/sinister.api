@@ -2,9 +2,9 @@
 
 namespace Application.Interfaces
 {
-    public interface IInsurdeApplication
+    public interface IInsuredApplication
     {
-        Task<InsuredResponseDto?> GetInsuredAsync(int insuredPersonId);
+        Task<InsuredResponseDto?> GetByIdAsync(int insuredPersonId);
         Task<List<InsuredResponseDto>?> ListInsuredAsync(string name, string documentNumber);
     }
 }

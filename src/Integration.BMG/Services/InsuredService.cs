@@ -43,7 +43,7 @@ namespace Integration.BMG.Services
             }
         }
 
-        public async Task<InsuredResponseDto> GetInsuredAsync(int insuredPersonId)
+        public async Task<InsuredResponseDto> GetByIdAsync(int insuredPersonId)
         {
             try
             {              

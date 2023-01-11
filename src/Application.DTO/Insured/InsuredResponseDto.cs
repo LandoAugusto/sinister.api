@@ -15,5 +15,7 @@ namespace Application.DTO.Insured
         public string? Name { get; set; }
         public long? DocumentNumber { get; set; }
         public List<AddressResponseDto> Address { get; set; } = new List<AddressResponseDto>();
+
+        public List<PhoneResponseDto> Phone { get; set; } = new List<PhoneResponseDto>();
     }
 }

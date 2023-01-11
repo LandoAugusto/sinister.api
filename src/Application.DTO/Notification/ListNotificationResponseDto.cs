@@ -20,6 +20,6 @@ namespace Application.DTO.Notification
         public DateTime DateNotification { get; set; }
         public DomainResponseDto Situation { get; set; }
         public DomainResponseDto Status { get; set; }
-        public PolicyResponseDto Policy { get; set; }
+        public ListPolicyResponseDto Policy { get; set; }
     }
 }

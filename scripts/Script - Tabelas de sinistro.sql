@@ -398,13 +398,42 @@ GO
 
 
 
+IF OBJECT_ID('dbo.Policy', 'U') IS NOT NULL 
+  DROP TABLE dbo.Policy; 
+GO
+CREATE TABLE  Policy
+(
+	Id						INT IDENTITY(1,1) NOT NULL,	
+	ProductId			    INT NOT NULL,		
+	EndorsementId			VARCHAR (15) NOT NULL,	
+	ProposalNumber          INT  NOT NULL,
+	ProposalDate			DATETIME NOT NULL,
+	PolicyId                INT  NOT NULL,
+	PolicyNumber            BIGINT  NOT NULL,
+	PolicyDate				DATETIME NOT NULL,
+	StartOfTerm				DATETIME NOT NULL,
+	EndOfTerm				DATETIME NOT NULL,		
+	InsuredId			    INT NOT NULL,	
+	Item					INT NOT NULL,	
+	InclusionUserId			INT NOT NULL,
+	CreatedDate             DATETIME NOT NULL,	
+	UpdatedDate             DATETIME NULL,
+ 
+CONSTRAINT [PK_Policy_Id] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+
+
 IF OBJECT_ID('dbo.Insured', 'U') IS NOT NULL 
   DROP TABLE dbo.Insured; 
 GO
 CREATE TABLE  Insured
 (
-	Id						INT IDENTITY(1,1) NOT NULL,
-	PolicyId				INT NOT NULL,		
+	Id						INT IDENTITY(1,1) NOT NULL,		
 	InsuredId			    INT NOT NULL,		
 	DocumentType			INT NOT NULL,	
 	Document			    VARCHAR(20) NOT NULL,	
@@ -428,33 +457,6 @@ CONSTRAINT [PK_Insured_Id] PRIMARY KEY CLUSTERED
 ) ON [PRIMARY]
 GO
 
-
-IF OBJECT_ID('dbo.Policy', 'U') IS NOT NULL 
-  DROP TABLE dbo.Policy; 
-GO
-CREATE TABLE  Policy
-(
-	Id						INT IDENTITY(1,1) NOT NULL,	
-	ProductId			    INT NOT NULL,	
-	EndorsementId			VARCHAR (15) NOT NULL,	
-	ProposalNumber          INT  NOT NULL,
-	ProposalDate			DATETIME NOT NULL,
-	PolicyId                INT  NOT NULL,
-	PolicyNumber            BIGINT  NOT NULL,
-	PolicyDate				DATETIME NOT NULL,
-	StartOfTerm				DATETIME NOT NULL,
-	EndOfTerm				DATETIME NOT NULL,		
-	Item					INT NOT NULL,	
-	InclusionUserId			INT NOT NULL,
-	CreatedDate             DATETIME NOT NULL,	
-	UpdatedDate             DATETIME NULL,
- 
-CONSTRAINT [PK_Policy_Id] PRIMARY KEY CLUSTERED 
-(
-	[Id] ASC
-)WITH (STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
-) ON [PRIMARY]
-GO
 
 IF OBJECT_ID('dbo.Product', 'U') IS NOT NULL 
   DROP TABLE dbo.Product; 
@@ -505,8 +507,8 @@ ALTER TABLE [dbo].[Policy]  WITH CHECK ADD  CONSTRAINT [FK_Policy_Product_Produc
 REFERENCES [dbo].[Product] ([Id])
 GO
 
-ALTER TABLE [dbo].[Insured]  WITH CHECK ADD  CONSTRAINT [FK_Insured_Policy_PolicyId] FOREIGN KEY([PolicyId])
-REFERENCES [dbo].[Policy] ([Id])
+ALTER TABLE [dbo].[Policy]  WITH CHECK ADD  CONSTRAINT [FK_Policy_Insured_InsuredId] FOREIGN KEY([InsuredId])
+REFERENCES [dbo].[Insured] ([Id])
 
 
 ALTER TABLE [dbo].[InsuredPhone]  WITH CHECK ADD  CONSTRAINT [FK_InsuredPhone_Insured_InsuredId] FOREIGN KEY([InsuredId])

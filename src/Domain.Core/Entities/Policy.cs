@@ -14,12 +14,13 @@ namespace Domain.Core.Entities
         public DateTime PolicyDate { get; set; }
         public DateTime StartOfTerm { get; set; }
         public DateTime EndOfTerm { get; set; }
+        public int InsuredId { get; set; }
         public int Item { get; set; }
         public int InclusionUserId { get; set; }
         public DateTime CreatedDate { get; set; } = DateTime.Now;
         public DateTime? UpdatedDate { get; set; }
         public virtual Product Product { get; set; } = null!;
-        public virtual ICollection<Insured> Insured { get; set; } = new HashSet<Insured>();
+        public virtual Insured Insured { get; set; } = null!;        
         public virtual ICollection<Notification> Notifications { get; set; } = new HashSet<Notification>();
 
     }

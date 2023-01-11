@@ -58,13 +58,7 @@ namespace Repository.Mappings
             builder
                 .Property(e => e.Sex)
                 .HasMaxLength(1)
-                .IsUnicode(false);
-
-            builder
-                .HasOne(d => d.Policy)
-                .WithMany(p => p.Insured)
-                .HasForeignKey(d => d.PolicyId)
-                .OnDelete(DeleteBehavior.ClientSetNull);
+                .IsUnicode(false);        
 
         }
     }
