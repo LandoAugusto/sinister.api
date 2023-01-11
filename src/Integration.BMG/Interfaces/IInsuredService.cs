@@ -5,7 +5,7 @@ namespace Integration.BMG.Interfaces
 {
     public interface IInsuredService
     {
-        Task<InsuredResponseDto> GetInsuredAsync(int insuredPersonId);
+        Task<InsuredResponseDto> GetByIdAsync(int insuredPersonId);
 
         Task<List<InsuredResponseDto>> ListInsuredAsync(string name, string documentNumber);
     }

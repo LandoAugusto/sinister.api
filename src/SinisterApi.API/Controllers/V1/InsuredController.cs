@@ -9,12 +9,12 @@ namespace SinisterApi.API.Controllers.V1
 {
     public class InsuredController : BaseController
     {
-        private readonly IInsurdeApplication _insurdeApplication;
+        private readonly IInsuredApplication _insurdeApplication;
 
         public InsuredController(
             IUser user,
             ILogger<InsuredController> logger,
-            IInsurdeApplication insurdeApplication) : base(user, logger) =>
+            IInsuredApplication insurdeApplication) : base(user, logger) =>
             _insurdeApplication = insurdeApplication;
 
         [HttpPost]
@@ -38,7 +38,7 @@ namespace SinisterApi.API.Controllers.V1
         [ProducesResponseType(typeof(ErrorResponseModel), StatusCodes.Status404NotFound)]
         public async Task<IActionResult> GetInsuredAscync(int insuredPersonId)
         {
-            var response = await _insurdeApplication.GetInsuredAsync(insuredPersonId);
+            var response = await _insurdeApplication.GetByIdAsync(insuredPersonId);
 
             if (response == null)
                 return ReturnNotFound();

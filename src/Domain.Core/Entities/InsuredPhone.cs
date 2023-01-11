@@ -10,7 +10,7 @@ namespace Domain.Core.Entities
         public string? Ddd { get; set; }
         public string? Phone { get; set; }
         public int InclusionUserId { get; set; }
-        public DateTime CreatedDate { get; set; }
+        public DateTime CreatedDate { get; set; } = DateTime.Now;
         public DateTime? UpdatedDate { get; set; }
         public virtual Insured Insured { get; set; } = null!;
         public virtual PhoneType PhoneType { get; set; } = null!;

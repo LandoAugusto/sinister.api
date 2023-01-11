@@ -50,14 +50,14 @@ namespace Application.Services
             }
             return result;
         }
-        public async Task UpdateStageNotificationAscync(int notificationId, PhaseEnum phase)
+        public async Task UpdateStageNotificationAscync(int notificationId, PhaseEnum nextPhase)
         {
-            var entity = await _notificationRepository.GetByIdAsync(notificationId);
-            if (entity == null)
-                throw new BusinessException("Erro ao atualizar status do aviso");
-
-            entity.PhaseId = (int)phase;
-            await _notificationRepository.UpdateAsync(entity);
+            var entity = await _notificationRepository.GetByIdAsync(notificationId);            
+            if (entity.PhaseId < (int)nextPhase)
+            {
+                entity.PhaseId = (int)nextPhase;
+                await _notificationRepository.UpdateAsync(entity);
+            }
         }
         public async Task<int> SaveNotificationAsync(int policyId, int codeItem)
         {

@@ -35,6 +35,7 @@ namespace Infrastructure.Data.Repository.Extensions
             .AddScoped<ICommunicantTypeRepository, CommunicantTypeRepository>()
             .AddScoped<IProductRepository, ProductRepository>()
             .AddScoped<IPolicyRepository, PolicyRepository>()
+            .AddScoped<IInsuredRepository, InsuredRepository>()
             .AddScoped<IOccurrenceRepository, OccurrenceRepository>()
             .AddScoped<INotificationRepository, NotificationRepository>()
             .AddScoped<INotificationComplementRepository, NotificationComplementRepository>()

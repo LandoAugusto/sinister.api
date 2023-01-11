@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using SinisterApi.API.Controllers.V1.Base;
 using Application.DTO.Policy;
 using Infrastruture.CrossCutting.Identity.Interfaces;
+using Domain.Core.Entities;
 
 namespace SinisterApi.API.Controllers.V1
 {
@@ -37,7 +38,21 @@ namespace SinisterApi.API.Controllers.V1
         [ProducesResponseType(typeof(ErrorResponseModel), StatusCodes.Status404NotFound)]
         public async Task<IActionResult> GetPolicyInsuredAsync(int notificationId)
         {
-            var response = await _policyApplication.GetPolicyInsuredAsync(notificationId);            
+            var response = await _policyApplication.GetPolicyInsuredAsync(notificationId);
+            if (response == null)
+                return ReturnNotFound();
+
+            return ReturnSuccess(response);
+        }
+
+        [HttpPut]
+        [Route("UpdatePolicyInsured/{id}/{notificationId}")]
+        [ProducesResponseType(typeof(ResponseModel), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(ErrorResponseModel), StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(typeof(ErrorResponseModel), StatusCodes.Status404NotFound)]
+        public async Task<IActionResult> UpdatePolicyInsuredAsync(int id, int notificationId, UpdatePolicyInsuredRequestDto request)
+        {
+            var response = await _policyApplication.UpdatePolicyInsuredAsync(id, notificationId, request);
             if (response == null)
                 return ReturnNotFound();
 

@@ -5,10 +5,10 @@ using Integration.BMG.Interfaces;
 
 namespace Application.Services
 {
-    internal class InsurdeApplication : IInsurdeApplication
+    internal class InsuredApplication : IInsuredApplication
     {
-        private readonly IInsuredService _insuredService;
-        public InsurdeApplication(IInsuredService insuredService) =>
+        private readonly IInsuredService _insuredService;    
+        public InsuredApplication(IInsuredService insuredService) =>
             _insuredService = insuredService;
 
         public async Task<List<InsuredResponseDto>?> ListInsuredAsync(string name, string documentNumber)
@@ -19,12 +19,12 @@ namespace Application.Services
             return list;
 
         }
-        public async Task<InsuredResponseDto?> GetInsuredAsync(int insuredPersonId)
+        public async Task<InsuredResponseDto?> GetByIdAsync(int insuredId)
         {
-            var response = await _insuredService.GetInsuredAsync(insuredPersonId);
+            var response = await _insuredService.GetByIdAsync(insuredId);
             if (response == null) return null;
 
             return response;
-        }
+        }      
     }
 }

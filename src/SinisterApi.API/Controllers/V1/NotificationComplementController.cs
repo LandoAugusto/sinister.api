@@ -24,7 +24,7 @@ namespace SinisterApi.API.Controllers.V1
         [ProducesResponseType(typeof(ErrorResponseModel), StatusCodes.Status404NotFound)]
         public async Task<IActionResult> GetComplementAsync(int notificationId)
         {
-            //var response = await _insurdeApplication.GetInsuredAsync(insuredPersonId);
+            //var response = await _insurdeApplication.GetByIdAsync(insuredPersonId);
             var response = "";
             if (response == null)
                 return ReturnNotFound();
