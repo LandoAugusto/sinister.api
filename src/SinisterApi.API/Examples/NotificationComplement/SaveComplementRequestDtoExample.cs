@@ -3,9 +3,9 @@ using Swashbuckle.AspNetCore.Filters;
 
 namespace SinisterApi.API.Examples.NotificationComplement
 {
-    public class SaveComplementRequestDtoExample : IExamplesProvider<SaveComplementRequestDto>
+    public class SaveComplementRequestDtoExample : IExamplesProvider<UpdateSaveComplementRequestDto>
     {
-        public SaveComplementRequestDto GetExamples() => new()
+        public UpdateSaveComplementRequestDto GetExamples() => new()
         {
             NotificationId = 1,
             IsContentious = true,

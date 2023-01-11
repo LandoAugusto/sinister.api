@@ -2,7 +2,7 @@
 
 namespace Application.DTO.Occurence
 {
-    public class SaveOccurenceRequestDto
+    public class UpdateSaveOccurenceRequestDto
     {
         public int NotificationId { get; set; }
         public string DateOccurence { get; set; }

@@ -4,13 +4,13 @@ namespace Domain.Core.Entities
 {
     public class OccurrencePhone : IIdentityEntity
     {
-        public OccurrencePhone( string name, int phoneTypeId, string ddd, string phone, int inclusionUserId)
-        {   
-            Name = name;
-            PhoneTypeId = phoneTypeId;
-            Ddd = ddd;
-            Phone = phone;
-            InclusionUserId = inclusionUserId;
+        public OccurrencePhone(string name, int phoneTypeId, string ddd, string phone, int inclusionUserId)
+        {
+            this.Name = name;
+            this.PhoneTypeId = phoneTypeId;
+            this.Ddd = ddd;
+            this.Phone = phone;
+            this.InclusionUserId = inclusionUserId;
         }
 
         public int Id { get; set; }

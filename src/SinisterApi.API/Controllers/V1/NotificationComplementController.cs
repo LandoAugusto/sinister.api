@@ -33,13 +33,13 @@ namespace SinisterApi.API.Controllers.V1
         }
 
         [HttpPost]
-        [Route("SaveComplement")]
+        [Route("UpdateSaveComplement")]
         [ProducesResponseType(typeof(ResponseModel), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ErrorResponseModel), StatusCodes.Status400BadRequest)]
         [ProducesResponseType(typeof(ErrorResponseModel), StatusCodes.Status404NotFound)]
-        public async Task<IActionResult> SaveComplementAsync(SaveComplementRequestDto request)
+        public async Task<IActionResult> UpdateSaveComplement(UpdateSaveComplementRequestDto request)
         {
-            var response = await _notificationComplementApplication.SaveNotificationComplementAsync(request);            
+            var response = await _notificationComplementApplication.UpdateSaveComplementAsync(1, request);
             if (response == null)
                 return ReturnNotFound();
 
