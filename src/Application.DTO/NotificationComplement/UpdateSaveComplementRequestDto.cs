@@ -1,6 +1,6 @@
 ﻿namespace Application.DTO.NotificationComplement
 {
-    public class SaveComplementRequestDto
+    public class UpdateSaveComplementRequestDto
     {
         public int NotificationId { get; set; }
         public bool IsContentious { get; set; }

@@ -5,6 +5,6 @@ namespace Application.Interfaces
     public interface IOccurenceApplication
     {
         Task<GetOccurenceResponseDto?> GetOccurrenceAsync(int notificaitonId);
-        Task<int> SaveOccurrenceAsync(int userId, SaveOccurenceRequestDto request);
+        Task<int> UpdateSaveOccurrenceAsync(int userId, UpdateSaveOccurenceRequestDto request);
     }
 }

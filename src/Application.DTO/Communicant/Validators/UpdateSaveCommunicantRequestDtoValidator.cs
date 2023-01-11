@@ -2,11 +2,11 @@
 
 namespace Application.DTO.Communicant.Validators
 {
-    public class SaveCommunicantRequestDtoValidator : AbstractValidator<SaveCommunicantRequestDto>
+    public class UpdateSaveCommunicantRequestDtoValidator : AbstractValidator<UpdateSaveCommunicantRequestDto>
     {
         private readonly string _inconsistentDataCode = "40";
 
-        public SaveCommunicantRequestDtoValidator()
+        public UpdateSaveCommunicantRequestDtoValidator()
         {
             Validate();
         }

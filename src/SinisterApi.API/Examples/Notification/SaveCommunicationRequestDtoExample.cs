@@ -4,9 +4,9 @@ using Swashbuckle.AspNetCore.Filters;
 
 namespace SinisterApi.API.Examples.Notification
 {
-    public class SaveCommunicationRequestDtoExample : IExamplesProvider<SaveCommunicantRequestDto>
+    public class SaveCommunicationRequestDtoExample : IExamplesProvider<UpdateSaveCommunicantRequestDto>
     {
-        public SaveCommunicantRequestDto GetExamples() => new()
+        public UpdateSaveCommunicantRequestDto GetExamples() => new()
         {
             NotificationId = 1,
             CommunicantTypeId = 1,

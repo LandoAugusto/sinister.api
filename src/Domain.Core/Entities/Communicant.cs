@@ -3,7 +3,7 @@
 namespace Domain.Core.Entities
 {
     public class Communicant : IIdentityEntity
-    {
+    {      
         public Communicant(int notificationId, int CommunicantTypeId, string name, int inclusionUserId)
         {
             this.NotificationId = notificationId;
@@ -11,6 +11,7 @@ namespace Domain.Core.Entities
             this.Name = name;
             this.InclusionUserId = inclusionUserId;
         }
+
         public int Id { get; set; }
         public int NotificationId { get; set; }
         public int CommunicantTypeId { get; set; }
@@ -22,6 +23,5 @@ namespace Domain.Core.Entities
         public virtual CommunicantType CommunicantType { get; set; } = null!;
         public virtual ICollection<CommunicantEmail> CommunicantEmail { get; set; } = new HashSet<CommunicantEmail>();
         public virtual ICollection<CommunicantPhone> CommunicantPhone { get; set; } = new HashSet<CommunicantPhone>();
-
     }
 }

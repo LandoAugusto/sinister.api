@@ -31,13 +31,13 @@ namespace SinisterApi.API.Controllers.V1
         }
 
         [HttpPost]
-        [Route("SaveOccurrence")]
+        [Route("UpdateSaveOccurrence")]
         [ProducesResponseType(typeof(ResponseModel), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ErrorResponseModel), StatusCodes.Status400BadRequest)]
         [ProducesResponseType(typeof(ErrorResponseModel), StatusCodes.Status404NotFound)]
-        public async Task<IActionResult> SaveOccurrenceAsync(SaveOccurenceRequestDto request)
+        public async Task<IActionResult> UpdateSaveOccurrenceAsync(UpdateSaveOccurenceRequestDto request)
         {
-            var response = await _occurenceApplication.SaveOccurrenceAsync(1, request);
+            var response = await _occurenceApplication.UpdateSaveOccurrenceAsync(1, request);
             if (response == 0)
                 return ReturnNotFound();
 

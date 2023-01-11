@@ -4,9 +4,9 @@ using Swashbuckle.AspNetCore.Filters;
 
 namespace SinisterApi.API.Examples.Occurrence
 {
-    public class SaveOccurenceRequestDtoExample : IExamplesProvider<SaveOccurenceRequestDto>
+    public class SaveOccurenceRequestDtoExample : IExamplesProvider<UpdateSaveOccurenceRequestDto>
     {
-        public SaveOccurenceRequestDto GetExamples() => new()
+        public UpdateSaveOccurenceRequestDto GetExamples() => new()
         {
             NotificationId = 1,
             DateOccurence = "09/01/2023",

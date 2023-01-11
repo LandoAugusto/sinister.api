@@ -2,11 +2,11 @@
 
 namespace Application.DTO.Occurence.Validators
 {
-    internal class SaveOccurenceRequestDtoValidator : AbstractValidator<SaveOccurenceRequestDto>
+    internal class UpdateSaveOccurenceRequestDtoValidator : AbstractValidator<UpdateSaveOccurenceRequestDto>
     {
         private readonly string _inconsistentDataCode = "40";
 
-        public SaveOccurenceRequestDtoValidator()
+        public UpdateSaveOccurenceRequestDtoValidator()
         {
             Validate();
         }

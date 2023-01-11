@@ -4,6 +4,6 @@ namespace Application.Interfaces
 {
     public interface INotificationComplementApplication
     {
-        Task<int> SaveNotificationComplementAsync(SaveComplementRequestDto request);
+        Task<int> UpdateSaveComplementAsync(int userId, UpdateSaveComplementRequestDto request);
     }
 }

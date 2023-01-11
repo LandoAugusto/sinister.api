@@ -6,6 +6,6 @@ namespace Application.Interfaces
     {
         Task<GetCommunicantResponseDto> GetCommunicantAsync(int notificationId);
 
-        Task<int> SaveCommunicantAsync(SaveCommunicantRequestDto request, int userId);
+        Task<int> UpdateSaveCommunicantAsync(UpdateSaveCommunicantRequestDto request, int userId);
     }
 }
