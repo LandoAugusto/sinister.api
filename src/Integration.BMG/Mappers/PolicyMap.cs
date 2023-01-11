@@ -5,13 +5,13 @@ namespace Integration.BMG.Mappers
 {
     internal static class PolicyMap
     {
-        public static List<PolicyResponseDto> Map(IList<PolicyResponse> response)
+        public static List<ListPolicyResponseDto> Map(IList<PolicyResponse> response)
         {
-            var result = new List<PolicyResponseDto>();
+            var result = new List<ListPolicyResponseDto>();
 
             foreach (var item in response)
             {
-                var policy = new PolicyResponseDto(default, item.ProposalNumber, item.PolicyId, item.EndorsementId, item.PolicyNumber, item.ProposalDate, item.PolicyDate, item.StartOfTerm, item.EndOfTerm)
+                var policy = new ListPolicyResponseDto(default, item.ProposalNumber, item.PolicyId, item.EndorsementId, item.PolicyNumber, item.ProposalDate, item.PolicyDate, item.StartOfTerm, item.EndOfTerm)
                 {
                     Broker = BrokerMap.Map(item.Broker),
                     Status = new(item.Status.Id, item.Status.Name),

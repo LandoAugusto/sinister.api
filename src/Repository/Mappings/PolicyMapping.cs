@@ -36,9 +36,15 @@ namespace Repository.Mappings
 
             builder
                 .HasOne(d => d.Product)
-                .WithMany(p => p.Policies)
+                .WithMany(p => p.Policy)
                 .HasForeignKey(d => d.ProductId)
                 .OnDelete(DeleteBehavior.ClientSetNull);
+
+            builder
+            .HasOne(d => d.Insured)
+            .WithMany(p => p.Policy)
+            .HasForeignKey(d => d.InsuredId)
+            .OnDelete(DeleteBehavior.ClientSetNull);
         }
     }
 }

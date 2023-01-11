@@ -7,9 +7,9 @@ using Application.DTO.User;
 
 namespace Application.DTO.Policy
 {
-    public class PolicyResponseDto
+    public class ListPolicyResponseDto
     {
-        public PolicyResponseDto(int id, int proposalNumber, int policyId, string endorsementId, long policyNumber, DateTime proposalDate, DateTime policyDate, DateTime startOfTerm, DateTime endOfTerm, int item = 0)
+        public ListPolicyResponseDto(int id, int proposalNumber, int policyId, string endorsementId, long policyNumber, DateTime proposalDate, DateTime policyDate, DateTime startOfTerm, DateTime endOfTerm, int item = 0)
         {
             Id = id;
             ProposalNumber = proposalNumber;

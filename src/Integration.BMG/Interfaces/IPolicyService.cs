@@ -4,6 +4,6 @@ namespace Integration.BMG.Interfaces
 {
     public interface IPolicyService
     {
-        Task<IList<PolicyResponseDto>> ListPolicyAsync(int? policyId, int? insuredPersonId, int? stipulatorPersonId, int? certificate);
+        Task<IList<ListPolicyResponseDto>> ListPolicyAsync(int? policyId, int? insuredPersonId, int? stipulatorPersonId, int? certificate);
     }
 }

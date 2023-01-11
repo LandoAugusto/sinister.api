@@ -39,7 +39,7 @@ namespace Application.Services
                 {
                     Situation = new DomainResponseDto(item.Situation.Id, item.Situation.Name),
                     Status = new DomainResponseDto(item.Status.Id, item.Status.Name),
-                    Policy = new PolicyResponseDto(item.Policy.Id, item.Policy.ProposalNumber, item.Policy.PolicyId, item.Policy.EndorsementId, item.Policy.PolicyNumber, item.Policy.ProposalDate, item.Policy.PolicyDate, item.Policy.StartOfTerm, item.Policy.EndOfTerm.Date, item.Policy.Item)
+                    Policy = new ListPolicyResponseDto(item.Policy.Id, item.Policy.ProposalNumber, item.Policy.PolicyId, item.Policy.EndorsementId, item.Policy.PolicyNumber, item.Policy.ProposalDate, item.Policy.PolicyDate, item.Policy.StartOfTerm, item.Policy.EndOfTerm.Date, item.Policy.Item)
                     {
                         Product = new(item.Policy.Product.Id, item.Policy.Product.Name, item.Policy.Product.ImageUrl),
                         InclusionUser = new(item.Policy.InclusionUserId, null),
@@ -71,7 +71,7 @@ namespace Application.Services
                 var notification = new Notification()
                 {
                     PhaseId = (int)PhaseEnum.Communicant,
-                    StatusId = (int)StatusEnum.Incompleto,
+                    StatusId = (int)StatusNotificationEnum.Incompleto,
                     SituationId = (int)SituationEnum.Aberto,
                     InclusionUserId = 1,
                     Policy = new Policy()
@@ -88,7 +88,17 @@ namespace Application.Services
                         EndOfTerm = policy.EndOfTerm,
                         InclusionUserId = 1,
                     }
-                };                
+                };
+
+                notification.Policy.Insured = new Insured()
+                {
+                    DocumentType = 1,
+                    InsuredId = policy.Insured.PersonId.Value,
+                    Name = policy.Insured.Name,
+                    Document = policy.Insured.DocumentNumber.ToString(),
+                    InclusionUserId = 1,
+                };
+
                 var result = await _notificationRepository.AddAsync(notification);
                 return result.Id;
             }
